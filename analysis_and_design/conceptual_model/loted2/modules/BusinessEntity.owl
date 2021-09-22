@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE rdf:RDF [
+	<!ENTITY owl "http://www.w3.org/2002/07/owl#">
+	<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#">
+	<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+	<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	<!ENTITY ProcurementsTopClasses "https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#">
+	<!ENTITY BusinessEntity "https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#">
+        <!ENTITY SubjectiveLegalSituationsInProcurements "https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements#" >
+]>
+<rdf:RDF xmlns="https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#" 
+xml:base="https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity" 
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
+xmlns:SubjectiveLegalSituationsInProcurements="https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements#" 
+xmlns:ProcurementsTopClasses="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#"
+xmlns:owl="http://www.w3.org/2002/07/owl#" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema#" 
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:dc="http://purl.org/dc/terms/" 
+>
+	<owl:Ontology rdf:about="https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity">
+		<owl:versionIRI rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity"/>
+		<!-- dc: metadata for documentation LODE -->
+		<dc:creator>Isabella Distinto</dc:creator>
+		<rdfs:label xml:lang="en">Business Entity</rdfs:label>
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+		<rdfs:comment xml:lang="en">The Business Entity module, which is part of the LOTED2 ontology, describes the main types of legal entities (corporation, society, company, etc.) operating in the market, which may participate into competitive procurement processes (e.g. tenders).</rdfs:comment>
+        <dc:title rdf:datatype="&xsd;string">LOTED2: Business Entity Module</dc:title>
+        <dc:contributor rdf:datatype="&xsd;string">Enrico Motta</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Mathieu d'Aquin</dc:contributor>
+		<dc:description rdf:datatype="&xsd;string"> The ontology was created by Isabella Distinto, with input from Mathieu d'Aquin and Enrico Motta.</dc:description>
+        <dc:language rdf:datatype="&xsd;language">en</dc:language>
+        <dc:date>2013-07-24</dc:date>
+       <!-- dc: metadata end -->
+	</owl:Ontology>
+	<!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+	<!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+	<!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+	<!-- &BusinessEntity;hasLegalRepresentative -->
+	<owl:ObjectProperty rdf:about="&BusinessEntity;hasLegalRepresentative">
+		<rdfs:label xml:lang="en">has legal representative (1..1)</rdfs:label>
+		<rdfs:comment xml:lang="en">This property can be used to indicate the legal representative of a business entity and, more generally, of a legal person</rdfs:comment>
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&ProcurementsTopClasses;LegalPerson"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+                <rdfs:range rdf:resource="&BusinessEntity;LegalRepresentative"/>
+	</owl:ObjectProperty>
+	<!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+	<!-- &BusinessEntity;Association -->
+	<owl:Class rdf:about="&BusinessEntity;Association">
+		<rdfs:label xml:lang="en">Association</rdfs:label>
+		<owl:equivalentClass rdf:resource="&BusinessEntity;Society"/>
+		<rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;PrivateLegalPerson"/>
+		<rdfs:comment xml:lang="en">A voluntary association (also sometimes called an unincorporated association, or just an association) is a group of individuals who voluntarily enter into an agreement to form a body (or organization) to accomplish a purpose (Source:LKIF-extended)</rdfs:comment>
+	</owl:Class>
+	<!-- &BusinessEntity;Company -->
+	<owl:Class rdf:about="&BusinessEntity;Company">
+		<rdfs:label xml:lang="en">Company</rdfs:label>
+		<rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;PrivateLegalPerson"/>
+		<rdfs:comment xml:lang="en">A company refers to a legal entity formed which has a separate legal identity from its members, and is ordinarily incorporated to undertake commercial business. Although some jurisdictions refer to unincorporated entities as companies, in most jurisdictions the term refers only to incorporated entities (Source:LKIF-extended)</rdfs:comment>
+	</owl:Class>
+	<!-- &BusinessEntity;Cooperative -->
+	<owl:Class rdf:about="&BusinessEntity;Cooperative">
+		<rdfs:label xml:lang="en">Cooperative</rdfs:label>
+		<rdfs:subClassOf rdf:resource="&BusinessEntity;Society"/>
+		<rdfs:comment xml:lang="en">An autonomous association of persons united voluntarily to meet their common economic, social, and cultural needs and aspirations through a jointly-owned and democratically-controlled enterprise(Source:LKIF-extended</rdfs:comment>
+	</owl:Class>
+	<!-- &BusinessEntity;Corporation -->
+	<owl:Class rdf:about="&BusinessEntity;Corporation">
+		<rdfs:label xml:lang="en">Corporation</rdfs:label>
+		<rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;PrivateLegalPerson"/>
+		<rdfs:comment xml:lang="en">A corporation is a legal entity which, while being composed of natural persons, exists completely separately from them. This separation gives the corporation unique powers which other legal entities lack (Source:LKIF-extended)</rdfs:comment>
+	</owl:Class>
+	<!-- &BusinessEntity;Incorporated -->
+	<owl:Class rdf:about="&BusinessEntity;Incorporated">
+		<rdfs:label xml:lang="en">Incorporated</rdfs:label>
+		<owl:equivalentClass rdf:resource="&BusinessEntity;PublicLimitedCompany"/>
+		<rdfs:subClassOf rdf:resource="&BusinessEntity;Corporation"/>
+		<rdfs:comment xml:lang="en">An organisation formed into a legal corporation (Source:LKIF-extended)</rdfs:comment>
+	</owl:Class>
+	<!-- &BusinessEntity;LegalRepresentative -->
+	<owl:Class rdf:about="&BusinessEntity;LegalRepresentative">
+		<rdfs:label xml:lang="en">Legal representative</rdfs:label>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&ProcurementsTopClasses;LegalRole"/>
+					<owl:Class>
+						<owl:intersectionOf rdf:parseType="Collection">
+							<owl:Restriction>
+								<owl:onProperty rdf:resource="&ProcurementsTopClasses;context"/>
+								<owl:someValuesFrom rdf:resource="&ProcurementsTopClasses;Organisation"/>
+							</owl:Restriction>
+							<owl:Restriction>
+								<owl:onProperty rdf:resource="&ProcurementsTopClasses;rolePlayedBy"/>
+								<owl:allValuesFrom rdf:resource="&ProcurementsTopClasses;NaturalPerson"/>
+							</owl:Restriction>
+						</owl:intersectionOf>
+					</owl:Class>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalRole"/>
+		<rdfs:comment xml:lang="en">For every legal person there is a person who has the role of legal representative. 
+
+Through this person the organisation acts.</rdfs:comment>
+	</owl:Class>
+
+	<!-- &BusinessEntity;LimitedCompany -->
+	<owl:Class rdf:about="&BusinessEntity;LimitedCompany">
+		<rdfs:label xml:lang="en">Limited company</rdfs:label>
+		<owl:equivalentClass rdf:resource="&BusinessEntity;Unincorporated"/>
+		<rdfs:subClassOf rdf:resource="&BusinessEntity;Company"/>
+		<rdfs:comment xml:lang="en">A limited company is a corporation whose liability is limited by law (Source:LKIF-extended)</rdfs:comment>
+	</owl:Class>
+	<!-- &BusinessEntity;PublicLimitedCompany -->
+	<owl:Class rdf:about="&BusinessEntity;PublicLimitedCompany">
+		<rdfs:label xml:lang="en">Public limited company</rdfs:label>
+		<rdfs:subClassOf rdf:resource="&BusinessEntity;Company"/>
+		<rdfs:comment xml:lang="en">Similar to the US corporation, offers several advantages over trading as sole trader (Source:LKIF-extended)</rdfs:comment>
+	</owl:Class>
+	<!-- &BusinessEntity;Society -->
+	<owl:Class rdf:about="&BusinessEntity;Society">
+		<rdfs:label xml:lang="en">Society</rdfs:label>
+		<rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;PrivateLegalPerson"/>
+		<rdfs:comment xml:lang="en">An organized group of people associated together for religious, benevolent, cultural, scientific, political, patriotic, or other purposes (Source:LKIF-extended)</rdfs:comment>
+	</owl:Class>
+	<!-- &BusinessEntity;Unincorporated -->
+	<owl:Class rdf:about="&BusinessEntity;Unincorporated">
+		<rdfs:label xml:lang="en">Unincorporated</rdfs:label>
+		<rdfs:subClassOf rdf:resource="&BusinessEntity;Corporation"/>
+	</owl:Class>
+</rdf:RDF>
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->

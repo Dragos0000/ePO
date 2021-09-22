@@ -1,0 +1,617 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY TenderBid "https://loted2.googlecode.com/svn/trunk/modules/TenderBid#" >
+    <!ENTITY ProcurementsTopClasses "https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#" >
+    <!ENTITY BusinessEntity "https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#">
+    <!ENTITY ProposedContract "https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#" >
+]>
+
+
+<rdf:RDF xmlns="https://loted2.googlecode.com/svn/trunk/modules/TenderBid#"
+     xml:base="https://loted2.googlecode.com/svn/trunk/modules/TenderBid"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:TenderBid="https://loted2.googlecode.com/svn/trunk/modules/TenderBid#"
+     xmlns:BusinessEntity="https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#"
+     xmlns:ProposedContract="https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#"
+     xmlns:dc="http://purl.org/dc/terms/">
+    <owl:Ontology rdf:about="https://loted2.googlecode.com/svn/trunk/modules/TenderBid">
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+        <owl:versionIRI rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/TenderBid"/>
+        <owl:imports rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity.owl"/>
+        		<!-- dc: metadata for documentation LODE -->
+		<dc:creator>Isabella Distinto</dc:creator>
+        <rdfs:label xml:lang="en">Tender Bid</rdfs:label>
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+		<rdfs:comment xml:lang="en">The Tender Bid module, which is part of the LOTED2 ontology, describes the bids, the offers submitted for a proposal of public contracts to be awarded through a procurement competitive process (e.g. a tender).</rdfs:comment>
+        <dc:title rdf:datatype="&xsd;string">LOTED2: Tender Bid Module</dc:title>
+        <dc:contributor rdf:datatype="&xsd;string">Enrico Motta</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Mathieu d'Aquin</dc:contributor>
+		<dc:description rdf:datatype="&xsd;string">The ontology was created by Isabella Distinto, with input from Mathieu d'Aquin and Enrico Motta.</dc:description>
+        <dc:language rdf:datatype="&xsd;language">en</dc:language>
+        <dc:date>2013-07-24</dc:date>
+       <!-- dc: metadata end -->    
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&TenderBid;tedLabel"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#basedOn -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;basedOn">
+        <rdfs:label xml:lang="en">based on (1..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property is meant to connect a LOTED2:AwardCriterion to the LOTED2:Criterion on which is based. 
+
+For example: the LOTED2:LowestPrice is based on LOTED2:Price, that is an individual of type LOTED2:Criterion. 
+
+This property is useful for define the criteria on which is based a LOTED2:TheMostEconomicallyAdvantageousTender.</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderBid;AwardCriterion"/>
+        <rdfs:range rdf:resource="&TenderBid;Criterion"/>
+        <owl:inverseOf rdf:resource="&TenderBid;onWhichIsBased"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#evaluatedOnTheBasis -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;evaluatedOnTheBasis">
+        <rdfs:label xml:lang="en">evaluated on the basis of (1..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property aims to define on the basis of which LOTED2:AwardCriterion is evaluated a LOTED2:TenderBid. 
+
+This is a functional property, because exists only 1 individual of the class LOTED2:AwardCriterion on the basis of which a LOTED2:TenderBid is evaluated.</rdfs:comment>
+        <rdfs:range rdf:resource="&TenderBid;AwardCriterion"/>
+        <rdfs:domain rdf:resource="&TenderBid;TenderBid"/>
+        <owl:inverseOf rdf:resource="&TenderBid;isBasisOfEvaluationOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#evaluatedOnTheBasisOfCriterion -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;evaluatedOnTheBasisOfCriterion">
+        <rdfs:label xml:lang="en">evaluated on the basis of criterion (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">Through a property chain this property indicates on the basis of which criterion (not award criterion!) is evaluated a LOTED2: TenderBid. 
+
+Obviously this property is made for the case in which the tender offers are evaluated with the most economically advantageous tender award criterion, bacause in the case in which tender offers are evaluated with the lowest price award criterion, the criterion will be always the price.</rdfs:comment>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&TenderBid;evaluatedOnTheBasis"/>
+            <rdf:Description rdf:about="&TenderBid;basedOn"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#hasOpeningPlace -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;hasOpeningPlace">
+        <rdfs:label xml:lang="en">has opening place (0..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property links a LOTED2:TenderBid to the LOTED2:Location where are opened.
+
+It could happen that there is not a physical place where the offers are opened. 
+
+This is for example the case of the dynamic purchasing system, which is:
+&#39;a completely electronic process for making commonly used purchases, the characteristics of which, as generally available on the market, meet the requirements of the contracting authority, which is limited in duration and open throughout its validity to any economic operator which satisfies the selection criteria and has submitted an indicative tender that complies with the specification&#39; (Art. 1.6 of Directive 2004/18/EC).</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderBid;TenderBid"/>
+        <owl:inverseOf rdf:resource="&TenderBid;isOpeningPlaceOf"/>
+        <rdfs:range rdf:resource="&ProcurementsTopClasses;Location"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#isBasisOfEvaluationOf -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;isBasisOfEvaluationOf">
+        <rdfs:label xml:lang="en">is basis of evaluation of (0..*)</rdfs:label>
+        <rdfs:domain rdf:resource="&TenderBid;AwardCriterion"/>
+        <rdfs:range rdf:resource="&TenderBid;TenderBid"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#isOpeningPlaceOf -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;isOpeningPlaceOf">
+        <rdfs:label xml:lang="en">is opening place of (1..*)</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#isTypeOfTenderBid -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;isTypeOfTenderBid">
+        <rdfs:label xml:lang="en">is type of tender bid (1..*)</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#mayBeDrawnUpInLanguage -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;mayBeDrawnUpInLanguage">
+        <rdfs:label xml:lang="en">may be drawn up in language (1..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">The language or languages in which the offer may be drawn up</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderBid;TenderBid"/>
+        <rdfs:range rdf:resource="&ProcurementsTopClasses;Language"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#onWhichIsBased -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;onWhichIsBased">
+        <rdfs:label xml:lang="en">on which is based (0..*)</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#submittedBy -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;submittedBy">
+        <rdfs:label xml:lang="en">submitted by (1..1)</rdfs:label>
+        <owl:inverseOf rdf:resource="&TenderBid;hasSubmitted"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#typeOfTenderBid -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;typeOfTenderBid">
+        <rdfs:label xml:lang="en">type of tender bid (1..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">A tender bid may be of one of the defined type LOTED2: TypeOfOffer, namely a global offer, a partial offer or a global and partial offer.
+
+In the first case the tender bid may be submitted for a contract not divided in lots or for all the lots; in the second case for exactly 1 lot; in the third case for one or more lots.</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderBid;TenderBid"/>
+        <rdfs:range rdf:resource="&TenderBid;TypeOfTenderBid"/>
+        <owl:inverseOf rdf:resource="&TenderBid;isTypeOfTenderBid"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#hasSubmitted -->
+
+    <owl:ObjectProperty rdf:about="&TenderBid;hasSubmitted">
+        <rdfs:label xml:lang="en">has submitted (0..1)</rdfs:label>
+        <rdfs:range rdf:resource="&TenderBid;TenderBid"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;LegalPerson"/>
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;NaturalPerson"/>
+                    <rdf:Description rdf:about="&BusinessEntity;Company"/>
+                    <rdf:Description rdf:about="&BusinessEntity;Corporation"/>
+                    <rdf:Description rdf:about="&BusinessEntity;Society"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#hasOpeningDateTime -->
+
+    <owl:DatatypeProperty rdf:about="&TenderBid;hasOpeningDateTime">
+        <rdfs:label xml:lang="en">has opening date time (1..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property aims to link LOTED2:TenderBid with the xsd:dateTime value indicating the day and time where tender offers will be opened.</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderBid;TenderBid"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#hasWeighting -->
+
+    <owl:DatatypeProperty rdf:about="&TenderBid;hasWeighting">
+        <rdfs:label xml:lang="en">has weighting (1..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">This data-type property can be used to connect a LOTED2:Criterion to its percentage of weighting. 
+
+Each LOTED2:TheMostAdvantageousTender is based on min 2 LOTED2:Criteria and each of these criteria have a weighting that determines the relavance of a criterion in the evaluation of a LOTED2:TenderBid.</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderBid;Criterion"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#mayBeSubmittedAtInternetAddress -->
+
+    <owl:DatatypeProperty rdf:about="&TenderBid;mayBeSubmittedAtInternetAddress">
+        <rdfs:label xml:lang="en">may be submitted at internet address (0..1)</rdfs:label>
+        <rdfs:domain rdf:resource="&TenderBid;TenderBid"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#AwardCriterion -->
+
+    <owl:Class rdf:about="&TenderBid;AwardCriterion">
+        <rdfs:label xml:lang="en">Award criterion</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderBid;Criterion"/>
+        <rdfs:comment xml:lang="en">The criterion used to award the contract or to determine the winner of a design contest. 
+
+As stated by the EC Directives (art. 53 Directive 2004/18/EC and art. 55 Directive 2004/17/EC), the award criteria could be of two types: 
+
+1) the lowest price 
+and 
+2) the most economically advantageous tender. 
+
+An award criterion is based on a (simple, atomic) criterion, i.e.: 
+
+- the lowest price is based on the criterion price; 
+- the most economically advantageous tender is based on varoius criteria (such as quality, price, functional characteristics, etc.). 
+
+For each criterion on which is based &#39;the most economically advantageous tender&#39; is usually defined its weighting.
+
+There are no predefined award criteria for the selection of competitors in design contests, so in the case of a notice about a design contest published on TED, the award criterion in indicated as &#39;other&#39;. 
+
+In some cases, the award criterion is not specified.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#Criterion -->
+
+    <owl:Class rdf:about="&TenderBid;Criterion">
+        <rdfs:label xml:lang="en">Criterion</rdfs:label>
+        <owl:disjointWith rdf:resource="&TenderBid;TenderBid"/>
+        <owl:disjointWith rdf:resource="&TenderBid;TypeOfTenderBid"/>
+        <rdfs:comment xml:lang="en">&#39;A standard or test by which individual things or people may be compared and judged&#39; (Source: Wikipedia.org)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#LowestPrice -->
+
+    <owl:Class rdf:about="&TenderBid;LowestPrice">
+        <rdfs:label xml:lang="en">Lowest price</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&TenderBid;AwardCriterion"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&TenderBid;basedOn"/>
+                        <owl:hasValue rdf:resource="&TenderBid;Price"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&TenderBid;AwardCriterion"/>
+        <owl:disjointWith rdf:resource="&TenderBid;OtherAwardCriterion"/>
+        <owl:disjointWith rdf:resource="&TenderBid;TheMostEconomicallyAdvantageousTender"/>
+        <tedLabel xml:lang="en">1- Lowest price</tedLabel>
+        <rdfs:comment xml:lang="en">This is one of the criteria by which a public contract is awarded (please see art. 53 Directive 2004/18/EC).
+
+If a public contract is awarded using this award criterion, this means that tender offers are evaluated only on the basis of the criterion price</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#OtherAwardCriterion -->
+
+    <owl:Class rdf:about="&TenderBid;OtherAwardCriterion">
+        <rdfs:subClassOf rdf:resource="&TenderBid;AwardCriterion"/>
+        <rdfs:label xml:lang="en">Other award criterion</rdfs:label>
+        <owl:disjointWith rdf:resource="&TenderBid;TheMostEconomicallyAdvantageousTender"/>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#TenderBid -->
+
+    <owl:Class rdf:about="&TenderBid;TenderBid">
+        <rdfs:label xml:lang="en">Tender bid</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalDocument"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderBid;typeOfTenderBid"/>
+                <owl:onClass rdf:resource="&TenderBid;TypeOfTenderBid"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">Note: in english the same word &#39;tender&#39; expresses the meaning of the &#39;race&#39;, the &#39;competition&#39; for the public contract and also the meaning of the offer for a public contract. 
+This class aims to describe the offers submitted by economic operators in a tender for the award of public contracts.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#TheMostEconomicallyAdvantageousTender -->
+
+    <owl:Class rdf:about="&TenderBid;TheMostEconomicallyAdvantageousTender">
+        <rdfs:label xml:lang="en">The most economically advantageous tender</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderBid;AwardCriterion"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderBid;basedOn"/>
+                <owl:onClass rdf:resource="&TenderBid;Criterion"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">When the award criterion is tender most economically advantageous tender, the criteria on which the contracting authorities shall base the award of public contracts shall be: 
+
+&#39;various criteria linked to the subject-matter of the public contract in question, for example, quality, price, technical merit, aesthetic and functional characteristics, environmental characteristics, running costs, cost‑effectiveness, after‑sales service and technical assistance, delivery date and delivery period or period of completion&#39; Art. 53 Directive 2004/18/EC.
+
+When the award is made to the most economically advantageous tender, the criteria on which the contracting entities shall base the award of public contracts shall be: 
+
+&#39;various criteria linked to the subject‑matter of the contract in question, such as delivery 
+or completion date, running costs, cost‑effectiveness, quality, aesthetic and functional characteristics, environmental characteristics, technical merit, after‑sales service and technical assistance, commitments with regard to parts, security of supply, and price&#39; Art. 55 Directive 2004/17/EC. 
+
+We are convinced that the list of these criteria is not exhaustive, i.e. that the enumeration of these criteria has not to be considered as a &#39;numerus clausus&#39; (considering the words used by the Legislator &#39;for example&#39; and &#39;such as&#39; before the enumeration of the various criteria). 
+For this reason in this ontology there is not a list of predetermined individuals of the class LOTED2:Criterion. They will be added case by case basis.
+
+The criteria on which is based the LOTED2:TheMostEconomicallyAdvantageousTender are not specified in the raw data published on TED, and often they are not specified in the notice. Usually these are indicated in the specifications document (LOTED2:SpecificationsDocument).
+It is necessary to specify the name of another individual of type LOTED2:TheMostEcoomicallyAdvantageousTender, such as &#39;LOTED2: The_most_economically_advantageous_tender_for_contract_x&#39; to differentiate it from other award criterion of the same type but based on different criteria and that are used to evaluate tenders in different competitions (LOTED2:Tender) and for award different contracts.
+</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#TypeOfTenderBid -->
+
+    <owl:Class rdf:about="&TenderBid;TypeOfTenderBid">
+        <rdfs:label xml:lang="en">The type of tender bid (offer)</rdfs:label>
+        <rdfs:comment xml:lang="en">This is the class of the types of offer (tender bid), which comprises three types:
+
+- the &#39;Global offer&#39; is an offer which can be made for all the lots in which the contract is divided (this case is infrequent)
+For each contract that is not divided into lots, the admissible offer is obviously a global offer;
+
+- the &#39;Global or Partial offer&#39; is an offer which can be made for one or more lots. 
+This implies that in case of global or partial offer is possible to make offers for only 1 lot, mote than 1 and all the lots;
+
+- the &#39;Partial offer&#39; is an offer which can be made only for one lot only (this case is infrequent).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#GlobalOrPartialTenderBid -->
+
+    <owl:NamedIndividual rdf:about="&TenderBid;GlobalOrPartialTenderBid">
+        <rdf:type rdf:resource="&TenderBid;TypeOfTenderBid"/>
+        <rdfs:label xml:lang="en">Global or partial tender bid</rdfs:label>
+        <tedLabel xml:lang="en">3- Global or Partial tender</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#GlobalTenderBid -->
+
+    <owl:NamedIndividual rdf:about="&TenderBid;GlobalTenderBid">
+        <rdf:type rdf:resource="&TenderBid;TypeOfTenderBid"/>
+        <rdfs:label xml:lang="en">Global tender bid</rdfs:label>
+        <tedLabel xml:lang="en">1- Global tender</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#PartialTenderBid -->
+
+    <owl:NamedIndividual rdf:about="&TenderBid;PartialTenderBid">
+        <rdf:type rdf:resource="&TenderBid;TypeOfTenderBid"/>
+        <rdfs:label xml:lang="en">Partial tender bid</rdfs:label>
+        <tedLabel xml:lang="en">2- Partial tender</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderBid#Price -->
+
+    <owl:NamedIndividual rdf:about="&TenderBid;Price">
+    <rdfs:label xml:lang="en">Price</rdfs:label>
+        <rdf:type rdf:resource="&TenderBid;Criterion"/>
+    </owl:NamedIndividual>
+
+
+<!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+	<owl:Class>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&TenderBid;TenderBid"/>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&TenderBid;typeOfTenderBid"/>
+						<owl:hasValue rdf:resource="&TenderBid;GlobalOrPartialTenderBid"/>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<owl:intersectionOf rdf:parseType="Collection">
+			<rdf:Description rdf:about="&TenderBid;TenderBid"/>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&ProposedContract;mayBeSubmittedForAward"/>
+				<owl:allValuesFrom>
+					<owl:Class>
+						<owl:unionOf rdf:parseType="Collection">
+							<owl:Class>
+								<owl:intersectionOf rdf:parseType="Collection">
+									<rdf:Description rdf:about="&ProposedContract;ProposedContract"/>
+									<owl:Restriction>
+										<owl:onProperty rdf:resource="&ProposedContract;typeOfProposal"/>
+										<owl:hasValue rdf:resource="&ProposedContract;DividedIntoLots"/>
+									</owl:Restriction>
+								</owl:intersectionOf>
+							</owl:Class>
+							<owl:Class>
+								<owl:intersectionOf rdf:parseType="Collection">
+									<rdf:Description rdf:about="&ProposedContract;ProposedContract"/>
+									<owl:Restriction>
+										<owl:onProperty rdf:resource="&ProposedContract;typeOfProposal"/>
+										<owl:hasValue rdf:resource="&ProposedContract;Lot"/>
+									</owl:Restriction>
+								</owl:intersectionOf>
+							</owl:Class>
+						</owl:unionOf>
+					</owl:Class>
+				</owl:allValuesFrom>
+			</owl:Restriction>
+		</owl:intersectionOf>
+	</owl:Class>
+
+<owl:Class>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&TenderBid;TenderBid"/>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&TenderBid;typeOfTenderBid"/>
+						<owl:hasValue rdf:resource="&TenderBid;GlobalTenderBid"/>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<owl:intersectionOf rdf:parseType="Collection">
+			<rdf:Description rdf:about="&TenderBid;TenderBid"/>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&ProposedContract;mayBeSubmittedForAward"/>
+				<owl:allValuesFrom>
+					<owl:Class>
+						<owl:unionOf rdf:parseType="Collection">
+							<owl:Class>
+								<owl:intersectionOf rdf:parseType="Collection">
+									<rdf:Description rdf:about="&ProposedContract;ProposedContract"/>
+									<owl:Restriction>
+										<owl:onProperty rdf:resource="&ProposedContract;typeOfProposal"/>
+										<owl:hasValue rdf:resource="&ProposedContract;DividedIntoLots"/>
+									</owl:Restriction>
+								</owl:intersectionOf>
+							</owl:Class>
+							<owl:Class>
+								<owl:intersectionOf rdf:parseType="Collection">
+									<rdf:Description rdf:about="&ProposedContract;ProposedContract"/>
+									<owl:Restriction>
+										<owl:onProperty rdf:resource="&ProposedContract;typeOfProposal"/>
+										<owl:hasValue rdf:resource="&ProposedContract;NotDividedIntoLots"/>
+									</owl:Restriction>
+								</owl:intersectionOf>
+							</owl:Class>
+						</owl:unionOf>
+					</owl:Class>
+				</owl:allValuesFrom>
+			</owl:Restriction>
+		</owl:intersectionOf>
+	</owl:Class>
+
+<owl:Class>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&TenderBid;TenderBid"/>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&TenderBid;typeOfTenderBid"/>
+						<owl:hasValue rdf:resource="&TenderBid;PartialTenderBid"/>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&TenderBid;TenderBid"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ProposedContract;mayBeSubmittedForAward"/>
+                             <owl:allValuesFrom>
+					<owl:Class>
+						<owl:unionOf rdf:parseType="Collection">
+							<owl:Class>
+								<owl:intersectionOf rdf:parseType="Collection">
+									<rdf:Description rdf:about="&ProposedContract;ProposedContract"/>
+									<owl:Restriction>
+										<owl:onProperty rdf:resource="&ProposedContract;typeOfProposal"/>
+										<owl:hasValue rdf:resource="&ProposedContract;Lot"/>
+									</owl:Restriction>
+								</owl:intersectionOf>
+</owl:Class>
+							<owl:Class>
+                                <owl:intersectionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="&ProposedContract;ProposedContract"/>
+                                    <owl:Restriction>
+                                        <owl:onProperty rdf:resource="&ProposedContract;typeOfProposal"/>
+                                        <owl:hasValue rdf:resource="&ProposedContract;Lot"/>
+                                    </owl:Restriction>
+								</owl:intersectionOf>
+							</owl:Class>
+						</owl:unionOf>
+					</owl:Class>
+				</owl:allValuesFrom>
+			</owl:Restriction>
+		</owl:intersectionOf>
+	</owl:Class>
+        
+
+</rdf:RDF>
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+

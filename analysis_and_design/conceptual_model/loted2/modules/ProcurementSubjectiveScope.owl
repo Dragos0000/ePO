@@ -1,0 +1,783 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY dc "http://purl.org/dc/terms/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY modules "https://loted2.googlecode.com/svn/trunk/modules/" >
+    <!ENTITY ProcurementsTopClasses "https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#" >
+    <!ENTITY TenderDocuments "https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#" >
+    <!ENTITY ProcurementSubjectiveScope "https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#" >
+    <!ENTITY SubjectiveLegalSituationsInProcurements "https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements#" >
+]>
+
+
+<rdf:RDF xmlns="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsSubjectiveScope#"
+     xml:base="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsSubjectiveScope"
+     xmlns:dc="http://purl.org/dc/terms/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ProcurementsTopClasses="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#"
+     xmlns:ProcurementSubjectiveScope="https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#"
+     xmlns:TenderDocuments="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#"
+     xmlns:SubjectiveLegalSituationsInProcurements="https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:modules="https://loted2.googlecode.com/svn/trunk/modules/">
+    <owl:Ontology rdf:about="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsSubjectiveScope">
+		<owl:imports rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.owl"/>
+                <owl:imports rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments.owl"/>
+                <owl:imports rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements.owl"/>
+		<owl:versionIRI rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsSubjectiveScope"/>
+		
+		<!-- dc: metadata for documentation LODE -->
+		<dc:creator>Isabella Distinto</dc:creator>
+		<rdfs:label xml:lang="en">Procurement Subjective Scope</rdfs:label>
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+		<rdfs:comment xml:lang="en">The Procurement Subjective Scope module, which is part of the LOTED2 ontology, aims at representing the set of entities empowered to issue public procurement notices (contract notices, design contest notices, prior information notices, etc.). This module describes also the main activity carried out by an entity (i.e. ordinary sectors activity or utilities sectors activity) in order to properly classify through a reasoner (e.g. Pellet or Hermit) an entity as &quot;Entity operating in utilities&quot; or &quot;Entity operating in ordinary sectors&quot;. This distinction is paramount to establish which one of the two main European Directive concerning public procurement (Directive 2004/18/EC and Directive 2004/17/EC) has to be applied to a public procurement notice.</rdfs:comment>
+        <dc:title rdf:datatype="&xsd;string">LOTED2: Procurement Subjective Scope Module</dc:title>
+        <dc:contributor rdf:datatype="&xsd;string">Enrico Motta</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Mathieu d'Aquin</dc:contributor>
+		<dc:description rdf:datatype="&xsd;string">The ontology was created by Isabella Distinto, with input from Mathieu d'Aquin and Enrico Motta.</dc:description>
+        <dc:language rdf:datatype="&xsd;language">en</dc:language>
+        <dc:date>2013-07-24</dc:date>
+       <!-- dc: metadata end -->
+	</owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&owl;versionInfo"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    <owl:AnnotationProperty rdf:about="&modules;ProcurementSubjectiveScope#tedLabel"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+<!-- &ProcurementSubjectiveScope;issuedBy -->
+
+    <owl:ObjectProperty rdf:about="&modules;ProcurementSubjectiveScope#issuedBy">
+        <rdfs:label xml:lang="en">issued by (1..1)</rdfs:label>
+        <rdfs:domain rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;AuthoritiesAssociation"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;BodiesGovernedByPublicLawAssociation"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;BodyGovernedByPublicLaw"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;CentralPurchasingBody"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;EuropeanInstitutionOrInternationalOrganisation"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;PublicAuthority"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;PublicUndertaking"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;EntityOperatingOnTheBasisOfSpecialOrExclusiveRights"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:subPropertyOf rdf:resource="&ProcurementsTopClasses;hasAuthor"/>
+        <owl:inverseOf rdf:resource="&ProcurementSubjectiveScope;issues"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &ProcurementSubjectiveScope;issues -->
+
+    <owl:ObjectProperty rdf:about="&modules;ProcurementSubjectiveScope#issues">
+        <rdfs:label xml:lang="en">issues (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property is meant to indicate the provenance of the tender document. For instance, the LOTED2:BodyGovernedByPublicLaw  who has drafted the LOTED2:ContractNotice. 
+
+This action not necessarily coincides with the action of the publication. 
+It is necessary to emphasize that the documents published on the TED, which is the online version of the &#39;Supplement to the Official Journal of the European Union&#39;, dedicated to the European public procurement (S Series), are published by the European Commission. 
+
+In fact, the documents related to the public contracts with European relevance (i.e. above threshold), which are covered by the EC Directives, should be sent by the awarding authorities to the European Commission for the publication in the OJ (see Art. 36 Directive 2004/18/EC and Art. 44 Directive 2004/17/EC).
+
+However, the awarding authorities usually publish their notice also on their buyer profile, and, in according whith the national legislation, implementing the Directive, a notice should be published also in the OJ of the country of origin, in some newspapers (e.g. according to the Italian legislation), etc.  
+
+Regarding the notices about public contracts with European relevance, it is important to emphasize that the notices and their contents can not be published at national level before the date on which they are sent to the Commission (regarding this point, please see the annotation to the datatype property LOTED2:hasSendingDate).
+</rdfs:comment>
+
+<rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;AuthoritiesAssociation"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;BodiesGovernedByPublicLawAssociation"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;BodyGovernedByPublicLaw"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;CentralPurchasingBody"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;EuropeanInstitutionOrInternationalOrganisation"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;PublicAuthority"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;PublicUndertaking"/>
+                    <rdf:Description rdf:about="&ProcurementSubjectiveScope;EntityOperatingOnTheBasisOfSpecialOrExclusiveRights"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:subPropertyOf rdf:resource="&ProcurementsTopClasses;isAuthorOf"/>
+    </owl:ObjectProperty>
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#hasMainActivity -->
+
+    <owl:ObjectProperty rdf:about="&modules;ProcurementSubjectiveScope#hasMainActivity">
+        <rdfs:label xml:lang="en">has main activity (1..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property has to be used to define main activity carried out by an entity. Note that it is possible to indicate also more than one activity. Obviously, these activities have to be consistent with the same main category, namely Ordinary Sector or Utilities Sector.</rdfs:comment>
+        <owl:inverseOf rdf:resource="&modules;ProcurementSubjectiveScope#isMainActivityOf"/>
+        <rdfs:subPropertyOf rdf:resource="&modules;ProcurementsTopClasses#hasActivity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#isMainActivityOf -->
+
+    <owl:ObjectProperty rdf:about="&modules;ProcurementSubjectiveScope#isMainActivityOf">
+        <rdfs:label xml:lang="en">is main activity of (0..*)</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="&modules;ProcurementsTopClasses#isActivityOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#isPurchasingJointlyWith -->
+
+    <owl:ObjectProperty rdf:about="&modules;ProcurementSubjectiveScope#isPurchasingJointlyWith">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label xml:lang="en">isPurchasingJointlyWith (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property can be used when an entity is purchasing jointly with another.</rdfs:comment>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodyGovernedByPublicLaw"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodyGovernedByPublicLaw"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#isPurchasingOnBehalfOf -->
+
+    <owl:ObjectProperty rdf:about="&modules;ProcurementSubjectiveScope#isPurchasingOnBehalfOf">
+        <rdfs:label xml:lang="en">is purchasing on behalf of (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property can be used when an entity is purchasing on behalf of another.</rdfs:comment>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#AuthoritiesAssociation"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodiesGovernedByPublicLawAssociation"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodyGovernedByPublicLaw"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#CentralPurchasingBody"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#AuthoritiesAssociation"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodiesGovernedByPublicLawAssociation"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodyGovernedByPublicLaw"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#CentralPurchasingBody"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation"/>
+                    <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#hasActivity -->
+
+    <owl:ObjectProperty rdf:about="&modules;ProcurementsTopClasses#hasActivity"/>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#isActivityOf -->
+
+    <owl:ObjectProperty rdf:about="&modules;ProcurementsTopClasses#isActivityOf"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+   
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#AuthoritiesAssociation -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#AuthoritiesAssociation">
+        <rdfs:label xml:lang="en">Authorities association</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#LegalPerson"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#BodiesGovernedByPublicLawAssociation"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#BodyGovernedByPublicLaw"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#CentralPurchasingBody"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#EntityOperatingOnTheBasisOfSpecialOrExclusiveRights"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicUndertaking"/>
+        <rdfs:comment xml:lang="en">An association formed by one or several autorities.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#BodiesGovernedByPublicLawAssociation -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#BodiesGovernedByPublicLawAssociation">
+        <rdfs:label xml:lang="en">Bodies governed by public law association</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#LegalPerson"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#CentralPurchasingBody"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#EntityOperatingOnTheBasisOfSpecialOrExclusiveRights"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicUndertaking"/>
+        <rdfs:comment xml:lang="en">An association composed by one or several bodies governed by public law</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#BodyGovernedByPublicLaw -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#BodyGovernedByPublicLaw">
+        <rdfs:label xml:lang="en">Body governed by public law</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#LegalPerson"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#CentralPurchasingBody"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#EntityOperatingOnTheBasisOfSpecialOrExclusiveRights"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicUndertaking"/>
+        <rdfs:comment xml:lang="en">&quot;A &#8216;body governed by public law&#8217; means any body: 
+(a) established for the specific purpose of meeting needs in the general interest, not having an industrial or commercial character; 
+(b) having legal personality; 
+and 
+(c) financed, for the most part, by the State, regional or local authorities, or other bodies governed by public law; or subject to management super vision by those bodies; or having an administrative, managerial or super visory board, more than half of whose members are appointed by the State, regional or local authorities, or by other bodies governed by public law.&quot; (second subparagraph of Art. 1 (9)  Directive 2004/18/EC).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#CentralPurchasingBody -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#CentralPurchasingBody">
+        <rdfs:label xml:lang="en">Central purchasing body</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#PublicBody"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#EntityOperatingOnTheBasisOfSpecialOrExclusiveRights"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicUndertaking"/>
+        <rdfs:comment xml:lang="en">&quot;A &#8216;central purchasing body&#8217; is a contracting authority which: 
+&#8212; acquires supplies and/or services intended for contracting authorities, or 
+&#8212; awards public contracts or concludes framework agreements for works, supplies or ser vices intended for contracting authorities.&quot; (art. 9 Directive 2004/18/EC).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#EntityOperatingInOrdinarySectors -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#EntityOperatingInOrdinarySectors">
+        <rdfs:label xml:lang="en">Entity operating in ordinary sectors</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#AuthoritiesAssociation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodiesGovernedByPublicLawAssociation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodyGovernedByPublicLaw"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#CentralPurchasingBody"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&modules;ProcurementSubjectiveScope#hasMainActivity"/>
+                        <owl:someValuesFrom rdf:resource="&modules;ProcurementSubjectiveScope#OrdinarySectorActivity"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#LegalPerson"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#AuthoritiesAssociation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodiesGovernedByPublicLawAssociation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodyGovernedByPublicLaw"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#CentralPurchasingBody"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&modules;ProcurementSubjectiveScope#hasMainActivity"/>
+                        <owl:allValuesFrom rdf:resource="&modules;ProcurementSubjectiveScope#OrdinarySectorActivity"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#EntityOperatingInUtilities"/>
+        <rdfs:comment xml:lang="en">This is a class used to classify entities on the basis of the main activities they carry out.
+
+From this classification depends the application of Directive 2004/18/EC instead of Directive 2004/17/EC.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#EntityOperatingInUtilities -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#EntityOperatingInUtilities">
+        <rdfs:label xml:lang="en">Entity operating in utilities</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#AuthoritiesAssociation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodiesGovernedByPublicLawAssociation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodyGovernedByPublicLaw"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#CentralPurchasingBody"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#EntityOperatingOnTheBasisOfSpecialOrExclusiveRights"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#PublicUndertaking"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&modules;ProcurementSubjectiveScope#hasMainActivity"/>
+                        <owl:someValuesFrom rdf:resource="&modules;ProcurementSubjectiveScope#UtilitiesSectorActivity"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#LegalPerson"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#AuthoritiesAssociation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodiesGovernedByPublicLawAssociation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#BodyGovernedByPublicLaw"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#CentralPurchasingBody"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#EntityOperatingOnTheBasisOfSpecialOrExclusiveRights"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+                            <rdf:Description rdf:about="&modules;ProcurementSubjectiveScope#PublicUndertaking"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&modules;ProcurementSubjectiveScope#hasMainActivity"/>
+                        <owl:allValuesFrom rdf:resource="&modules;ProcurementSubjectiveScope#UtilitiesSectorActivity"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">This is a class used to classify entities on the basis of the main activities they carry out.
+
+From this classification depends the application of Directive 2004/17/EC instead of Directive 2004/18/EC.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#EntityOperatingOnTheBasisOfSpecialOrExclusiveRights -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#EntityOperatingOnTheBasisOfSpecialOrExclusiveRights">
+        <rdfs:label xml:lang="en">Entity operating on the basis of special or exclusive rights</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#PrivateLegalPerson"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicUndertaking"/>
+        <rdfs:comment xml:lang="en">This is the class of any entity operating on the basis of a special or an exclusive right. 
+
+These are rights granted by a competent authority of a Member State by way of any legislative, regulatory or administrative provision the effect of which is to limit the exercise of utilities activities  to one or more entities, and which substantially affects the ability of other entities to carry out such activity. (Art. 2 (3) Directive 2004/17/ec).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#EuropeanInstitutionOrInternationalOrganisation">
+        <rdfs:label xml:lang="en">European Institution or International organisation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#PublicBody"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicUndertaking"/>
+        <rdfs:comment xml:lang="en">Any European Institution or International Organisation</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#MinistryOrNationalOrFederalAuthority -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#MinistryOrNationalOrFederalAuthority">
+        <rdfs:label xml:lang="en">Ministry or national or federal authority</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#NationalOrFederalAgency -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#NationalOrFederalAgency">
+        <rdfs:label xml:lang="en">National or federal agency</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#OrdinarySectorActivity -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#OrdinarySectorActivity">
+        <rdfs:label xml:lang="en">Ordinary sector activity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#Activity"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#UtilitiesSectorActivity"/>
+        <rdfs:comment xml:lang="en">This class collects the so called "ordinary activities" (also called "public sectors"), such as education, environment, health. The Directive 2004/18/EC regulates the procedures for awarding public contracts above the European threshold by bodies engaged in the ordinary activities. The set of all the "ordinary activities" defined by the Directive and recalled by the notices standard forms are indicated as named individuals belonging to this class. It is necessary to underline that the catalogue of these named individuals should be not intended as a numerus clausus.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#PublicAuthority -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#PublicAuthority">
+        <rdfs:label xml:lang="en">Public authority</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#PublicBody"/>
+        <owl:disjointWith rdf:resource="&modules;ProcurementSubjectiveScope#PublicUndertaking"/>
+        <rdfs:comment xml:lang="en">Any authority of a State. A public authority is a type of public body, i.e. is a public body of a State apparatus, either at central and local level.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#PublicUndertaking -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#PublicUndertaking">
+        <rdfs:label xml:lang="en">Public undertaking</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#LegalPerson"/>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#RegionalOrLocalAgency -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#RegionalOrLocalAgency">
+        <rdfs:label xml:lang="en">Regional or local agency</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#RegionalOrLocalAuthority -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#RegionalOrLocalAuthority">
+        <rdfs:label xml:lang="en">Regional or local authority</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementSubjectiveScope#PublicAuthority"/>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#UtilitySectorActivity -->
+
+    <owl:Class rdf:about="&modules;ProcurementSubjectiveScope#UtilitiesSectorActivity">
+        <rdfs:label xml:lang="en">Utility sector activity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&modules;ProcurementsTopClasses#Activity"/>
+        <rdfs:comment xml:lang="en">This class collects the so called "utility activities", namely water, transport, energy and postal services. The Directive 2004/17/EC (the Utilities Directive) regulates the procedures for awarding public contracts above the European threshold by bodies engaged in the utility activities. The set of all the "utility activities" defined by the Directive and recalled by the notices standard forms are indicated as named individuals belonging to this class.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#Activity -->
+
+    <owl:Class rdf:about="&modules;ProcurementsTopClasses#Activity"/>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#LegalPerson -->
+
+    <owl:Class rdf:about="&modules;ProcurementsTopClasses#LegalPerson"/>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#PrivateLegalPerson -->
+
+    <owl:Class rdf:about="&modules;ProcurementsTopClasses#PrivateLegalPerson"/>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#PublicBody -->
+
+    <owl:Class rdf:about="&modules;ProcurementsTopClasses#PublicBody"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#Airport-relatedServices -->
+
+
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;Airport-relatedServices">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;UtilitiesSectorActivity"/>
+        <rdfs:label xml:lang="en">Airport-related activities</rdfs:label>
+        <tedLabel xml:lang="en">I- Airport-related activities</tedLabel>
+    </owl:NamedIndividual>
+    
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#Defence -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;Defence">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;OrdinarySectorActivity"/>
+        <rdfs:label xml:lang="en">Defence</rdfs:label>
+        <tedLabel xml:lang="en">D- Defence</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#EconomicAndFinancialAffairs -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;EconomicAndFinancialAffairs">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;OrdinarySectorActivity"/>
+        <rdfs:label xml:lang="en">Economic and Financial Affairs</rdfs:label>
+        <tedLabel xml:lang="en">F- Economic and Financial Affairs</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#Education -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;Education">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;OrdinarySectorActivity"/>
+        <rdfs:label xml:lang="en">Education</rdfs:label>
+        <tedLabel xml:lang="en">L- Education</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#Electricity -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;Electricity">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;UtilitiesSectorActivity"/>
+        <rdfs:label xml:lang="en">Electricity</rdfs:label>
+        <tedLabel xml:lang="en">N- Electricity</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#Environment -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;Environment">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;OrdinarySectorActivity"/>
+        <rdfs:label xml:lang="en">Environment</rdfs:label>
+        <tedLabel xml:lang="en">E- Environment</tedLabel>
+    </owl:NamedIndividual>
+    
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#ExplorationAndExtractionOfCoalAndOtherSolidFuels -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;ExplorationAndExtractionOfCoalAndOtherSolidFuels">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;UtilitiesSectorActivity"/>
+        <rdfs:label xml:lang="en">Exploration and extraction of coal and other solid fuels</rdfs:label>
+        <tedLabel xml:lang="en">M- Exploration and extraction of coal and other solid fuels</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#ExplorationAndExtractionOfGasAndOil -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;ExplorationAndExtractionOfGasAndOil">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;UtilitiesSectorActivity"/>
+        <rdfs:label xml:lang="en">Exploration and extraction of gas and oil</rdfs:label>
+        <tedLabel xml:lang="en">J- Exploration and extraction of gas and oil</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#GeneralPublicServices -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;GeneralPublicServices">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;OrdinarySectorActivity"/>
+        <rdfs:label xml:lang="en">General public services</rdfs:label>
+        <tedLabel xml:lang="en">S- General public/services</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#Healt -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;Healt">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;OrdinarySectorActivity"/>
+        <rdfs:label xml:lang="en">Health</rdfs:label>
+        <tedLabel xml:lang="en">H- Health</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#HousingAndCommunityAmenities -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;HousingAndCommunityAmenities">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;OrdinarySectorActivity"/>
+        <rdfs:label xml:lang="en">Housing and community amenities</rdfs:label>
+        <tedLabel xml:lang="en">A- Housing and community amenities</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+   
+
+
+   
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#Port-relatedActivities -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;Port-relatedActivities">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;UtilitiesSectorActivity"/>
+        <rdfs:label xml:lang="en">Port-related activities</rdfs:label>
+        <tedLabel xml:lang="en">K- Port-related activities</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#PostalServices -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;PostalServices">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;UtilitiesSectorActivity"/>
+        <rdfs:label xml:lang="en">Postal Services</rdfs:label>
+        <tedLabel xml:lang="en">P- Postal Services</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#ProductionTransportAndDistributionOfGasAndHeat -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;ProductionTransportAndDistributionOfGasAndHeat">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;UtilitiesSectorActivity"/>
+        <rdfs:label xml:lang="en">Production, transport and distribution of gas and heat</rdfs:label>
+        <tedLabel xml:lang="en">G- Production, transport and distribution of gas and heat</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#PublicOrderAndSafety -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;PublicOrderAndSafety">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;OrdinarySectorActivity"/>
+        <rdfs:label xml:lang="en">Postal Services</rdfs:label>
+        <tedLabel xml:lang="en">U- Public Order and Safety</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#RailwayServices -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;RailwayServices">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;UtilitiesSectorActivity"/>
+        <rdfs:label xml:lang="en">Railway services</rdfs:label>
+        <tedLabel xml:lang="en">R- Railway services</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#RecreationCultureAndReligion -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;RecreationCultureAndReligion">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;OrdinarySectorActivity"/>
+        <rdfs:label xml:lang="en">Recreation, culture and religion</rdfs:label>
+        <tedLabel xml:lang="en">C- Recreation, culture and religion</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+  
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#SocialProtection -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;SocialProtection">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;OrdinarySectorActivity"/>
+        <rdfs:label xml:lang="en">Social protection</rdfs:label>
+        <tedLabel xml:lang="en">B- Social protection</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#UrbanRailwayTramwayTrolleybusOrBusServices -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;UrbanRailwayTramwayTrolleybusOrBusServices">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;UtilitiesSectorActivity"/>
+        <rdfs:label xml:lang="en">Urban railway, tramway, trolleybus or bus services</rdfs:label>
+        <tedLabel xml:lang="en">T- Urban railway, tramway, trolleybus or bus services</tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#Water -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementSubjectiveScope;Water">
+        <rdf:type rdf:resource="&ProcurementSubjectiveScope;UtilitiesSectorActivity"/>
+        <rdfs:label xml:lang="en">Water</rdfs:label>
+        <tedLabel xml:lang="en">W- Water</tedLabel>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.0.0.1451) http://owlapi.sourceforge.net -->
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements.owl" uri="SubjectiveLegalSituationsInProcurements.owl"/>
+    <uri id="User Entered Import Resolution" name="https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations.owl" uri="ProcurementRegulations.owl"/>
+    <uri id="User Entered Import Resolution" name="https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity.owl" uri="BusinessEntity.owl"/>
+    <uri id="User Entered Import Resolution" name="https://loted2.googlecode.com/svn/trunk/modules/TenderBid.owl" uri="TenderBid.owl"/>
+    <uri id="User Entered Import Resolution" name="https://loted2.googlecode.com/svn/trunk/modules/ProposedContract.owl" uri="ProposedContract.owl"/>
+    <uri id="User Entered Import Resolution" name="https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess.owl" uri="ProcurementCompetitiveProcess.owl"/>
+    <uri id="User Entered Import Resolution" name="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments.owl" uri="TenderDocuments.owl"/>
+    <uri id="User Entered Import Resolution" name="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.owl" uri="ProcurementsTopClasses.owl"/>
+    <uri id="User Entered Import Resolution" name="https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope.owl" uri="ProcurementSubjectiveScope.owl"/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="file:/Users/Isabella/Desktop/LOTED2PLUS/" uri="catalog.xml"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/core/core" uri="core.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/extended/GoodRelations4Tenders" uri="GoodRelations4Tenders.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity" uri="BusinessEntity.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess" uri="ProcurementCompetitiveProcess.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulation" uri="ProcurementRegulations.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsSubjectiveScope" uri="ProcurementSubjectiveScope.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses" uri="ProcurementsTopClasses.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/modules/ProposedContract" uri="ProposedContract.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements" uri="SubjectiveLegalSituationsInProcurements.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/modules/TenderBid" uri="TenderBid.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments" uri="TenderDocuments.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1384962052197" name="https://loted2.googlecode.com/svn/trunk/modules/extended/extended" uri="extended.owl"/>
+    </group>
+</catalog>
