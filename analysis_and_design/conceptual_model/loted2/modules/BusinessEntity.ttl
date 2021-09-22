@@ -1,0 +1,190 @@
+@prefix : <https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix BusinessEntity: <https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#> .
+@prefix ProcurementsTopClasses: <https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#> .
+@prefix SubjectiveLegalSituationsInProcurements: <https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements#> .
+@base <https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity> .
+
+<https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity> rdf:type owl:Ontology ;
+                                                                  owl:versionIRI <https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity> ;
+                                                                  dc:contributor "Enrico Motta"^^xsd:string ,
+                                                                                 "Mathieu d'Aquin"^^xsd:string ;
+                                                                  dc:creator "Isabella Distinto" ;
+                                                                  dc:date "2013-07-24" ;
+                                                                  dc:description " The ontology was created by Isabella Distinto, with input from Mathieu d'Aquin and Enrico Motta."^^xsd:string ;
+                                                                  dc:language "en"^^xsd:language ;
+                                                                  dc:title "LOTED2: Business Entity Module"^^xsd:string ;
+                                                                  rdfs:comment "The Business Entity module, which is part of the LOTED2 ontology, describes the main types of legal entities (corporation, society, company, etc.) operating in the market, which may participate into competitive procurement processes (e.g. tenders)."@en ;
+                                                                  rdfs:label "Business Entity"@en ;
+                                                                  owl:versionInfo "2.0"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+dc:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/language
+dc:language rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#hasLegalRepresentative
+BusinessEntity:hasLegalRepresentative rdf:type owl:ObjectProperty ;
+                                      rdfs:domain [ rdf:type owl:Class ;
+                                                    owl:unionOf ( ProcurementsTopClasses:LegalPerson
+                                                                )
+                                                  ] ;
+                                      rdfs:range BusinessEntity:LegalRepresentative ;
+                                      rdfs:comment "This property can be used to indicate the legal representative of a business entity and, more generally, of a legal person"@en ;
+                                      rdfs:label "has legal representative (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#context
+ProcurementsTopClasses:context rdf:type owl:ObjectProperty .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#rolePlayedBy
+ProcurementsTopClasses:rolePlayedBy rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#Association
+BusinessEntity:Association rdf:type owl:Class ;
+                           owl:equivalentClass BusinessEntity:Society ;
+                           rdfs:subClassOf ProcurementsTopClasses:PrivateLegalPerson ;
+                           rdfs:comment "A voluntary association (also sometimes called an unincorporated association, or just an association) is a group of individuals who voluntarily enter into an agreement to form a body (or organization) to accomplish a purpose (Source:LKIF-extended)"@en ;
+                           rdfs:label "Association"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#Company
+BusinessEntity:Company rdf:type owl:Class ;
+                       rdfs:subClassOf ProcurementsTopClasses:PrivateLegalPerson ;
+                       rdfs:comment "A company refers to a legal entity formed which has a separate legal identity from its members, and is ordinarily incorporated to undertake commercial business. Although some jurisdictions refer to unincorporated entities as companies, in most jurisdictions the term refers only to incorporated entities (Source:LKIF-extended)"@en ;
+                       rdfs:label "Company"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#Cooperative
+BusinessEntity:Cooperative rdf:type owl:Class ;
+                           rdfs:subClassOf BusinessEntity:Society ;
+                           rdfs:comment "An autonomous association of persons united voluntarily to meet their common economic, social, and cultural needs and aspirations through a jointly-owned and democratically-controlled enterprise(Source:LKIF-extended"@en ;
+                           rdfs:label "Cooperative"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#Corporation
+BusinessEntity:Corporation rdf:type owl:Class ;
+                           rdfs:subClassOf ProcurementsTopClasses:PrivateLegalPerson ;
+                           rdfs:comment "A corporation is a legal entity which, while being composed of natural persons, exists completely separately from them. This separation gives the corporation unique powers which other legal entities lack (Source:LKIF-extended)"@en ;
+                           rdfs:label "Corporation"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#Incorporated
+BusinessEntity:Incorporated rdf:type owl:Class ;
+                            owl:equivalentClass BusinessEntity:PublicLimitedCompany ;
+                            rdfs:subClassOf BusinessEntity:Corporation ;
+                            rdfs:comment "An organisation formed into a legal corporation (Source:LKIF-extended)"@en ;
+                            rdfs:label "Incorporated"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#LegalRepresentative
+BusinessEntity:LegalRepresentative rdf:type owl:Class ;
+                                   owl:equivalentClass [ owl:intersectionOf ( ProcurementsTopClasses:LegalRole
+                                                                              [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty ProcurementsTopClasses:context ;
+                                                                                                       owl:someValuesFrom ProcurementsTopClasses:Organisation
+                                                                                                     ]
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty ProcurementsTopClasses:rolePlayedBy ;
+                                                                                                       owl:allValuesFrom ProcurementsTopClasses:NaturalPerson
+                                                                                                     ]
+                                                                                                   ) ;
+                                                                                rdf:type owl:Class
+                                                                              ]
+                                                                            ) ;
+                                                         rdf:type owl:Class
+                                                       ] ;
+                                   rdfs:subClassOf ProcurementsTopClasses:LegalRole ;
+                                   rdfs:comment """For every legal person there is a person who has the role of legal representative. 
+
+Through this person the organisation acts."""@en ;
+                                   rdfs:label "Legal representative"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#LimitedCompany
+BusinessEntity:LimitedCompany rdf:type owl:Class ;
+                              owl:equivalentClass BusinessEntity:Unincorporated ;
+                              rdfs:subClassOf BusinessEntity:Company ;
+                              rdfs:comment "A limited company is a corporation whose liability is limited by law (Source:LKIF-extended)"@en ;
+                              rdfs:label "Limited company"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#PublicLimitedCompany
+BusinessEntity:PublicLimitedCompany rdf:type owl:Class ;
+                                    rdfs:subClassOf BusinessEntity:Company ;
+                                    rdfs:comment "Similar to the US corporation, offers several advantages over trading as sole trader (Source:LKIF-extended)"@en ;
+                                    rdfs:label "Public limited company"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#Society
+BusinessEntity:Society rdf:type owl:Class ;
+                       rdfs:subClassOf ProcurementsTopClasses:PrivateLegalPerson ;
+                       rdfs:comment "An organized group of people associated together for religious, benevolent, cultural, scientific, political, patriotic, or other purposes (Source:LKIF-extended)"@en ;
+                       rdfs:label "Society"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#Unincorporated
+BusinessEntity:Unincorporated rdf:type owl:Class ;
+                              rdfs:subClassOf BusinessEntity:Corporation ;
+                              rdfs:label "Unincorporated"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#LegalPerson
+ProcurementsTopClasses:LegalPerson rdf:type owl:Class .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#LegalRole
+ProcurementsTopClasses:LegalRole rdf:type owl:Class .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#NaturalPerson
+ProcurementsTopClasses:NaturalPerson rdf:type owl:Class .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#Organisation
+ProcurementsTopClasses:Organisation rdf:type owl:Class .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#PrivateLegalPerson
+ProcurementsTopClasses:PrivateLegalPerson rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

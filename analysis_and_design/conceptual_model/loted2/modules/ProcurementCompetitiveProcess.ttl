@@ -1,0 +1,372 @@
+@prefix : <https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix core: <https://loted2.googlecode.com/svn/trunk/core/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix modules: <https://loted2.googlecode.com/svn/trunk/modules/> .
+@prefix extended: <https://loted2.googlecode.com/svn/trunk/extended/> .
+@prefix ontologies: <https://loted2.googlecode.com/svn/trunk/> .
+@prefix ProposedContract: <https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#> .
+@prefix ProcurementsTopClasses: <https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#> .
+@prefix ProcurementCompetitiveProcess: <https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#> .
+@base <https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess> .
+
+<https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess> rdf:type owl:Ontology ;
+                                                                                 owl:versionIRI <https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess> ;
+                                                                                 owl:imports modules:ProposedContract.owl ;
+                                                                                 dc:contributor "Enrico Motta"^^xsd:string ,
+                                                                                                "Mathieu d'Aquin"^^xsd:string ;
+                                                                                 dc:creator "Isabella Distinto" ;
+                                                                                 dc:date "2013-07-24" ;
+                                                                                 dc:description "The ontology was created by Isabella Distinto, with input from Mathieu d'Aquin and Enrico Motta."^^xsd:string ;
+                                                                                 dc:language "en"^^xsd:language ;
+                                                                                 dc:title "LOTED2: Procurement Competitive Process Module"^^xsd:string ;
+                                                                                 rdfs:comment "The Procurement Competitive Process module, which is part of the LOTED2 ontology, aims at representing the set of public procurement competitive processes (tender, design contest, etc.) announced through the procurement notices which are published on the Tenders Electronic Daily (TED) system (http://ted.europa.eu/)."@en ;
+                                                                                 rdfs:label "Procurement Competitive Process"@en ;
+                                                                                 owl:versionInfo "2.0"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+dc:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/language
+dc:language rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#tedLabel
+ProcurementCompetitiveProcess:tedLabel rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#forAwardLot
+ProcurementCompetitiveProcess:forAwardLot rdf:type owl:ObjectProperty ;
+                                          rdfs:range [ owl:intersectionOf ( ProposedContract:ProposedPublicContract
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty ProposedContract:typeOfProposal ;
+                                                                              owl:hasValue ProposedContract:Lot
+                                                                            ]
+                                                                          ) ;
+                                                       rdf:type owl:Class
+                                                     ] ;
+                                          owl:propertyChainAxiom ( ProcurementCompetitiveProcess:forAwardOf
+                                                                   ProposedContract:isDividedInto
+                                                                 ) ;
+                                          rdfs:comment "This property aims to express the fact that in case of a public contract divided into lots, the tender takes place for the award the lots"@en ;
+                                          rdfs:label "for award lot (0..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#forAwardOf
+ProcurementCompetitiveProcess:forAwardOf rdf:type owl:ObjectProperty ;
+                                         rdfs:domain [ rdf:type owl:Class ;
+                                                       owl:unionOf ( ProcurementCompetitiveProcess:DesignContest
+                                                                     ProcurementCompetitiveProcess:Tender
+                                                                   )
+                                                     ] ;
+                                         rdfs:range ProposedContract:ProposedPublicProcurementContract ;
+                                         rdfs:comment "The relation between the tender and the public contract to be awarded through the tender"@en ;
+                                         rdfs:label "for award of (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#takesPlaceWith
+ProcurementCompetitiveProcess:takesPlaceWith rdf:type owl:ObjectProperty ;
+                                             owl:inverseOf ProcurementCompetitiveProcess:throughWhichTakesPlace ;
+                                             rdfs:domain ProcurementCompetitiveProcess:ProcurementCompetitiveProcess ;
+                                             rdfs:range ProcurementCompetitiveProcess:LegalProcedure ;
+                                             rdfs:comment "The legal procedure by which the tender or the design contest takes place"@en ;
+                                             rdfs:label "takes place with (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#throughWhichTakesPlace
+ProcurementCompetitiveProcess:throughWhichTakesPlace rdf:type owl:ObjectProperty ;
+                                                     rdfs:label "through which takes place (0..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#isDividedInto
+ProposedContract:isDividedInto rdf:type owl:ObjectProperty .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#typeOfProposal
+ProposedContract:typeOfProposal rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#AwardProcedure
+ProcurementCompetitiveProcess:AwardProcedure rdf:type owl:Class ;
+                                             owl:equivalentClass [ owl:intersectionOf ( ProcurementCompetitiveProcess:LegalProcedure
+                                                                                        [ rdf:type owl:Class ;
+                                                                                          owl:oneOf ( ProcurementCompetitiveProcess:AcceleratedNegotiatedProcedure
+                                                                                                      ProcurementCompetitiveProcess:AcceleratedRestrictedProcedure
+                                                                                                      ProcurementCompetitiveProcess:CompetitiveDialogue
+                                                                                                      ProcurementCompetitiveProcess:NegotiatedProcedure
+                                                                                                      ProcurementCompetitiveProcess:OpenProcedure
+                                                                                                      ProcurementCompetitiveProcess:RestrictedProcedure
+                                                                                                    )
+                                                                                        ]
+                                                                                      ) ;
+                                                                   rdf:type owl:Class
+                                                                 ] ;
+                                             rdfs:subClassOf ProcurementCompetitiveProcess:LegalProcedure ;
+                                             rdfs:comment "This is the class of procurement procedures, which comprises open procedure, resticted procedure (even accelerated), negotiated procedure (even accelerated) and competitive dialogue."@en ;
+                                             rdfs:label "Award procedure"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#DesignContest
+ProcurementCompetitiveProcess:DesignContest rdf:type owl:Class ;
+                                            rdfs:subClassOf ProcurementCompetitiveProcess:ProcurementCompetitiveProcess ;
+                                            owl:disjointWith ProcurementCompetitiveProcess:QualificationSystem ,
+                                                             ProcurementCompetitiveProcess:Tender ;
+                                            rdfs:label "Design contest"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#LegalProcedure
+ProcurementCompetitiveProcess:LegalProcedure rdf:type owl:Class ;
+                                             rdfs:subClassOf ProcurementCompetitiveProcess:Procedure ;
+                                             rdfs:comment "Any procedure defined by a legal text"@en ;
+                                             rdfs:label "Legal procedure"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#Procedure
+ProcurementCompetitiveProcess:Procedure rdf:type owl:Class ;
+                                        rdfs:comment """A procedure is the standard way in which a process has to be performed. 
+
+It is defined by a series of steps carried out through estabilished methods and forms, in order to achieve a result (output)."""@en ;
+                                        rdfs:label "Procedure"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#ProcurementCompetitiveProcess
+ProcurementCompetitiveProcess:ProcurementCompetitiveProcess rdf:type owl:Class ;
+                                                            rdfs:subClassOf ProcurementsTopClasses:Process ;
+                                                            rdfs:comment """Any competitive process related to procurement acquisition. 
+
+The typical procurement competitive process is the tender, i.e. the competitive bidding for the award of a public procurement contract. 
+
+However, since there are also other process related to the award of public procurement contract, such as qualification system or design contest, we include every type of competition related to a procurement competition in this class. """@en ;
+                                                            rdfs:label "Procurement competitive process"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#QualificationSystem
+ProcurementCompetitiveProcess:QualificationSystem rdf:type owl:Class ;
+                                                  rdfs:subClassOf ProcurementCompetitiveProcess:ProcurementCompetitiveProcess ;
+                                                  rdfs:label "Qualification System"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#QualificationSystemProcedure
+ProcurementCompetitiveProcess:QualificationSystemProcedure rdf:type owl:Class ;
+                                                           rdfs:subClassOf ProcurementCompetitiveProcess:LegalProcedure ;
+                                                           rdfs:comment "Note that LOTED2 ontology does not represent qualificaion system procedures"@en ,
+                                                                        "The procedure through which takes place the qualification system"@en ;
+                                                           rdfs:label "Qualification system procedure"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#Tender
+ProcurementCompetitiveProcess:Tender rdf:type owl:Class ;
+                                     rdfs:subClassOf ProcurementCompetitiveProcess:ProcurementCompetitiveProcess ;
+                                     rdfs:comment "The competitive bidding through which is selected the best offer and then the successful tenderer for a public contract."@en ;
+                                     rdfs:label "Tender"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#Process
+ProcurementsTopClasses:Process rdf:type owl:Class .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedPublicContract
+ProposedContract:ProposedPublicContract rdf:type owl:Class .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedPublicProcurementContract
+ProposedContract:ProposedPublicProcurementContract rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#AcceleratedNegotiatedProcedure
+ProcurementCompetitiveProcess:AcceleratedNegotiatedProcedure rdf:type owl:NamedIndividual ,
+                                                                      ProcurementCompetitiveProcess:AwardProcedure ;
+                                                             rdfs:label "Accelerated negotiated procedure"@en ;
+                                                             ProcurementCompetitiveProcess:tedLabel "6- Accelerated negotiated procedure"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#AcceleratedRestrictedProcedure
+ProcurementCompetitiveProcess:AcceleratedRestrictedProcedure rdf:type owl:NamedIndividual ,
+                                                                      ProcurementCompetitiveProcess:AwardProcedure ;
+                                                             rdfs:label "Accelerated restricted procedure"@en ;
+                                                             ProcurementCompetitiveProcess:tedLabel "3- Accelerated restricted procedure"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#CompetitiveDialogue
+ProcurementCompetitiveProcess:CompetitiveDialogue rdf:type owl:NamedIndividual ,
+                                                           ProcurementCompetitiveProcess:AwardProcedure ;
+                                                  rdfs:comment "The competitive dialogue is a procedure in which any economic operator may request to participate and whereby the contracting authority conducts a dialogue with the candidates admitted to that procedure, with the aim of developing one or more suitable alternatives capable of meeting its requirements, and on the basis of which the candidates chosen are invited to tender."@en ;
+                                                  rdfs:label "Competitive dialogue"@en ;
+                                                  ProcurementCompetitiveProcess:tedLabel "C- Competitive dialogue"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#NegotiatedProcedure
+ProcurementCompetitiveProcess:NegotiatedProcedure rdf:type owl:NamedIndividual ,
+                                                           ProcurementCompetitiveProcess:AwardProcedure ;
+                                                  rdfs:comment "A negotiated procedure is a procedure whereby the contracting authorities consult the economic operators of their choice and negotiate the terms of contract with one or more of these."@en ;
+                                                  rdfs:label "Negotiated procedure"@en ;
+                                                  ProcurementCompetitiveProcess:tedLabel "4- Negotiated procedure"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#OpenProcedure
+ProcurementCompetitiveProcess:OpenProcedure rdf:type owl:NamedIndividual ,
+                                                     ProcurementCompetitiveProcess:AwardProcedure ;
+                                            rdfs:comment "An open procedure is the procedure whereby any interested economic operator may submit a tender."@en ;
+                                            rdfs:label "Open Procedure"@en ;
+                                            ProcurementCompetitiveProcess:tedLabel "1- Open procedure"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#RestrictedProcedure
+ProcurementCompetitiveProcess:RestrictedProcedure rdf:type owl:NamedIndividual ,
+                                                           ProcurementCompetitiveProcess:AwardProcedure ;
+                                                  rdfs:comment "A restricted procedure is a procedure in which any economic operator may request  to participate and whereby only those economic operators invited by the contracting authority may submit a tender."@en ;
+                                                  rdfs:label "Restricted procedure"@en ;
+                                                  ProcurementCompetitiveProcess:tedLabel "2- Resticted procedure"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Lot
+ProposedContract:Lot rdf:type owl:NamedIndividual .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:AcceleratedNegotiatedProcedure
+                        ProcurementCompetitiveProcess:AcceleratedRestrictedProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:AcceleratedNegotiatedProcedure
+                        ProcurementCompetitiveProcess:CompetitiveDialogue
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:AcceleratedNegotiatedProcedure
+                        ProcurementCompetitiveProcess:NegotiatedProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:AcceleratedNegotiatedProcedure
+                        ProcurementCompetitiveProcess:OpenProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:AcceleratedNegotiatedProcedure
+                        ProcurementCompetitiveProcess:RestrictedProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:AcceleratedRestrictedProcedure
+                        ProcurementCompetitiveProcess:CompetitiveDialogue
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:AcceleratedRestrictedProcedure
+                        ProcurementCompetitiveProcess:NegotiatedProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:AcceleratedRestrictedProcedure
+                        ProcurementCompetitiveProcess:OpenProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:AcceleratedRestrictedProcedure
+                        ProcurementCompetitiveProcess:RestrictedProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:CompetitiveDialogue
+                        ProcurementCompetitiveProcess:NegotiatedProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:CompetitiveDialogue
+                        ProcurementCompetitiveProcess:OpenProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:CompetitiveDialogue
+                        ProcurementCompetitiveProcess:RestrictedProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:NegotiatedProcedure
+                        ProcurementCompetitiveProcess:OpenProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:NegotiatedProcedure
+                        ProcurementCompetitiveProcess:RestrictedProcedure
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProcurementCompetitiveProcess:OpenProcedure
+                        ProcurementCompetitiveProcess:RestrictedProcedure
+                      )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
