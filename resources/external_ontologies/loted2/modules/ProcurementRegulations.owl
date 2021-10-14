@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY TenderDocuments "https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#" >
+    <!ENTITY Directive2004 "https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#Directive2004/17/#" >
+    <!ENTITY Directive2009 "https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#Directive2009/81/#" >
+    <!ENTITY Directive2007 "https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#Directive2007/66/#" >
+    <!ENTITY Directive2004 "https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#Directive2004/18/#" >
+    <!ENTITY EEA "https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#B-EuropeanEconomicArea(EEA)#" >
+    <!ENTITY ProcurementsTopClasses "https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#" >
+    <!ENTITY ProcurementRegulations "https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#" >
+
+]>
+
+
+<rdf:RDF xmlns="https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulation#"
+     xml:base="https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulation"
+     xmlns:ProcurementRegulations="&ProcurementRegulations;"
+     xmlns:Directive2004="&ProcurementRegulations;Directive2004/17/"
+     xmlns:Directive2009="&ProcurementRegulations;Directive2009/81/"
+     xmlns:Directive2007="&ProcurementRegulations;Directive2007/66/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:Directive20042="&ProcurementRegulations;Directive2004/18/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:EEA="&ProcurementRegulations;B-EuropeanEconomicArea(EEA)"
+     xmlns:dc="http://purl.org/dc/terms/" 
+>
+    <owl:Ontology rdf:about="https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations">
+        <rdfs:label xml:lang="en">Procurement Regulations</rdfs:label>
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+        <owl:versionIRI rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations"/>
+        
+        <!-- dc: metadata for documentation LODE -->
+		<dc:creator>Isabella Distinto</dc:creator>
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+		<rdfs:comment xml:lang="en">The Procurement Regulations module, which is part of the LOTED2 ontology, aims at representing the set of legal sources (e.g. European Directives, Government Procurement Agreement, etc.) covering the public procurement notices published on the TED system.</rdfs:comment>
+        <dc:title rdf:datatype="&xsd;string">LOTED2: Procurement Regulations Module</dc:title>
+        <dc:contributor rdf:datatype="&xsd;string">Enrico Motta</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Mathieu d'Aquin</dc:contributor>
+		<dc:description rdf:datatype="&xsd;string">The ontology was created by Isabella Distinto, with input from Mathieu d'Aquin and Enrico Motta.</dc:description>
+        <dc:language rdf:datatype="&xsd;language">en</dc:language>
+        <dc:date>2013-07-24</dc:date>
+       <!-- dc: metadata end -->
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&ProcurementRegulations;tedLabel"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#AgreementOnEEAandGPA -->
+
+    <owl:Class rdf:about="&ProcurementRegulations;AgreementOnEEAandGPA">
+        <rdfs:label xml:lang="en">Agreement on the European Economic Area and the Government Procurement Agreement</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+                    <owl:Class>
+                        <owl:oneOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&ProcurementRegulations;AgreementOnTheEuropeanEconomicArea"/>
+                            <rdf:Description rdf:about="&ProcurementRegulations;GovernmentProcurementAgreement"/>
+                        </owl:oneOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+        <ProcurementRegulations:tedLabel xml:lang="en">B- European Economic Area (EEA), with participation by GPA countries</ProcurementRegulations:tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#EUProcurementsDirective -->
+
+    <owl:Class rdf:about="&ProcurementRegulations;EUProcurementsDirective">
+        <rdfs:label xml:lang="en">The Directives on public procurement of the European Union</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Directive"/>
+        <ProcurementRegulations:tedLabel xml:lang="en">4-European Union</ProcurementRegulations:tedLabel>
+        <rdfs:comment xml:lang="en">Within the European Union, the public procurement notices are covered by the national legislations implementing EU Law. The EU Directives on public procurement are the sources of law which define the legal framework for public procurement in the EU Member States. 
+The set of the EU directives regulating public procurement is constituted by: 
+
+- DIRECTIVE 2004/18/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 31 March 2004 on the coordination of procedures for the award of public works contracts, public supply contracts and public service contracts;
+
+- DIRECTIVE 2004/17/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 31 March 2004 coordinating the procurement procedures of entities operating in the water, energy, transport and postal services sectors;
+
+These directives shall not apply to public contracts governed by different procedural rules and awarded:
+(a) pursuant to an international agreement concluded in conformity with the Treaty between a Member State and one or more third countries and covering supplies or works intended for the joint implementation or exploitation of a work by the signatory States or services intended for the joint implementation or exploitation of a project by the signatory States; 
+(b) pursuant to a concluded international agreement relating to the stationing of troops and concerning the undertakings of a Member State or a third country;
+(c) pursuant to the particular procedure of an international organisation.
+(art. 15 Directive 2004/18/EC and art. 22 Directive 2004/17/EC)
+
+- DIRECTIVE 2007/66/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 11 December 2007 regarding Remedies, amending DIRECTIVES 89/665/EEC and 92/13/EEC with regard to improving the effectiveness of review procedures concerning the award of public contracts; 
+
+- DIRECTIVE 2009/81/EC OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 13 July 2009 on the coordination of procedures for the award of certain works contracts, supply contracts and service contracts by contracting authorities or entities in the fields of defence and security, and amending DIRECTIVES 2004/17/EC and 2004/18/EC.
+
+A full list of EU legal instruments concerning procurement can be found at the website: 
+http://ec.europa.eu/internal_market/publicprocurement/index_en.htm</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#EuProcurementsDirectiveAndGPA -->
+
+    <owl:Class rdf:about="&ProcurementRegulations;EuProcurementsDirectiveAndGPA">
+        <rdfs:label xml:lang="en">EUProcurementDirective and GPA</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+        <ProcurementRegulations:tedLabel xml:lang="en">5- European Union, with participation of GPA countries</ProcurementRegulations:tedLabel>
+        <rdfs:comment xml:lang="en">Some public procurement notices are covered both by the Eu Directives and by the Government Procurement Agreement. In these cases, therefore, the participation to tender is open to economic operators from both the EU countries and the GPA countries. 
+
+In other words, when a contract notice is covered by the Goverment Procurement Agreement, the economic operators located in a country which has signed the Government Procurement Agreement are admitted to the participation into the tender. 
+
+The Government Procurement Agreement defines specifically the type of public contracts which it covers.
+These public contract are identified on the basis of:
+
+- the extimated value of the contract;
+- the type of service, work, supply to be provided;
+- the type of authority (defined by the GPA for each country). 
+
+It is necessary to stress that the TED label &#39;European Union, with participation of GPA countries&#39; is quite misleading, because it suggests that all GPA countries are admitted to participate to a tender. Neverthless, this is not true, because there are some limitations for USA, Japan and Canada, depending on the type of public contract to be awarded.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#PhareAndTacisRegulation -->
+
+    <owl:Class rdf:about="&ProcurementRegulations;PhareAndTacisRegulation">
+        <rdfs:label xml:lang="en">PHARE, TACIS and countries of Central and Eastern Europe Regulation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+        <ProcurementRegulations:tedLabel xml:lang="en">0- PHARE, TACIS and countries of Central and Eastern Europe</ProcurementRegulations:tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#ProceduralRuleOfEIB_EBRD_EMI -->
+
+    <owl:Class rdf:about="&ProcurementRegulations;ProceduralRuleOfEIB_EBRD_EMI">
+        <rdfs:label xml:lang="en">Procedural rule of European Investment  Bank, European Bank for Reconstruction and Development, European Central Bank</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+        <ProcurementRegulations:tedLabel xml:lang="en">2- European Investment  Bank, European Bank for Reconstruction and Development, European Central Bank</ProcurementRegulations:tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#ProceduralRuleOfInternationalOrganisation -->
+
+    <owl:Class rdf:about="&ProcurementRegulations;ProceduralRuleOfInternationalOrganisation">
+        <rdfs:label xml:lang="en">Procedural rule of International Organisation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+        <ProcurementRegulations:tedLabel xml:lang="en">3- European Institution/ Agency or International Organisation</ProcurementRegulations:tedLabel>
+        <rdfs:comment xml:lang="en">A particular procedure of an international organisation (Article 15 Directive 2004/18/EC and Article 22 Directive 2004/17/EC).
+
+The tedLabel of this class is equal to that of tedLabel &quot;type of Authority&quot; (5- European Institution/Agency or International Organisation). The only difference is the number.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#PublicProcurementLegalSource -->
+
+    <owl:Class rdf:about="&ProcurementRegulations;PublicProcurementsLegalSource">
+        <rdfs:label xml:lang="en">Public procurements legal source</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalDocument"/>
+        <rdfs:comment xml:lang="en">The legal source of European public procurements</rdfs:comment>
+        <ProcurementRegulations:tedLabel xml:lang="en">Regulation</ProcurementRegulations:tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#RegulationOfExternalAidAndEuropeanDevelopmentFund -->
+
+    <owl:Class rdf:about="&TenderDocuments;RegulationOfExternalAidAndEuropeanDevelopmentFund">
+        <rdfs:label xml:lang="en">Regulation of external aid and European Development Fund</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+        <ProcurementRegulations:tedLabel xml:lang="en">1- External aid and European Development Fund</ProcurementRegulations:tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#LegalDocument -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;LegalDocument"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementLegalSource#AgreementBetweenTheEuropeanCommunityAndTheSwissConfederation -->
+
+    <owl:NamedIndividual rdf:about="https://loted2.googlecode.com/svn/trunk/modules/ProcurementLegalSource#AgreementBetweenTheEuropeanCommunityAndTheSwissConfederation">
+        <rdf:type rdf:resource="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+        <rdf:type rdf:resource="&ProcurementsTopClasses;InternationalAgreement"/>
+        <rdfs:label xml:lang="en">Agreement between the European Community and the Swiss Confederation</rdfs:label>
+        <ProcurementRegulations:tedLabel xml:lang="en">S- Agreement between the European Community and the Swiss Confederation</ProcurementRegulations:tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementLegalSource#GPAwithSwissConfederation -->
+
+    <owl:NamedIndividual rdf:about="https://loted2.googlecode.com/svn/trunk/modules/ProcurementLegalSource#GPAwithSwissConfederation">
+        <rdf:type rdf:resource="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+        <rdf:type rdf:resource="&ProcurementsTopClasses;InternationalAgreement"/>
+        <rdfs:label xml:lang="en">GPA with Swiss Confederation</rdfs:label>
+        <ProcurementRegulations:tedLabel xml:lang="en">7- GPA</ProcurementRegulations:tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TProcurementRegulations#4-EuropeanUnion -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementRegulations;4-EuropeanUnion">
+        <rdfs:label xml:lang="en">The European Union Directives on procurement</rdfs:label>
+        <ProcurementRegulations:tedLabel xml:lang="en">4-EuropeanUnion</ProcurementRegulations:tedLabel>
+        <rdf:type rdf:resource="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#AgreementOnTheEuropeanEconomicArea -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementRegulations;AgreementOnTheEuropeanEconomicArea">
+        <rdf:type rdf:resource="&ProcurementRegulations;AgreementOnEEAandGPA"/>
+        <rdf:type rdf:resource="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+        <rdf:type rdf:resource="&ProcurementsTopClasses;InternationalAgreement"/>
+        <rdfs:label xml:lang="en">Agreement on the European Economic Area</rdfs:label>
+        <ProcurementRegulations:tedLabel xml:lang="en">6- European Economic Area (EEA)</ProcurementRegulations:tedLabel>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#B-EuropeanEconomicArea(EEA)WithParticipationByGPACountries -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementRegulations;B-EuropeanEconomicArea(EEA)WithParticipationByGPACountries"/>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#Directive2004/17/EC -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementRegulations;Directive2004/17/EC">
+        <rdf:type rdf:resource="&ProcurementRegulations;EUProcurementsDirective"/>
+        <rdf:type rdf:resource="&ProcurementRegulations;EuProcurementsDirectiveAndGPA"/>
+        <rdfs:label xml:lang="en">The Directive 2004/17/EC</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#Directive2004/18/EC -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementRegulations;Directive2004/18/EC">
+        <rdf:type rdf:resource="&ProcurementRegulations;EUProcurementsDirective"/>
+        <rdf:type rdf:resource="&ProcurementRegulations;EuProcurementsDirectiveAndGPA"/>
+        <rdfs:label xml:lang="en">The Directive 2004/18/EC</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#Directive2007/66/EC -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementRegulations;Directive2007/66/EC">
+        <rdf:type rdf:resource="&ProcurementRegulations;EUProcurementsDirective"/>
+        <rdf:type rdf:resource="&ProcurementRegulations;EuProcurementsDirectiveAndGPA"/>
+        <rdfs:label xml:lang="en">The Directive 2007/66/EC</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#Directive2009/81/EC -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementRegulations;Directive2009/81/EC">
+        <rdf:type rdf:resource="&ProcurementRegulations;EUProcurementsDirective"/>
+        <rdf:type rdf:resource="&ProcurementRegulations;EuProcurementsDirectiveAndGPA"/>
+        <rdfs:label xml:lang="en">The Directive 2009/81/EC</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#GovernmentProcurementAgreement -->
+
+    <owl:NamedIndividual rdf:about="&ProcurementRegulations;GovernmentProcurementAgreement">
+        <rdf:type rdf:resource="&ProcurementRegulations;AgreementOnEEAandGPA"/>
+        <rdf:type rdf:resource="&ProcurementRegulations;EuProcurementsDirectiveAndGPA"/>
+        <rdf:type rdf:resource="&ProcurementRegulations;PublicProcurementsLegalSource"/>
+        <rdf:type rdf:resource="&ProcurementsTopClasses;InternationalAgreement"/>
+        <rdfs:label xml:lang="en">The Government Procurement Agreement</rdfs:label>
+        <ProcurementRegulations:tedLabel xml:lang="en">5- European Union, with participation of GPA countries</ProcurementRegulations:tedLabel>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+

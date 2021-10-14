@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY dc "http://purl.org/dc/terms/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY ontologies "https://loted2.googlecode.com/svn/trunk#" >
+    <!ENTITY modules "https://loted2.googlecode.com/svn/trunk/modules#" >
+    <!ENTITY TenderBid "https://loted2.googlecode.com/svn/trunk/modules/TenderBid#" >
+    <!ENTITY BusinessEntity "https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#" >
+    <!ENTITY TenderDocuments "https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#" >
+    <!ENTITY ProposedContract "https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#" >
+    <!ENTITY ProcurementsTopClasses "https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#" >
+    <!ENTITY ProcurementCompetitiveProcess "https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#" >
+    <!ENTITY Directive2004 "https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#Directive2004/17/EC" >
+    <!ENTITY Directive20042 "https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#Directive2004/18/EC" >
+    <!ENTITY SubjectiveLegalSituationsInProcurements "https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements#" >
+]>
+
+
+<rdf:RDF xmlns="https://loted2.googlecode.com/svn/trunk/core/core#"
+     xml:base="https://loted2.googlecode.com/svn/trunk/core/core"
+     xmlns:dc="http://purl.org/dc/terms/"
+     xmlns:ontologies="https://loted2.googlecode.com/svn/trunk#"
+     xmlns:TenderDocuments="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#"
+     xmlns:Directive2004="&TenderDocuments;Directive2004/17/EC"
+     xmlns:TenderBid="https://loted2.googlecode.com/svn/trunk/modules/TenderBid#"
+     xmlns:ProcurementCompetitiveProcess="https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#"
+     xmlns:ProposedContract="https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ProcurementsTopClasses="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:Directive20042="&TenderDocuments;Directive2004/18/EC"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:SubjectiveLegalSituationsInProcurements="https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements#"
+     xmlns:modules="https://loted2.googlecode.com/svn/trunk/modules#"
+     xmlns:BusinessEntity="https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#">
+    <owl:Ontology rdf:about="https://loted2.googlecode.com/svn/trunk/core#">
+        <rdfs:label xml:lang="en">LOTED2 Core Ontology</rdfs:label>
+        <rdfs:label xml:lang="en">LOTED2 Core Ontology Module</rdfs:label>
+        <dc:contributor rdf:datatype="&xsd;string">Enrico Motta</dc:contributor>
+        <dc:title rdf:datatype="&xsd;string">LOTED2: Core Module</dc:title>
+        <dc:contributor rdf:datatype="&xsd;string">Mathieu d&apos;Aquin</dc:contributor>
+        <dc:description rdf:datatype="&xsd;string">This page gives access to the LOTED2 ontology. The LOTED2 ontology is a refined version (v.2) of the original LOTED2 ontology (see the LOTED project web site -- http://loted.eu/ontology2/ -- and the LOTED2 paper -- http://www.semantic-web-journal.net/content/loted2-ontology-european-public-procurement-notices --).</dc:description>
+        <dc:language rdf:datatype="&xsd;language">en</dc:language>
+        <dc:creator>Isabella Distinto</dc:creator>
+        <dc:date>2013-07-24</dc:date>
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">LOTED2 is a legal ontology describing the European procurement notices and the data extracted from the Tenders Electronic Daily (TED) system (http://www.ted.europa.eu/). The ontology was authored by Isabella Distinto with input from Mathieu d&apos;Aquin and Enrico Motta.
+
+This module is the framework module (i.e. the Core module) of the LOTED2 ontology. The ontology includes a total of nine modules: ProcurementSubjectiveScope (directly imported by the LOTED2 Core module); ProcurementTopClasses (imported by the ProcurementSubjectiveScope module); TenderDocuments (imported by the ProcurementSubjectiveScope module); ProcurementRegulations (imported by the TenderDocuments module); ProcurementCompetitiveProcess (imported by the TenderDocuments module); ProposedContract (imported by the ProcurementCompetitiveProcess module); TenderBid (imported by the ProposedContract module); BusinessEntity (imported by the TenderBid module); SubjectiveLegalSituationsInProcurement (imported by the BusinessEntity and the ProcurementSubjectiveScope modules).</rdfs:comment>
+        <owl:versionIRI rdf:resource="https://loted2.googlecode.com/svn/trunk/core/core"/>
+        <owl:imports rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+   
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/core#ProposedContract1 -->
+
+    <owl:NamedIndividual rdf:about="https://loted2.googlecode.com/svn/trunk/core#ProposedContract1"/>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/core#Tender1 -->
+
+    <owl:NamedIndividual rdf:about="https://loted2.googlecode.com/svn/trunk/core#Tender1">
+        <rdf:type rdf:resource="&ProcurementCompetitiveProcess;Tender"/>
+        <ProcurementCompetitiveProcess:forAwardOf rdf:resource="&ProposedContract;ProposedContract1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#Notice1 -->
+
+    <owl:NamedIndividual rdf:about="&TenderDocuments;Notice1">
+        <rdf:type rdf:resource="&TenderDocuments;ContractNotice"/>
+        <ProposedContract:throughWhichIsAnnouncedTenderForAward rdf:resource="https://loted2.googlecode.com/svn/trunk/core#ProposedContract1"/>
+        <TenderDocuments:throughWhichIsAnnounced rdf:resource="https://loted2.googlecode.com/svn/trunk/core#Tender1"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

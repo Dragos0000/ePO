@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog id="file:/Users/Isabella/Desktop/LOTED2PLUS/" prefer="public" xml:base="file:/Users/Isabella/Desktop/LOTED2PLUS/" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/modules/BusinessEntity" uri="BusinessEntity.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/core" uri="core.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/modules/extended/extended" uri="extended.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/extended/GoodRelations4Tenders" uri="GoodRelations4Tenders.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess" uri="ProcurementCompetitiveProcess.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/modules/ProcurementRegulation" uri="ProcurementRegulations.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/modules/ProcurementsTopClasses" uri="ProcurementsTopClasses.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/modules/ProcurementsSubjectiveScope" uri="ProcurementSubjectiveScope.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/modules/ProposedContract" uri="ProposedContract.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements" uri="SubjectiveLegalSituationsInProcurements.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/modules/TenderBid" uri="TenderBid.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/modules/TenderDocuments" uri="TenderDocuments.owl"/>
+    <uri name="https://loted2plus.googlecode.com/svn/trunk/core/core" uri="core.owl"/>
+</catalog>

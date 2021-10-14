@@ -1,0 +1,1095 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY TenderDocuments "https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#" >
+    <!ENTITY ProcurementsTopClasses "https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#" >
+    <!ENTITY ProcurementCompetitiveProcess "https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#" >
+    <!ENTITY ProcurementRegulations "https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#" >
+    <!ENTITY ProcurementSubjectiveScope "https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#" >
+
+]>
+
+
+<rdf:RDF xmlns="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#"
+     xml:base="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments"
+     xmlns:Directive2004="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#Directive2004/17/"
+     xmlns:Directive2009="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#Directive2009/81/"
+     xmlns:ProcurementCompetitiveProcess="https://loted2.googlecode.com/svn/trunk/modules/TenderDocumentsProcurementCompetitiveProcess#"
+     xmlns:Directive2007="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#Directive2007/66/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ProcurementsTopClasses="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#"
+     xmlns:ProcurementSubjectiveScope="https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:Directive20042="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#Directive2004/18/"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:TenderDocuments="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#"
+     xmlns:EEA="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#B-EuropeanEconomicArea(EEA)"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:ProcurementRegulations="https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations#"
+>
+    <owl:Ontology rdf:about="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments">
+        <rdfs:label xml:lang="en">Tender Documents</rdfs:label>
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The Tender Documents module, which is part of the LOTED2 ontology, aims at representing the set of public procurement notices (contract notices, design contest notices, prior information notices, etc.) which are published on the Tenders Electronic Daily (TED) system (http://ted.europa.eu/).</rdfs:comment>
+        <owl:versionIRI rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments"/>
+        <dc:title rdf:datatype="&xsd;string">LOTED2: TenderDocuments Module</dc:title>
+        <dc:contributor rdf:datatype="&xsd;string">Enrico Motta</dc:contributor>
+         <dc:contributor rdf:datatype="&xsd;string">Mathieu d'Aquin</dc:contributor>
+		<dc:description rdf:datatype="&xsd;string">The ontology was created by Isabella Distinto, with input from Mathieu d'Aquin and Enrico Motta.</dc:description>
+        <dc:creator rdf:datatype="&xsd;string">Isabella Distinto</dc:creator>
+        <dc:language rdf:datatype="&xsd;language">en</dc:language>
+        <dc:date>2013-07-24</dc:date>
+        <owl:imports rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess.owl"/>
+        <owl:imports rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/ProcurementRegulations.owl"/>
+
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&TenderDocuments;tedLabel"/>
+    <owl:AnnotationProperty rdf:about="&TenderDocuments;tedDataID"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+ <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#covers -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;covers">
+        <rdfs:label xml:lang="en">covers (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property is intended to describe the LOTED2:ProcurementLegalSource that covers a LOTED2:TenderDocument. 
+
+For example a LOTED2:ContractNotice is covered by the Directive 2004/18/EC if it is announced by a LOTED2:EntityOperatingInOrdinarySector. On the other hand, if it is announced by a LOTED2:EntityOperatingInUtilities it is covered by the Directive 2004/17/EC.
+
+In addition, a contract notice can be covered also by the Government Procurement Agreement. This happens when the public contract to be awarded has the features of the contracts that are covered by this Agreement.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ProcurementRegulations;PublicProcurementLegalSource"/>
+        <rdfs:range rdf:resource="&TenderDocuments;TenderDocument"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#isCoveredBy -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;isCoveredBy">
+        <rdfs:label xml:lang="en">is covered by (1..*)</rdfs:label>
+        <rdfs:domain rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:range rdf:resource="&ProcurementRegulations;PublicProcurementLegalSource"/>
+        <owl:inverseOf rdf:resource="&TenderDocuments;covers"/>
+    </owl:ObjectProperty>
+    
+
+    <!-- &TenderDocuments;hasAdditionalDocument -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;hasAdditionalDocument">
+        <rdfs:label xml:lang="en">has additional document (0..*)</rdfs:label>
+        <rdfs:range rdf:resource="&TenderDocuments;AdditionalTenderDocument"/>
+        <rdfs:subPropertyOf rdf:resource="&TenderDocuments;hasAttachedDocument"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &TenderDocuments;hasAttachedDocument -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;hasAttachedDocument">
+        <rdfs:label xml:lang="en">has attached document (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">In the LOTED2 ontology this property does not refer to attached documents as understood in a common sense. A specifications document or an invitation letter to submit a tender (in case of restrictive procedure) attached to a: 
+
+     LOTED2:ContractNotice (public sectors and utilities)
+ or LOTED2:WorksAwardedByTheConcessionaire
+ or LOTED2:PublicWorksConcessionNotice
+ or LOTED2:DesignContestNotice
+ or LOTED2:QualificationSystemWithCallForCompetition
+ or LOTED2:QualificationSystemWithoutCallForCompetition
+ or LOTED2:PeriodicIndicativeNoticeWithCallForCompetition
+ or LOTED2:SimplifiedContractNoticeOnADynamicPurchasingSystem
+ or LOTED2:WorksContractAwardedByTheConcessionaireNotice
+
+are not simple &#39;attached documents&#39;, because they define together with the document to which are attached (for example the contract notice) the &#39;lex specialis&#39; of the tender (i.e. the set of rules governing the tender or the design contest or the qualification system).</rdfs:comment>
+        <rdfs:range rdf:resource="&TenderDocuments;AttachedTenderDocument"/>
+        <owl:inverseOf rdf:resource="&TenderDocuments;isAttachedDocumentOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&TenderDocuments;ContractNotice"/>
+                    <rdf:Description rdf:about="&TenderDocuments;DesignContestNotice"/>
+                    <rdf:Description rdf:about="&TenderDocuments;PeriodicIndicativeNoticeWithCallForCompetition"/>
+                    <rdf:Description rdf:about="&TenderDocuments;PublicWorkConcessionNotice"/>
+                    <rdf:Description rdf:about="&TenderDocuments;QualificationSystemWithCallForCompetitionNotice"/>
+                    <rdf:Description rdf:about="&TenderDocuments;QualificationSystemWithoutCallForCompetitionNotice"/>
+                    <rdf:Description rdf:about="&TenderDocuments;SimplifiedContractNoticeOnADynamicPurchasingSystem"/>
+                    <rdf:Description rdf:about="&TenderDocuments;WorksContractAwardedByTheConcessionaireNotice"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &TenderDocuments;hasSpecificationsDocument -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;hasSpecificationsDocument">
+        <rdfs:label xml:lang="en">has specifications document (0..1)</rdfs:label>
+        <rdfs:range rdf:resource="&TenderDocuments;SpecificationsDocument"/>
+        <rdfs:subPropertyOf rdf:resource="&TenderDocuments;hasAttachedDocument"/>
+    </owl:ObjectProperty>
+    
+<!-- &TenderDocuments;hasSought -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;hasSought">
+		<rdfs:label xml:lang="en">has sought (0..*)</rdfs:label>
+		<rdfs:comment xml:lang="en">This property can be used to indicate that a natural or legal person has sought an invitation letter to submit a tender</rdfs:comment>
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&ProcurementsTopClasses;LegalPerson"/>
+					<rdf:Description rdf:about="&ProcurementsTopClasses;NaturalPerson"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+                <rdfs:range rdf:resource="&TenderDocuments;InvitationToSubmitATender"/>
+	</owl:ObjectProperty>
+
+    <!-- &TenderDocuments;isAdditionalDocumentOf -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;isAdditionalDocumentOf">
+        <rdfs:label xml:lang="en">is additional document of (1..1)</rdfs:label>
+        <rdfs:domain rdf:resource="&TenderDocuments;AdditionalTenderDocument"/>
+        <rdfs:subPropertyOf rdf:resource="&TenderDocuments;isAttachedDocumentOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &TenderDocuments;isAttachedDocumentOf -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;isAttachedDocumentOf">
+        <rdfs:label xml:lang="en">is attached document of (1..1)</rdfs:label>
+        <rdfs:domain rdf:resource="&TenderDocuments;AttachedTenderDocument"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &TenderDocuments;isFollowingPublicationOf -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;isFollowingPublicationOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is following publication of (0..*)</rdfs:label>
+        <rdfs:domain rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:range rdf:resource="&TenderDocuments;TenderDocument"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &TenderDocuments;isPreviousPublicationOf -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;isPreviousPublicationOf">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label xml:lang="en">is previous publication of (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property links a LOTED2:TenderDocument to the its previous LOTED2:TenderDocument, both concerning the same tender and/or contract.
+
+This property is relevant for connecting: 
+
+- a LOTED2:PriorInformationNotice or a LOTED2:NoticeOnBuyerProfile // to a LOTED2: ContractNotice (following publication); 
+
+- a LOTED2:PeriodicIndicativeNotice or a LOTED2:NoticeOnBuyerProfile // to a LOTED2: ContractNoticeInUtilitiesSectors (following publication);
+
+- a LOTED2:PriorInformationNotice or a LOTED2:NoticeOnBuyerProfile or a LOTED2: ContractNotice or a LOTED2: SimplifiedContractNoticeOnADynamicPurchasingSystem or a LOTED2: VoluntaryExAnteTransparencyNotice // to a LOTED2: ContractAwardNotice (following publication);
+
+- a LOTED2:PeriodicIndicativeNotice or a LOTED2: NoticeOnExistenceOfQualificationSystem or a LOTED2: NoticeOnBuyerProfile or a LOTED2: Contractnotice or a LOTED2: SimplifiedContractNoticeOnADynamicPurchasingSystem or a LOTED2: VoluntaryExAnteTransparencyNotice // to a LOTED2: ContractAwardNotice-Utilities (following publication);
+
+- a LOTED2:PeriodicIndicativeNotice or a LOTED2: NoticeOnExistenceOfQualificationSystem or a LOTED2: PriorInformationNotice or a LOTED2: NoticeOnBuyerProfile or LOTED2: ContractNotice or a LOTED2: SimplifiedContractNoticeOnADynamicPurchasingSystem // to a LOTED2: VoluntaryExAnteTransparencyNotice (following publication).
+</rdfs:comment>
+        <owl:inverseOf rdf:resource="&TenderDocuments;isFollowingPublicationOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &TenderDocuments;isSpecificationsDocumentOf -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;isSpecificationsDocumentOf">
+        <rdfs:label xml:lang="en">is specifications document of (1..1)</rdfs:label>
+        <rdfs:domain rdf:resource="&TenderDocuments;SpecificationsDocument"/>
+        <rdfs:subPropertyOf rdf:resource="&TenderDocuments;isAttachedDocumentOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &TenderDocuments;publishedIn -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;publishedIn">
+        <rdfs:label xml:lang="en">published in (0..1)</rdfs:label>
+        <rdfs:range rdf:resource="&TenderDocuments;OJEU-SeriesS"/>
+        <rdfs:domain rdf:resource="&TenderDocuments;TenderDocument"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &TenderDocuments;relatesToThePublicationOf -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;relatesToThePublicationOf">
+        <rdfs:label xml:lang="en">relates to the publication of</rdfs:label>
+        <rdfs:comment xml:lang="en">The Contracting authorities which publish a prior information notice on their buyer profiles shall send the Commission, electronically, a notice of the publication of the prior information notice on a buyer profile (art. 35 Directive 2004/18/EC). 
+
+The same is stated for Contracting entities which publish a periodic indicative notice on their buyer profiles. They shall transmit to the Commission, electronically, a notice of the publication of the periodic indicative notice on a buyer profile (art. 41 Directive 2004/17/EC). 
+
+So any notice on buyer profile relates to the publication of a prior information notice or a peridoc indicative notice without call for competition.</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderDocuments;NoticeOnBuyerProfile"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&TenderDocuments;PeriodicIndicativeNoticeWithoutCallForCompetition"/>
+                    <rdf:Description rdf:about="&TenderDocuments;PriorInformationNotice"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &TenderDocuments;isAnnouncedThrough -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;isAnnouncedThrough">
+        <rdfs:label xml:lang="en">is announced through (1..1)</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    
+    
+
+
+    <!-- &TenderDocuments;throughWhichIsAnnounced -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;throughWhichIsAnnounced">
+        <rdfs:label xml:lang="en">through which is announced (1..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">The function of a contract notice or of other types of notices published in the OJEU Series S is to announce a procurement competitive process, that can be a tender (i.e. a competitive bidding), a design contest or a qualification system. 
+
+Through a contract notice is announced a tender; through a design contest notice is announced a design contest, and through a qualification system notice is announced a qualification system. 
+
+A qualification system notice with call for competition announces also a tender.</rdfs:comment>
+        <owl:inverseOf rdf:resource="&TenderDocuments;isAnnouncedThrough"/>
+        <rdfs:range rdf:resource="&ProcurementCompetitiveProcess;ProcurementCompetitiveProcess"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&TenderDocuments;ContractNotice"/>
+                    <rdf:Description rdf:about="&TenderDocuments;DesignContestNotice"/>
+                    <rdf:Description rdf:about="&TenderDocuments;PeriodicIndicativeNoticeWithCallForCompetition"/>
+                    <rdf:Description rdf:about="&TenderDocuments;PublicWorkConcessionNotice"/>
+                    <rdf:Description rdf:about="&TenderDocuments;QualificationSystemWithCallForCompetitionNotice"/>
+                    <rdf:Description rdf:about="&TenderDocuments;QualificationSystemWithoutCallForCompetitionNotice"/>
+                    <rdf:Description rdf:about="&TenderDocuments;SimplifiedContractNoticeOnADynamicPurchasingSystem"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &TenderDocuments;throughWhichIsAnnouncedForthcoming -->
+
+    <owl:ObjectProperty rdf:about="&TenderDocuments;throughWhichIsAnnouncedForthcoming">
+        <rdfs:label xml:lang="en">through which is announced forthcoming (1..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">With a: 
+
+- periodic indicative notice without call for competition (issued by only contracting entities)
+
+or a
+
+- prior information notice (issued by only contracting authorities)
+
+are pre-announced forthcoming tenders to be held in the following year by the entity. 
+
+The function of this notice is to alert the market for the upcoming opportunities, i.e. the offerings that awarding authorities will seek.</rdfs:comment>
+        <rdfs:range rdf:resource="&ProcurementCompetitiveProcess;Tender"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&TenderDocuments;PeriodicIndicativeNoticeWithoutCallForCompetition"/>
+                    <rdf:Description rdf:about="&TenderDocuments;PriorInformationNotice"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- &TenderDocuments;OJEUnumber -->
+
+    <owl:DatatypeProperty rdf:about="&TenderDocuments;OJEUnumber">
+        <rdfs:label xml:lang="en">OJ EU number (1..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">The number of the Official Journal Of the European Union Series S</rdfs:comment>
+        <tedDataID xml:lang="en">OJ</tedDataID>
+        <tedLabel xml:lang="en">OJ S</tedLabel>
+        <rdfs:domain rdf:resource="&TenderDocuments;OJEU-SeriesS"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- &TenderDocuments;deadline -->
+
+    <owl:DatatypeProperty rdf:about="&TenderDocuments;deadline">
+        <rdfs:label xml:lang="en">deadline (0..1)</rdfs:label>
+        <tedDataID xml:lang="en">DT</tedDataID>
+        <rdfs:comment xml:lang="en">This property specifies the deadline to apply for participation in the tender; it equivalent to the datatype property of Good Relations ontology gr: validUntil.</rdfs:comment>
+        <tedLabel xml:lang="en">deadline</tedLabel>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- &TenderDocuments;documentTitle -->
+
+    <owl:DatatypeProperty rdf:about="&TenderDocuments;documentTitle">
+        <rdfs:label xml:lang="en">document title (1..1)</rdfs:label>
+        <tedDataID xml:lang="en">TI</tedDataID>
+        <rdfs:comment xml:lang="en">The title of a tender document</rdfs:comment>
+        <tedLabel xml:lang="en">Title</tedLabel>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- &TenderDocuments;heading -->
+
+    <owl:DatatypeProperty rdf:about="&TenderDocuments;heading">
+        <rdfs:label xml:lang="en">heading (1..1)</rdfs:label>
+        <tedDataID xml:lang="en">HD</tedDataID>
+        <tedLabel xml:lang="en">Heading</tedLabel>
+        <rdfs:comment xml:lang="en">The heading of a LOTED2: TenderDocument
+
+The heading of the tender documents contains infromations about the regulation that covers the tender document, the type of contract, the type of tender document, the type of procurement procedure.
+
+For example: 
+
+&#39;Government Procurement Agreement - Works - Contract notice - Open procedure&#39;</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- &TenderDocuments;publicationDate -->
+
+    <owl:DatatypeProperty rdf:about="&TenderDocuments;publicationDate">
+        <rdfs:label xml:lang="en">publication date (1..1)</rdfs:label>
+        <tedDataID xml:lang="en">PD</tedDataID>
+        <tedLabel xml:lang="en">Publication date</tedLabel>
+        <rdfs:comment xml:lang="en">This property links a LOTED2: LegalDocument to its publication date.</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- &TenderDocuments;sendingDate -->
+
+    <owl:DatatypeProperty rdf:about="&TenderDocuments;sendingDate">
+        <rdfs:label xml:lang="en">sending date (1..1)</rdfs:label>
+        <tedDataID xml:lang="en">DS</tedDataID>
+        <tedLabel xml:lang="en">Document sent</tedLabel>
+        <rdfs:comment xml:lang="en">The sending date of a LOTED2: TenderDocument to the Publications Office of European Union, is relevant  for many reasons, which could be grouped into three factors: 
+
+1) The date limit for the publication of the document is determined by the sending date bacause: 
+
+- notices drawn up and transmitted by electronic means, shall be published no later than five days after they are sent. 
+
+- notices which are not transmitted by electronic means, shall be published not later than 12 days after they are sent, or in the case of accelerated procedure for contracting authorities or, in exceptional cases, in response to a request by the contracting entity, contract notices shall be published within five days, provided that the notice has been sent by fax. (Please see art. 36.2 Directive 2004/18/EC and art. 44.3 Directive 2004/17/EC). 
+
+2) The conditions under which a notice may be published at national level is determined also by the sending date because:
+
+- notices and their contents may not be published at national level before the date on which they are sent to the Commission. 
+
+- notices published at national level shall mention the date of dispatch of the notice to the Commission or its publication on the buyer profile. 
+
+- Prior information notices may not be published on a buyer profile before the dispatch to the Commission of the notice of their publication in that form; they shall mention the date of that dispatch. 
+
+- Contracting authorities/entities must be able to supply proof of the dates on which notices are dispatched. (Please see art. 36.5-7 Directive 2004/18/EC and 44.5 Directive 2004/17/EC).
+
+3) The time limits for the receipt of requests to participate and for the receipt of tenders is based on the sending date of the notice, for example:
+
+- in the case of open procedures, the minimum time limit for the receipt of tenders shall be 52 days from the date on which the contract notice was sent. 
+
+For the other time limits please see Art. 45 Directive 2004/17/CE and Art. 38 Directive 2004/18/CE.</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- &TenderDocuments;subjectToPayment -->
+
+    <owl:DatatypeProperty rdf:about="&TenderDocuments;subjectToPayment">
+        <rdfs:label xml:lang="en">subject to payment (0..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property can be used to specify whether the obtaining of attached tender documents is subject to the payment (like specifications document, descriptive document, etc.)</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderDocuments;AttachedTenderDocument"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- &TenderDocuments;tenderDocumentNumber -->
+
+    <owl:DatatypeProperty rdf:about="&TenderDocuments;tenderDocumentNumber">
+        <rdfs:label xml:lang="en">tender document number (1..1)</rdfs:label>
+        <tedLabel xml:lang="en">Document number</tedLabel>
+        <tedDataID xml:lang="en">ND</tedDataID>
+        <rdfs:comment xml:lang="en">The number of a LOTED2:TenderDocument. 
+
+Note: the value is an xsd: String and not an xsd: integer because, according to the TED system, it contains also the year of the document. For example: &#39;42467-2012&#39;.</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- &TenderDocuments;timeLimitForRequestOrForAccessing -->
+
+    <owl:DatatypeProperty rdf:about="&TenderDocuments;timeLimitForRequestOrForAccessing">
+        <rdfs:label xml:lang="en">time limit for request or for accessing (0..1)</rdfs:label>
+        <tedDataID xml:lang="en">DD</tedDataID>
+        <tedLabel xml:lang="en">Deadline for the request of documents</tedLabel>
+        <rdfs:comment xml:lang="en">The time limit for request or for accessing the attached tender documents (ie specifications document, invitation to submit a tender, additional document, etc.)</rdfs:comment>
+        <rdfs:domain rdf:resource="&TenderDocuments;AttachedTenderDocument"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- &TenderDocuments;AdditionalTenderDocument -->
+
+    <owl:Class rdf:about="&TenderDocuments;AdditionalTenderDocument">
+        <rdfs:label xml:lang="en">Additional document</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;AttachedTenderDocument"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;SpecificationsDocument"/>
+        <rdfs:comment xml:lang="en">The class of attached documents which are additional tender documents and not specifications document.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;AttachedTenderDocument -->
+
+    <owl:Class rdf:about="&TenderDocuments;AttachedTenderDocument">
+        <rdfs:label xml:lang="en">Attached tender document</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;ContractAwardNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;ContractNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;DesignContestNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;NoticeOnBuyerProfile"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PeriodicIndicativeNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PriorInformationNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PublicWorkConcessionNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;QualificationSystemNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;SimplifiedContractNoticeOnADynamicPurchasingSystem"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;VoluntaryExAnteTransparencyNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;WorksContractAwardedByTheConcessionaireNotice"/>
+        <rdfs:comment xml:lang="en">The class of the documents attached to a:
+
+     LOTED2: ContractNotice
+ or LOTED2: PublicWorkConcessionNotice
+ or LOTED2: DesignContestNotice
+ or LOTED2: QualificationSystemNotice
+ or LOTED2: PeriodicIndicativeNoticeWithCallForCompetition
+ or LOTED2: SimplifiedContractNoticeOnADynamicPurchasingSystem
+ or LOTED2: WorksContractAwardedByTheConcessionaireNotice
+
+Note that this class does not simply denotes documents attached to another, in a generic sense, because the &quot;attached document&quot; to one of those listed above, defines together with the document to which is attached (for example the contract notice) the &#39;lex specialis&#39; of the tender (i.e. the set of rules governing the tender or the design contest or the qualification system). 
+
+In other words, the &#39;lex specialis&#39; of the tender is written in a set of documents composed by the notice document and the specifications document, or the descriptive document (and on the basis of the award procedure to be adopted also the invitation letter to submit a tender).
+</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;ContractAwardNotice -->
+
+    <owl:Class rdf:about="&TenderDocuments;ContractAwardNotice">
+        <rdfs:label xml:lang="en">Contract award notice</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;ContractNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;DesignContestNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;NoticeOnBuyerProfile"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PublicWorkConcessionNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;QualificationSystemNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;WorksContractAwardedByTheConcessionaireNotice"/>
+        <tedLabel xml:lang="en">7- Contract award</tedLabel>
+        <rdfs:comment xml:lang="en">The document through which is communicated the outcome of the tender, i.e. the name of the successful tenderer</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;ContractNotice -->
+
+    <owl:Class rdf:about="&TenderDocuments;ContractNotice">
+        <rdfs:label xml:lang="en">Contract notice</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&TenderDocuments;ContractNotice-PublicSectors"/>
+                    <rdf:Description rdf:about="&TenderDocuments;ContractNotice-Utilities"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;throughWhichIsAnnounced"/>
+                <owl:allValuesFrom rdf:resource="&ProcurementCompetitiveProcess;Tender"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;hasAttachedDocument"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&TenderDocuments;AdditionalTenderDocument"/>
+                            <rdf:Description rdf:about="&TenderDocuments;SpecificationsDocument"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&TenderDocuments;DesignContestNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;NoticeOnBuyerProfile"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PriorInformationNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PublicWorkConcessionNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;VoluntaryExAnteTransparencyNotice"/>
+        <tedLabel xml:lang="en">3- Contract Notice</tedLabel>
+        <rdfs:comment xml:lang="en">Contracting authorities which wish to award a public contract by open, restricted or negotiated procedure with the publication of a contract notice, shall make known their intention by means of a contract notice.
+
+Contracting entities have other two options besides a contract notice to award a public contract:
+
+- by means of a periodic indicative notice (with call for competition); 
+
+- by means of a notice on the existence of a qualification system (with call for competition).
+
+This is the class of contract notice announced by contracting authorities or entities (awarding authorities). 
+Please note that the TED data does not distingiush between contract notices announced by authorities or by entities. In LOTED2 ontology, instead, this distinction can be inferred on the basis of the type of awarding authority (entity operating in utilities or in ordinary sectors) which issues the contract notice.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;ContractNotice-PublicSectors -->
+
+    <owl:Class rdf:about="&TenderDocuments;ContractNotice-PublicSectors">
+        <rdfs:label xml:lang="en">Contract notice in public sectors</rdfs:label>
+        <rdfs:comment xml:lang="en">The contract notice issued by an entity operating in ordinary sectors</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;ContractNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;ContractNotice-Utilities"/>
+        <rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&TenderDocuments;issuedBy"/>
+				<owl:allValuesFrom rdf:resource="&ProcurementSubjectiveScope;EntityOperatingInOrdinarySectors"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;ContractNotice-Utilities -->
+
+    <owl:Class rdf:about="&TenderDocuments;ContractNotice-Utilities">
+        <rdfs:label xml:lang="en">Contract notice in utilities sectors</rdfs:label>
+        <rdfs:comment xml:lang="en">The contract notice issued by an entity operating in utilities</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;ContractNotice"/>
+        <rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&TenderDocuments;issuedBy"/>
+				<owl:allValuesFrom rdf:resource="&ProcurementSubjectiveScope;EntityOperatingInUtilities"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;DescriptiveDocument -->
+
+    <owl:Class rdf:about="&TenderDocuments;DescriptiveDocument">
+        <rdfs:label xml:lang="en">Descriptive document</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;AdditionalTenderDocument"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;InvitationToSubmitATender"/>
+        <rdfs:comment xml:lang="en">The descriptive document (which is issued in the case of a competitive dialogue).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;DesignContestNotice -->
+
+    <owl:Class rdf:about="&TenderDocuments;DesignContestNotice">
+        <rdfs:label xml:lang="en">Design contest notice</rdfs:label>
+        <rdfs:comment xml:lang="en">The notice through which is announced a design contest</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;hasAttachedDocument"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&TenderDocuments;AdditionalTenderDocument"/>
+                            <rdf:Description rdf:about="&TenderDocuments;SpecificationsDocument"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;throughWhichIsAnnounced"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&ProcurementCompetitiveProcess;DesignContest"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&ProcurementCompetitiveProcess;takesPlaceWith"/>
+                                <owl:allValuesFrom>
+                                    <owl:Class>
+                                        <owl:intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="&ProcurementCompetitiveProcess;AwardProcedure"/>
+                                            <owl:Class>
+                                                <owl:oneOf rdf:parseType="Collection">
+                                                    <rdf:Description rdf:about="&ProcurementCompetitiveProcess;RestrictedProcedure"/>
+                                                    <rdf:Description rdf:about="&ProcurementCompetitiveProcess;OpenProcedure"/>
+                                                </owl:oneOf>
+                                            </owl:Class>
+                                        </owl:intersectionOf>
+                                    </owl:Class>
+                                </owl:allValuesFrom>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;throughWhichIsAnnounced"/>
+                <owl:allValuesFrom rdf:resource="&ProcurementCompetitiveProcess;DesignContest"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&TenderDocuments;NoticeOnBuyerProfile"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PeriodicIndicativeNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PriorInformationNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PublicWorkConcessionNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;QualificationSystemNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;SimplifiedContractNoticeOnADynamicPurchasingSystem"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;VoluntaryExAnteTransparencyNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;WorksContractAwardedByTheConcessionaireNotice"/>
+        <tedLabel xml:lang="en">D- Design contest</tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;InvitationToSubmitATender -->
+
+    <owl:Class rdf:about="&TenderDocuments;InvitationToSubmitATender">
+        <rdfs:label xml:lang="en">Invitation letter to submit a tender</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;AdditionalTenderDocument"/>
+        <rdfs:comment xml:lang="en">Invitation letter to submit a tender (in case of procedure other than the &#39;open procedure&#39;)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;NoticeOnBuyerProfile -->
+
+    <owl:Class rdf:about="&TenderDocuments;NoticeOnBuyerProfile">
+        <rdfs:label xml:lang="en">Notice on buyer profile</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;relatesToThePublicationOf"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&TenderDocuments;PeriodicIndicativeNoticeWithoutCallForCompetition"/>
+                            <rdf:Description rdf:about="&TenderDocuments;PriorInformationNotice"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PeriodicIndicativeNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PriorInformationNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;QualificationSystemNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;SimplifiedContractNoticeOnADynamicPurchasingSystem"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;VoluntaryExAnteTransparencyNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;WorksContractAwardedByTheConcessionaireNotice"/>
+        <tedLabel xml:lang="en">B- Buyer profile</tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;OJEU-SeriesS -->
+
+    <owl:Class rdf:about="&TenderDocuments;OJEU-SeriesS">
+        <rdfs:label xml:lang="en">The Official Journal of the European Union - Series S</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegislativeSource"/>
+        <rdfs:comment xml:lang="en">&#39;The S series is the supplement to the OJ containing invitations to tender in the following sectors:
+
+- public contracts for works, supplies and services from all EU Member States;
+- utilities contracts (water, energy, transport and telecommunications sectors);
+- public contracts from EU institutions;
+- external aid and European Development Fund contracts (ACP countries);
+- Phare, Tacis and other contracts from central and eastern Europe;
+- European Investment Bank (EIB), European Central Bank (ECB) and European Bank for Reconstruction and Development (EBRD) financed projects;
+- European Economic Area contracts (Norway, Iceland and Liechtenstein);
+- contracts pursuant to the Agreement on Government Procurement (GPA), concluded within the framework of the GATT/World Trade Organization (WTO) from Switzerland;
+- notices concerning European economic interest groups (EEIGs), European Grouping for Territorial Cooperation European Company and insurance undertakings — concerning their constitution and liquidation;
+- public contracts for air services.&#39; 
+(Source: http://publications.europa.eu/official/chapter2_en.htm)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;PeriodicIndicativeNotice -->
+
+    <owl:Class rdf:about="&TenderDocuments;PeriodicIndicativeNotice">
+        <rdfs:label xml:lang="en">Periodic indicative notice</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&TenderDocuments;PeriodicIndicativeNoticeWithCallForCompetition"/>
+                    <rdf:Description rdf:about="&TenderDocuments;PeriodicIndicativeNoticeWithoutCallForCompetition"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PublicWorkConcessionNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;QualificationSystemNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;WorksContractAwardedByTheConcessionaireNotice"/>
+        <rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&TenderDocuments;issuedBy"/>
+				<owl:allValuesFrom rdf:resource="&ProcurementSubjectiveScope;EntityOperatingInUtilities"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;PeriodicIndicativeNoticeWithCallForCompetition -->
+
+    <owl:Class rdf:about="&TenderDocuments;PeriodicIndicativeNoticeWithCallForCompetition">
+        <rdfs:label xml:lang="en">Periodic indicative notice with call for competition</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;PeriodicIndicativeNotice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;throughWhichIsAnnounced"/>
+                <owl:allValuesFrom rdf:resource="&ProcurementCompetitiveProcess;Tender"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PeriodicIndicativeNoticeWithoutCallForCompetition"/>
+        <tedLabel xml:lang="en">M- Periodic indicative notice (PIN) with call for competition</tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;PeriodicIndicativeNoticeWithoutCallForCompetition -->
+
+    <owl:Class rdf:about="&TenderDocuments;PeriodicIndicativeNoticeWithoutCallForCompetition">
+        <rdfs:label xml:lang="en">Periodic indicative notice without call for competition</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;PeriodicIndicativeNotice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;throughWhichIsAnnouncedForthcoming"/>
+                <owl:allValuesFrom rdf:resource="&ProcurementCompetitiveProcess;Tender"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <tedLabel xml:lang="en">P- Periodic indicative notice (PIN) without call for competition</tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;PriorInformationNotice -->
+
+    <owl:Class rdf:about="&TenderDocuments;PriorInformationNotice">
+        <rdfs:label xml:lang="en">Prior information notice</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;throughWhichIsAnnouncedForthcoming"/>
+                <owl:allValuesFrom rdf:resource="&ProcurementCompetitiveProcess;Tender"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&TenderDocuments;PublicWorkConcessionNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;QualificationSystemNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;WorksContractAwardedByTheConcessionaireNotice"/>
+        <tedLabel xml:lang="en">0- Prior Information Notice</tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;PublicWorkConcessionNotice -->
+
+    <owl:Class rdf:about="&TenderDocuments;PublicWorkConcessionNotice">
+        <rdfs:label xml:lang="en">Public works concession notice</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;throughWhichIsAnnounced"/>
+                <owl:allValuesFrom rdf:resource="&ProcurementCompetitiveProcess;Tender"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&TenderDocuments;QualificationSystemNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;SimplifiedContractNoticeOnADynamicPurchasingSystem"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;VoluntaryExAnteTransparencyNotice"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;WorksContractAwardedByTheConcessionaireNotice"/>
+        <tedLabel xml:lang="en">C-Public works concession</tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;QualificationSystemNotice -->
+
+    <owl:Class rdf:about="&TenderDocuments;QualificationSystemNotice">
+        <rdfs:label xml:lang="en">Notice on the existence of a qualification system</rdfs:label>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&TenderDocuments;QualificationSystemWithCallForCompetitionNotice"/>
+                    <rdf:Description rdf:about="&TenderDocuments;QualificationSystemWithoutCallForCompetitionNotice"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;hasAttachedDocument"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&TenderDocuments;AdditionalTenderDocument"/>
+                            <rdf:Description rdf:about="&TenderDocuments;SpecificationsDocument"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&TenderDocuments;VoluntaryExAnteTransparencyNotice"/>
+        <rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&TenderDocuments;issuedBy"/>
+				<owl:allValuesFrom rdf:resource="&ProcurementSubjectiveScope;EntityOperatingInUtilities"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;QualificationSystemWithCallForCompetitionNotice -->
+
+    <owl:Class rdf:about="&TenderDocuments;QualificationSystemWithCallForCompetitionNotice">
+        <rdfs:label xml:lang="en">Notice on the existence of a qualification system with call for competition</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;QualificationSystemNotice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;throughWhichIsAnnounced"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&ProcurementCompetitiveProcess;QualificationSystem"/>
+                            <rdf:Description rdf:about="&ProcurementCompetitiveProcess;Tender"/>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&TenderDocuments;QualificationSystemWithoutCallForCompetitionNotice"/>
+        <tedLabel xml:lang="en">O- Qualification system with call for competition</tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;QualificationSystemWithoutCallForCompetitionNotice -->
+
+    <owl:Class rdf:about="&TenderDocuments;QualificationSystemWithoutCallForCompetitionNotice">
+        <rdfs:label xml:lang="en">Notice on the existence of a qualification system without call for competition</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;QualificationSystemNotice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;throughWhichIsAnnounced"/>
+                <owl:allValuesFrom rdf:resource="&ProcurementCompetitiveProcess;QualificationSystem"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <tedLabel xml:lang="en">Q- Qualification system without call for competition</tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;SimplifiedContractNoticeOnADynamicPurchasingSystem -->
+
+    <owl:Class rdf:about="&TenderDocuments;SimplifiedContractNoticeOnADynamicPurchasingSystem">
+        <rdfs:label xml:lang="en">Simplified contract notice on a dynamic purchasing system</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;throughWhichIsAnnounced"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&ProcurementCompetitiveProcess;Tender"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="&ProcurementCompetitiveProcess;takesPlaceWith"/>
+                                <owl:hasValue rdf:resource="&ProcurementCompetitiveProcess;OpenProcedure"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="&TenderDocuments;WorksContractAwardedByTheConcessionaireNotice"/>
+        <tedLabel xml:lang="en">Y- Dinamyc purchasing system</tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;SpecificationsDocument -->
+
+    <owl:Class rdf:about="&TenderDocuments;SpecificationsDocument">
+        <rdfs:label xml:lang="en">Specifications document</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;AttachedTenderDocument"/>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;TenderDocument -->
+
+    <owl:Class rdf:about="&TenderDocuments;TenderDocument">
+        <rdfs:label xml:lang="en">Tender document</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;AdministrativeDocument"/>
+        <rdfs:comment xml:lang="en">Any document related to a tender, a qualification system, a design contest, etc. 
+
+This class includes the majority of document published available through the TED system, i.e. published in the OJ Series S.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;VoluntaryExAnteTransparencyNotice -->
+
+    <owl:Class rdf:about="&TenderDocuments;VoluntaryExAnteTransparencyNotice">
+        <rdfs:label xml:lang="en">Voluntary ex ante transparency notice</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <owl:disjointWith rdf:resource="&TenderDocuments;WorksContractAwardedByTheConcessionaireNotice"/>
+        <tedLabel xml:lang="en">V- Voluntary ex ante transparency notice</tedLabel>
+    </owl:Class>
+    
+
+
+    <!-- &TenderDocuments;WorksContractAwardedByTheConcessionaireNotice -->
+
+    <owl:Class rdf:about="&TenderDocuments;WorksContractAwardedByTheConcessionaireNotice">
+        <rdfs:label xml:lang="en">Notice on works contract awarded by the concessionaire </rdfs:label>
+        <rdfs:subClassOf rdf:resource="&TenderDocuments;TenderDocument"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&TenderDocuments;throughWhichIsAnnounced"/>
+                <owl:allValuesFrom rdf:resource="&ProcurementCompetitiveProcess;Tender"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <tedLabel xml:lang="en">E - Works contracts awarded by the concessionnaire</tedLabel>
+    </owl:Class>
+    
+<!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+<owl:Class>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&TenderDocuments;ContractNotice-PublicSectors"/>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&TenderDocuments;isCoveredBy"/>
+						<owl:hasValue rdf:resource="&ProcurementRegulations;Directive2004/18/EC"/>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<owl:intersectionOf rdf:parseType="Collection">
+			<rdf:Description rdf:about="&TenderDocuments;ContractNotice-PublicSectors"/>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&TenderDocuments;isCoveredBy"/>
+				<owl:hasValue rdf:resource="&ProcurementRegulations;4-EuropeanUnion"/>
+			</owl:Restriction>
+		</owl:intersectionOf>
+	</owl:Class>
+	<owl:Class>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&TenderDocuments;ContractNotice-Utilities"/>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&TenderDocuments;isCoveredBy"/>
+						<owl:hasValue rdf:resource="&ProcurementRegulations;Directive2004/17/EC"/>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<owl:intersectionOf rdf:parseType="Collection">
+			<rdf:Description rdf:about="&TenderDocuments;ContractNotice-Utilities"/>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="&TenderDocuments;isCoveredBy"/>
+				<owl:hasValue rdf:resource="&ProcurementRegulations;4-EuropeanUnion"/>
+			</owl:Restriction>
+		</owl:intersectionOf>
+	</owl:Class>
+
+</rdf:RDF>
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->

@@ -1,0 +1,369 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY ProcurementsTopClasses "https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#" >
+    <!ENTITY SubjectiveLegalSituationsInProcurements "https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements#" >
+    <!ENTITY ProcurementSubjectiveScope "https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#" >
+    <!ENTITY BusinessEntity "https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#">
+    <!ENTITY TenderDocuments "https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#" >
+    <!ENTITY ProcurementCompetitiveProcess "https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#" >
+    <!ENTITY TenderBid "https://loted2.googlecode.com/svn/trunk/modules/TenderBid#" >
+
+]>
+
+
+<rdf:RDF xmlns="https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements#"
+     xml:base="https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ProcurementsTopClasses="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#"
+     xmlns:ProcurementSubjectiveScope="https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#"
+     xmlns:BusinessEntity="https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#"
+     xmlns:TenderDocuments="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#"
+     xmlns:TenderBid="https://loted2.googlecode.com/svn/trunk/modules/TenderBid#"
+     xmlns:ProcurementCompetitiveProcess="https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/terms/">
+    <owl:Ontology rdf:about="https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements">
+        <owl:versionIRI rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/SubjectiveLegalSituationsInProcurements"/>
+        		<!-- dc: metadata for documentation LODE -->
+		<dc:creator>Isabella Distinto</dc:creator>
+        <rdfs:label xml:lang="en">Subjective legal situations in procurements</rdfs:label>
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+		<rdfs:comment xml:lang="en">The Subjective Legal Situations module, which is part of the LOTED2 ontology, describes the types of roles played by the agents in the context of a procurement competitive process.</rdfs:comment>
+        <dc:title rdf:datatype="&xsd;string">LOTED2: Subjective Legal Situations Module</dc:title>
+        <dc:contributor rdf:datatype="&xsd;string">Enrico Motta</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Mathieu d'Aquin</dc:contributor>
+		<dc:description rdf:datatype="&xsd;string">The ontology was created by Isabella Distinto, with input from Mathieu d'Aquin and Enrico Motta.</dc:description>
+        <dc:language rdf:datatype="&xsd;language">en</dc:language>
+        <dc:date>2013-07-24</dc:date>
+       <!-- dc: metadata end -->    
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#playsRole -->
+
+    <rdf:Description rdf:about="&ProcurementsTopClasses;playsRole">
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&SubjectiveLegalSituationsInProcurements;hasLegalSituation"/>
+            <rdf:Description rdf:about="&SubjectiveLegalSituationsInProcurements;role"/>
+        </owl:propertyChainAxiom>
+    </rdf:Description>
+   
+
+    <!-- &SubjectiveLegalSituationsInProcurements;hasLegalSituation -->
+
+    <owl:ObjectProperty rdf:about="&SubjectiveLegalSituationsInProcurements;hasLegalSituation">
+        <rdfs:label xml:lang="en">hasLegalSituation (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">A natural or legal person may have one or more legal situation in one or more contexts</rdfs:comment>
+        <rdfs:range rdf:resource="&SubjectiveLegalSituationsInProcurements;SubjectiveLegalSituation"/>
+        <owl:inverseOf rdf:resource="&SubjectiveLegalSituationsInProcurements;isLegalSituationOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;LegalPerson"/>
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;NaturalPerson"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;inOrFor -->
+
+    <owl:ObjectProperty rdf:about="&SubjectiveLegalSituationsInProcurements;inOrFor">
+        <rdfs:label xml:lang="en">in or for (1..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">The subjective legal situation is referred to a context (process), in which the natural or legal person plays a role</rdfs:comment>
+        <rdfs:range rdf:resource="&ProcurementsTopClasses;Process"/>
+        <rdfs:domain rdf:resource="&SubjectiveLegalSituationsInProcurements;SubjectiveLegalSituation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;isLegalSituationOf -->
+
+    <owl:ObjectProperty rdf:about="&SubjectiveLegalSituationsInProcurements;isLegalSituationOf">
+        <rdfs:label xml:lang="en">is legal situation of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;role -->
+
+    <owl:ObjectProperty rdf:about="&SubjectiveLegalSituationsInProcurements;role">
+        <rdfs:label xml:lang="en">role (0..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">Th role that characterizes the subjective legal situation</rdfs:comment>
+        <rdfs:range rdf:resource="&ProcurementsTopClasses;LegalRole"/>
+        <rdfs:domain rdf:resource="&SubjectiveLegalSituationsInProcurements;SubjectiveLegalSituation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;AwardingLegalEntity -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;AwardingLegalEntity">
+        <rdfs:label xml:lang="en">Awarding legal entity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&SubjectiveLegalSituationsInProcurements;RoleInProcurement"/>
+        <rdfs:comment xml:lang="en">Any legal entity which has the role of awarding entity. 
+
+This is a general class which comprises both the contracting authority and the contracting entity role.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;Candidate -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;Candidate">
+        <rdfs:label xml:lang="en">Candidate</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&SubjectiveLegalSituationsInProcurements;EconomicOperator"/>
+        <rdfs:comment xml:lang="en">A candidate is any natural or legal person acting in the market as economic operator (i.e. a BusinessEntity) which has sought an invitation to take part in a restricted or negotiated procedure or in a competitive dialogue.</rdfs:comment>
+<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&SubjectiveLegalSituationsInProcurements;RoleInProcurement"/>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&ProcurementsTopClasses;rolePlayedBy"/>
+						<owl:allValuesFrom>
+							<owl:Class>
+								<owl:intersectionOf rdf:parseType="Collection">
+									<owl:Class>
+										<owl:unionOf rdf:parseType="Collection">
+											<rdf:Description rdf:about="&ProcurementsTopClasses;LegalPerson"/>
+											<rdf:Description rdf:about="&ProcurementsTopClasses;NaturalPerson"/>
+										</owl:unionOf>
+									</owl:Class>
+									<owl:Restriction>
+										<owl:onProperty rdf:resource="&TenderDocuments;hasSought"/>
+										<owl:someValuesFrom rdf:resource="&TenderDocuments;InvitationToSubmitATender"/>
+									</owl:Restriction>
+								</owl:intersectionOf>
+							</owl:Class>
+						</owl:allValuesFrom>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;ContractingAuthority -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;ContractingAuthority">
+        <rdfs:label xml:lang="en">Contracting authority</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&SubjectiveLegalSituationsInProcurements;AwardingLegalEntity"/>
+        <rdfs:comment xml:lang="en">&quot;Contracting authorities&quot; means the role played by entity operating in ordinary sectors in the context of any procurement competitive process.
+
+For example: The body governed by public law X issues a contract notice Y through which is announced the tender Z for the award of contract J, then the body governed by public law X plays the role of contracting authority in the context Z</rdfs:comment>
+<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&SubjectiveLegalSituationsInProcurements;RoleInProcurement"/>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&ProcurementsTopClasses;rolePlayedBy"/>
+						<owl:allValuesFrom rdf:resource="&ProcurementSubjectiveScope;EntityOperatingInOrdinarySectors"/>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;ContractingEntity -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;ContractingEntity">
+        <rdfs:label xml:lang="en">Contracting entity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&SubjectiveLegalSituationsInProcurements;AwardingLegalEntity"/>
+        <rdfs:comment xml:lang="en">&quot;Contracting entity&quot; means the role played by an entity operating in utilities in the context of any procurement competitive process.</rdfs:comment>
+<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&SubjectiveLegalSituationsInProcurements;RoleInProcurement"/>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&ProcurementsTopClasses;rolePlayedBy"/>
+						<owl:allValuesFrom rdf:resource="&ProcurementSubjectiveScope;EntityOperatingInUtilities"/>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;EconomicOperator -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;EconomicOperator">
+        <rdfs:label xml:lang="en">Economic operator</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&SubjectiveLegalSituationsInProcurements;RoleInProcurement"/>
+        <rdfs:comment xml:lang="en">The EU procurements Directives define the term &quot;economic operator&quot; as the term that covers equally the concepts of &quot;contractor&quot;, &quot;supplier&quot; and &quot;service provider&quot;.  Each of these terms mean any natural or legal person or public entity or group of such persons and/or bodies which offers on the market, respectively, the execution of works and/or a work, products or services.
+
+Thus, in the context of European public procurements, we can argue that &quot;Economic operator&quot; is the role played by any natural or legal person that offers in the market some gr:Offering.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;EligibleEconomicOperator -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;EligibleEconomicOperator">
+        <rdfs:label xml:lang="en">Eligible economic operator</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&SubjectiveLegalSituationsInProcurements;EconomicOperator"/>
+        <rdfs:comment xml:lang="en">Any agent that plays the role of economic operator in the market and satisfies the eligibility criteria for participating in public contracts (artt. 45-50 Directive 2004/18/ec), as for example the absence of conviction by final judgement for participation in criminal organisation, fraud, corruption, money laundering, etc.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;PublicWorksConcessionaire -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;PublicWorksConcessionaire">
+        <rdfs:label xml:lang="en">Public works concessionaire</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&SubjectiveLegalSituationsInProcurements;EconomicOperator"/>
+        <rdfs:comment xml:lang="en">When a public works concessionaire intends to award a contract to a third party, it has to make known its intention through a contract notice, either if is a public authority or a private legal person. Thus, a legal person who plays the role of public works concessionaire is empowered to issue contract notices for the award of works public contracts.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;QualifiedEconomicOperator -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;QualifiedEconomicOperator">
+        <rdfs:label xml:lang="en">Qualified economic operator</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&SubjectiveLegalSituationsInProcurements;EconomicOperator"/>
+        <rdfs:comment xml:lang="en">Any economic operator that has been recognized as qualified for a given contract through a qualification system</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;RoleInProcurement -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;RoleInProcurement">
+        <rdfs:label xml:lang="en">Role in procurement</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalRole"/>
+        <owl:disjointWith rdf:resource="&SubjectiveLegalSituationsInProcurements;SubjectiveLegalSituation"/>
+        <rdfs:comment xml:lang="en">This is the class of any type of role played in procurement competitive processes</rdfs:comment>
+<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&ProcurementsTopClasses;LegalRole"/>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&ProcurementsTopClasses;context"/>
+						<owl:allValuesFrom rdf:resource="&ProcurementCompetitiveProcess;ProcurementCompetitiveProcess"/>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;ServiceConcessionaire -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;ServiceConcessionaire">
+        <rdfs:label xml:lang="en">Service concessionaire</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&SubjectiveLegalSituationsInProcurements;EconomicOperator"/>
+    </owl:Class>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;SubjectiveLegalSituation -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;SubjectiveLegalSituation">
+        <rdfs:label xml:lang="en">Subjective legal situation</rdfs:label>
+        <rdfs:comment xml:lang="en">A subjective legl situation is any position held by a natural or legal person, characterized by a role played in a given context. 
+
+A person may have one or more subjective legal situations.
+For example a body governed by public law may have the position of contracting authority in the tender X, but may have the position of tenderer in the tender Y.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- &SubjectiveLegalSituationsInProcurements;Tenderer -->
+
+    <owl:Class rdf:about="&SubjectiveLegalSituationsInProcurements;Tenderer">
+        <rdfs:label xml:lang="en">Tenderer</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&SubjectiveLegalSituationsInProcurements;EconomicOperator"/>
+        <rdfs:comment xml:lang="en">Any natural or legal person which plays the role of economic operator in the market and has submitted a tender bid for a public contract</rdfs:comment>
+<owl:equivalentClass>
+			<owl:Class>
+				<owl:intersectionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="&SubjectiveLegalSituationsInProcurements;RoleInProcurement"/>
+					<owl:Restriction>
+						<owl:onProperty rdf:resource="&ProcurementsTopClasses;rolePlayedBy"/>
+						<owl:allValuesFrom>
+							<owl:Class>
+								<owl:intersectionOf rdf:parseType="Collection">
+									<owl:Class>
+										<owl:unionOf rdf:parseType="Collection">
+											<rdf:Description rdf:about="&ProcurementsTopClasses;LegalPerson"/>
+											<rdf:Description rdf:about="&ProcurementsTopClasses;NaturalPerson"/>
+										</owl:unionOf>
+									</owl:Class>
+									<owl:Restriction>
+										<owl:onProperty rdf:resource="&TenderBid;hasSubmitted"/>
+										<owl:someValuesFrom rdf:resource="&TenderBid;TenderBid"/>
+									</owl:Restriction>
+								</owl:intersectionOf>
+							</owl:Class>
+						</owl:allValuesFrom>
+					</owl:Restriction>
+				</owl:intersectionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+

@@ -1,0 +1,656 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY dc "http://purl.org/dc/terms/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY ProcurementsTopClasses "https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#" >
+]>
+
+
+<rdf:RDF xmlns="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#"
+     xml:base="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses"
+     xmlns:dc="http://purl.org/dc/terms/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ProcurementsTopClasses="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses">
+        <rdfs:label>LOTED2: Procurements Top Module</rdfs:label>
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+        <owl:versionIRI rdf:resource="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses"/>
+        <!-- dc: metadata for documentation LODE -->
+		<dc:creator>Isabella Distinto</dc:creator>
+		<rdfs:label xml:lang="en">Procurements Top Classes Definition</rdfs:label>
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The Procurements Top Classes is the upper module of LOTED2 ontology and is meant to represent the most abstract and general classes related to the public procurement domain. The classes of this module are represented with the purpose to allow mappings between LOTED2 ontology and other ontologies. Consistently with such an aim, many classes of the Procurements Top Classes module have been modeled by reusing the Legal Knowledge Interchange Format (LKIF) ontology (see: http://www.estrellaproject.org/lkif-core/) as a source of patterns.</rdfs:comment>
+        <dc:title rdf:datatype="&xsd;string">LOTED2: Procurements Top Classes Module</dc:title>
+        <dc:contributor rdf:datatype="&xsd;string">Enrico Motta</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Mathieu d'Aquin</dc:contributor>
+		<dc:description rdf:datatype="&xsd;string">The ontology was created by Isabella Distinto, with input from Mathieu d'Aquin and Enrico Motta.</dc:description>
+        <dc:language rdf:datatype="&xsd;language">en</dc:language>
+        <dc:date>2013-07-24</dc:date>
+       <!-- dc: metadata end -->
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:AnnotationProperty rdf:about="&owl;versionInfo"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#contactPoint -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;contactPoint">
+        <rdfs:label xml:lang="en">contact point (1..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">The contact point of a person or an organisation or an organisational unit defined with VCard ontology (http://www.w3.org/2006/vcard/ns).</rdfs:comment>
+        <rdfs:range rdf:resource="&ProcurementsTopClasses;VCard"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;NaturalPerson"/>
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;Organisation"/>
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;OrganisationalUnit"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#context -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;context">
+        <rdfs:label xml:lang="en">context (1..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">The context (process or organisation) in which a role is played by an agent.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ProcurementsTopClasses;Role"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;Organisation"/>
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;Process"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#hasActivity -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;hasActivity">
+        <rdfs:label xml:lang="en">has activity (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">The activity carried out by a person or an organisation.</rdfs:comment>
+        <rdfs:range rdf:resource="&ProcurementsTopClasses;Activity"/>
+        <rdfs:domain rdf:resource="&ProcurementsTopClasses;Agent"/>
+        <owl:inverseOf rdf:resource="&ProcurementsTopClasses;isActivityOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#hasAuthor -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;hasAuthor">
+        <rdfs:label xml:lang="en">has author (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">The document has an agent as author.</rdfs:comment>
+        <rdfs:range rdf:resource="&ProcurementsTopClasses;Agent"/>
+        <rdfs:domain rdf:resource="&ProcurementsTopClasses;Document"/>
+        <owl:inverseOf rdf:resource="&ProcurementsTopClasses;isAuthorOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#hasCountry -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;hasCountry">
+        <rdfs:label xml:lang="en">hasCountry (1..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property mainly aims to connect the class LOTED2:Agent with the LOTED2: Country in which is located. 
+
+This information is relevant to determine what kind of regulation (i.e. LOTED2: LegislativeSource) has to be applied to the tender. For example: if a LOTED2: PublicUndertaking hasCountry LOTED2: IT (Italy, that is an EU member State), then the LOTED2: ContractNotice announced by this contracting authority must be respectful of EC Directives, and also of the specific national legislation that implements the Directives (in the case of Italy the D. Lgs. n. 163/2006).
+
+The place of performance of contract is normally defined with the name of a city (obviously located in a country), and it is also possible to infer this place through the NUTS code, because the first two letters of this code represent the country in which the place is located. 
+
+Note: is not clear whether the raw data of the TED refers to the country of the awarding authority or to the place of performance of contract. 
+</rdfs:comment>
+        <rdfs:domain rdf:resource="&ProcurementsTopClasses;Agent"/>
+        <rdfs:range rdf:resource="&ProcurementsTopClasses;Country"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#isActivityOf -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;isActivityOf">
+        <rdfs:label xml:lang="en">is activity of (0..*)</rdfs:label>
+        <rdfs:domain rdf:resource="&ProcurementsTopClasses;Activity"/>
+        <rdfs:range rdf:resource="&ProcurementsTopClasses;Agent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#isAuthorOf -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;isAuthorOf">
+        <rdfs:label xml:lang="en">is author of (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">The author of a document.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#legalContext -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;legalContext">
+        <rdfs:label xml:lang="en">legal context (1..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">The legal context in which a legal role is palyed by a natural or legal person.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ProcurementsTopClasses;LegalRole"/>
+        <rdfs:subPropertyOf rdf:resource="&ProcurementsTopClasses;context"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#member -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;member">
+        <rdfs:label xml:lang="en">member (1..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">This property specifies membership of an organisation.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ProcurementsTopClasses;Organisation"/>
+        <owl:inverseOf rdf:resource="&ProcurementsTopClasses;memberOf"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;NaturalPerson"/>
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;Organisation"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#memberOf -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;memberOf">
+        <rdfs:label xml:lang="en">member of (1..*)</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#playsLegalRoleIn -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;playsLegalRoleIn">
+        <rdfs:label xml:lang="en">plays legal role in (1..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">The legal context in which a natural person or a legal person plays a legal role.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&ProcurementsTopClasses;playsRoleIn"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&ProcurementsTopClasses;playsRole"/>
+            <rdf:Description rdf:about="&ProcurementsTopClasses;legalContext"/>
+        </owl:propertyChainAxiom>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;LegalPerson"/>
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;NaturalPerson"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;Organisation"/>
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;Process"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#playsRole -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;playsRole">
+        <rdfs:label xml:lang="en">plays role (0..*)</rdfs:label>
+        <rdfs:comment xml:lang="en">The role that an agent may play in a context.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ProcurementsTopClasses;Agent"/>
+        <rdfs:range rdf:resource="&ProcurementsTopClasses;Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#playsRoleIn -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;playsRoleIn">
+        <rdfs:label xml:lang="en">plays role in (1..1)</rdfs:label>
+        <rdfs:comment xml:lang="en">The context in which an agent plays a role.</rdfs:comment>
+        <rdfs:domain rdf:resource="&ProcurementsTopClasses;Agent"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;Organisation"/>
+                    <rdf:Description rdf:about="&ProcurementsTopClasses;Process"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&ProcurementsTopClasses;playsRole"/>
+            <rdf:Description rdf:about="&ProcurementsTopClasses;context"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#rolePlayedBy -->
+
+    <owl:ObjectProperty rdf:about="&ProcurementsTopClasses;rolePlayedBy">
+        <rdfs:label xml:lang="en">role played by (0..*)</rdfs:label>
+        <rdfs:range rdf:resource="&ProcurementsTopClasses;Agent"/>
+        <rdfs:domain rdf:resource="&ProcurementsTopClasses;Role"/>
+        <owl:inverseOf rdf:resource="&ProcurementsTopClasses;playsRole"/>
+    </owl:ObjectProperty>
+    
+
+
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Activity -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Activity">
+        <rdfs:label xml:lang="en">Activity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Process"/>
+        <rdfs:comment xml:lang="en">The class of activities carried out by organizations or individuals.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#AdministrativeDocument -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;AdministrativeDocument">
+        <rdfs:label xml:lang="en">Administrative document</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalDocument"/>
+        <rdfs:comment xml:lang="en">An administrative document is a document issued by an entity in order to carry out an administrative function. 
+
+Note that administrative documents can be drafted also by private legal entities and not only by public bodies. 
+This is the case, for example, of the conctract notice issued by the public works concessionaire.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Agent -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Agent">
+        <rdfs:label xml:lang="en">Agent</rdfs:label>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Country"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Document"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Language"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;LegalSource"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Location"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Process"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Role"/>
+        <rdfs:comment xml:lang="en">Any agent, either natural or legal person, individual or social (e.g. an organisation, a corporation, an institution).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Code -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Code">
+        <rdfs:label xml:lang="en">Code</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegislativeDocument"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Directive"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;InternationalAgreement"/>
+        <rdfs:comment xml:lang="en">A code is a type of legislation that purports to exhaustively cover a complete system of laws or a particular area of law as it existed at the time the code was enacted, by a process of codification. (Source: Wikipedia).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Country -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Country">
+        <rdfs:label xml:lang="en">Country</rdfs:label>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Document"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Language"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;LegalSource"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Location"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Process"/>
+        <rdfs:comment xml:lang="en">A country is a region legally identified as a distinct entity in political geography (Source: Wikipedia).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Directive -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Directive">
+        <rdfs:label xml:lang="en">Directive</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegislativeDocument"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;InternationalAgreement"/>
+        <rdfs:comment xml:lang="en">Examples are European Union directives, which are legislative acts of the European Union and Directives, used by United States Government agencies (particularly the Department of Defense) to convey policies, responsibilities, and procedures (Source: LKIF-Core ontology).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Document -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Document">
+        <rdfs:label xml:lang="en">Document</rdfs:label>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Language"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Location"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Process"/>
+        <rdfs:comment xml:lang="en">A Document bears some (and only) expression(s) stated by some statement in writing (Source: LKIF-Core ontology).
+This class is equivalent to foaf: Document.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#EEACountry -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;EEACountry">
+        <rdfs:label xml:lang="en">EEA country</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Country"/>
+        <rdfs:comment xml:lang="en">The 28 EU Member States and the three EEA EFTA States (Iceland, Liechtenstein and Norway). Switzerland is not part of the EEA Agreement, but has a bilateral agreement with the EU.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#EUMember -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;EUMember">
+        <rdfs:label xml:lang="en">EU member</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Country"/>
+        <rdfs:comment xml:lang="en">The 28 EU Member States of the EU (Austria, Belgium, Bulgaria, Croatia, Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, United Kingdom).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#EUOfficialLanguage -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;EUOfficialLanguage">
+        <rdfs:label xml:lang="en">EU official language</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Language"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;NonEUOfficialLanguage"/>
+        <rdfs:comment xml:lang="en">Any official language of the European Union.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Function -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Function">
+        <rdfs:label xml:lang="en">Function</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Role"/>
+        <rdfs:comment xml:lang="en">The use or purpose of some object as used in some context (Source: LKIF-core ontology).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#GPACountry -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;GPACountry">
+        <rdfs:label xml:lang="en">GPA Country</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Country"/>
+        <rdfs:comment xml:lang="en">Any country which is party to the Government Procurement Agreement.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#InternationalAgreement -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;InternationalAgreement">
+        <rdfs:label xml:lang="en">International agreement</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalSource"/>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;SourceOfInternationalLaw"/>
+        <rdfs:comment xml:lang="en">An agreement entered into by actors in international law, namely states and international organizations (Source: LKIF-Core ontology).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Language -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Language">
+        <rdfs:label xml:lang="en">Language</rdfs:label>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;LegalSource"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Location"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Process"/>
+        <rdfs:comment xml:lang="en">The class of languages.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#LegalDocument -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;LegalDocument">
+        <rdfs:label xml:lang="en">Legal document</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Document"/>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalSource"/>
+        <rdfs:comment xml:lang="en">A legal document is a document bearing norms or normative statements (Source: LKIF-Core ontology).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#LegalPerson -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;LegalPerson">
+        <rdfs:label xml:lang="en">Legal person</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Organisation"/>
+        <rdfs:comment xml:lang="en">A legal entity is a natural person or a legal construct through which the law allows a group of natural persons to act as if it were a single composite individual for certain purposes. The most common purposes are lawsuits, property ownership, and contracts. Sometimes referred to as corporate personhood or legal personality, this concept allows for easy conduct of business by having ownership, lawsuits, and agreements under the name of the legal entity instead of the several names of the people making up the entity.
+
+A legal entity is not necessarily distinct from the natural persons of which it is composed. Most legal entities are simply amalgamations of the persons that make it up for convenience&#39;s sake. A legal entity that does have a separate existence from its members is called a company or corporation. This distinction gives the corporation its unique perpetual succession privilege and is usually also the source of the limited liability of corporate members. Some other legal entities also enjoy limited liability of members, but not on account of separate existence (Source: Wikipedia.org).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#LegalRole -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;LegalRole">
+        <rdfs:label xml:lang="en">Legal role</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Role"/>
+        <rdfs:comment xml:lang="en">A legal role is a role played in a legal context. Legal role players can be both Agents and other &#39;things&#39; (Source: LKIF-core ontology).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#LegalSource -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;LegalSource">
+        <rdfs:label xml:lang="en">Legal source</rdfs:label>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Location"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;OrganisationalUnit"/>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Process"/>
+        <rdfs:comment xml:lang="en">Any source of law.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#LegislativeDocument -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;LegislativeDocument">
+        <rdfs:label xml:lang="en">Legislative document</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalDocument"/>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegislativeSource"/>
+        <rdfs:comment xml:lang="en">A legal document that contains norms and is drafted by a public body with legislative power (for example the Parliament) in order to regulate general and abstract situations.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#LegislativeSource -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;LegislativeSource">
+        <rdfs:label xml:lang="en">Legislative source</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalSource"/>
+        <rdfs:comment xml:lang="en">Any legislative document which is a source of law.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Location -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Location">
+        <rdfs:label xml:lang="en">Location</rdfs:label>
+        <owl:disjointWith rdf:resource="&ProcurementsTopClasses;Process"/>
+        <rdfs:comment xml:lang="en">The terms location and place in geography are used to notice and or identify a point or an area on the Earth&#39;s surface or elsewhere. The term &#39;location&#39; generally implies a higher degree of certainty than &quot;place&quot; which often has an ambiguous boundary relying more on human/social attributes of place identity and sense of place than on geometry (Source: Wikipedia).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#NaturalPerson -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;NaturalPerson">
+        <rdfs:label xml:lang="en">Natural person</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Agent"/>
+        <rdfs:comment xml:lang="en">A person is an individual agent. Usually associated with &#39;human being&#39;(Source: LKIF-Core ontology).
+This class is equivalent to foaf: Person.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#NonEUOfficialLanguage -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;NonEUOfficialLanguage">
+        <rdfs:label xml:lang="en">NonEUOfficialLanguage</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Language"/>
+        <rdfs:comment xml:lang="en">Any language which is not an EU offical languages.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Organisation -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Organisation">
+        <rdfs:label xml:lang="en">Organisation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;Agent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ProcurementsTopClasses;member"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="&ProcurementsTopClasses;NaturalPerson"/>
+                            <rdf:Description rdf:about="&ProcurementsTopClasses;Organisation"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">An organisation is a group of other organisations or persons which acts &#39;as one&#39;. An organisation can be both formal (i.e. created by law or decree) or informal (Source: LKIF-Core ontology).
+
+This class is equivalent to foaf: Organisation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#OrganisationalUnit -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;OrganisationalUnit">
+        <rdfs:label xml:lang="en">Organisational unit</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:comment xml:lang="en">&#39;The name &quot;Organizational Unit&quot; appears to represent a single organization with multiple units (departments) within that organization.&#39; (Source: Wikipedia)
+
+An organisation unit may be of different types such as department, divisions, etc. on the basis of the organisation chart.
+
+In the LOTED2 ontology this class is important because some contracting authorities/entities may have several organisational units, which are deputed to give information about the tender or to provide specifications and additional documents, or to receive tenders and requests to participate to a tender. 
+
+Since that these organisational units can be deployed in different places, they may have their own address other than this of the Organization they belong. This can be represented with VCard vocabulary. Note that the datatype property vcard: organisation-unit is in this ontology equivalent to LOTED2: organisationalUnit-name, that define the name of the ted: OrganisationalUnit.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#PrivateLegalPerson -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;PrivateLegalPerson">
+        <rdfs:label xml:lang="en">Private legal person</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalPerson"/>
+        <rdfs:comment xml:lang="en">&#39;A legal person as defined in private law&#39; (Source: LKIF-Core ontology).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Process -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Process">
+        <rdfs:label xml:lang="en">Process</rdfs:label>
+        <rdfs:comment xml:lang="en">&#39;A series of actions or steps taken in order to achieve a particular end&#39; (Source: Oxford dictionary).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#PublicBody -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;PublicBody">
+        <rdfs:label xml:lang="en">Public body</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalPerson"/>
+        <rdfs:comment xml:lang="en">&#39;A public body or body created by an act of law to serve a public interest&#39; (Source: LKIF-Core ontology).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#Role -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;Role">
+        <rdfs:label xml:lang="en">Role</rdfs:label>
+        <rdfs:comment xml:lang="en">A role is a specification of default behavior and accompanying expectations of the thing &#39;playing&#39; the role. Similar to actors in a theater who play roles, but are not the roles. Example: student (Source: LKIF-core ontology).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#SourceOfInternationalLaw -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;SourceOfInternationalLaw">
+        <rdfs:label xml:lang="en">Source of international law</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&ProcurementsTopClasses;LegalSource"/>
+        <rdfs:comment xml:lang="en">Any source of International law such as International agreements, treaty, etc.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses.xml#VCard -->
+
+    <owl:Class rdf:about="&ProcurementsTopClasses;VCard">
+        <rdfs:label xml:lang="en">VCard</rdfs:label>
+        <rdfs:comment xml:lang="en">vCard is a file format standard for electronic business cards.</rdfs:comment>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.0.0.1451) http://owlapi.sourceforge.net -->
+

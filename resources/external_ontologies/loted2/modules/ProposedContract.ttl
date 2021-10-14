@@ -1,0 +1,1607 @@
+@prefix : <https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ns: <http://www.w3.org/2006/vcard/ns#> .
+@prefix v1: <http://purl.org/goodrelations/v1#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix TenderBid: <https://loted2.googlecode.com/svn/trunk/modules/TenderBid#> .
+@prefix TenderDocuments: <https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#> .
+@prefix ProposedContract: <https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#> .
+@prefix ProcurementsTopClasses: <https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#> .
+@prefix ProcurementCompetitiveProcess: <https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#> .
+@base <https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#> .
+
+<https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#> rdf:type owl:Ontology ;
+                                                                     owl:versionIRI <https://loted2.googlecode.com/svn/trunk/modules/ProposedContract> ;
+                                                                     owl:imports <https://loted2.googlecode.com/svn/trunk/modules/TenderBid.owl> ;
+                                                                     dc:contributor "Enrico Motta"^^xsd:string ,
+                                                                                    "Mathieu d'Aquin"^^xsd:string ;
+                                                                     dc:creator "Isabella Distinto" ;
+                                                                     dc:date "2013-07-24" ;
+                                                                     dc:description "The ontology was created by Isabella Distinto, with input from Mathieu d'Aquin and Enrico Motta."^^xsd:string ;
+                                                                     dc:language "en"^^xsd:language ;
+                                                                     dc:title "LOTED2: Proposed Contract Module"^^xsd:string ;
+                                                                     rdfs:comment "The Proposed Contract module, which is part of the LOTED2 ontology, describes the categories of public contracts to be awarded through a procurement competitive process (e.g. a tender). Therefore, this module aims at represent the type of proposals of public contracts as they are described in the contract notices, not the public contract per se."@en ;
+                                                                     rdfs:label "Proposed Contract"@en ;
+                                                                     owl:versionInfo "2.0" ,
+                                                                                     "2.0"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/contributor
+dc:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/language
+dc:language rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#comment
+rdfs:comment rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#isDefinedBy
+rdfs:isDefinedBy rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#label
+rdfs:label rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#versionInfo
+owl:versionInfo rdf:type owl:AnnotationProperty .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#dataID
+ProposedContract:dataID rdf:type owl:AnnotationProperty .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#tedLabel
+ProposedContract:tedLabel rdf:type owl:AnnotationProperty .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/TenderBid#forWhichMayBeSubmitted
+TenderBid:forWhichMayBeSubmitted rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementCompetitiveProcess#forAwardOf
+ProcurementCompetitiveProcess:forAwardOf rdf:type owl:ObjectProperty .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#atMainPlace
+ProposedContract:atMainPlace rdf:type owl:ObjectProperty ;
+                             owl:inverseOf ProposedContract:isMainPlaceOf ;
+                             rdf:type owl:FunctionalProperty ;
+                             rdfs:domain ProposedContract:ObjectOfContract ;
+                             rdfs:range ProcurementsTopClasses:Location ;
+                             rdfs:comment """This property links the LOTED2:ObjectOfContract with the LOTED2:Location
+"""@en ;
+                             rdfs:label "has place of performance of contract (1..1)"@en ;
+                             ProposedContract:dataID "TW" .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#concerns
+ProposedContract:concerns rdf:type owl:ObjectProperty ;
+                          rdfs:domain ProposedContract:ObjectOfContract ;
+                          rdfs:range ProposedContract:ProductOrServiceOrWork ;
+                          rdfs:comment """This property is meant to connect the LOTED2:ObjectOfContract to the LOTED2:Product to which it refers. 
+
+For example: a LOTED2:ContractNotice has as LOTED2:ObjectOfContract the supply of laser printers and A4 paper for the Ministry of Health. 
+This means that the Ministry of Health is searching for a Supply of laser print which includes the LOTED2: Product printers and printing paper. 
+
+The products which are included in the object of the contract are identified through the CPV (Common Procurement Vocabulary) numenclature indicated in the tender documents (contract notice, periodic indicative notice, etc.).
+The Common Procurement Vocabulary identifies more than 9400 products with a code composed of 8 numbers.
+
+Referring to our example:
+
+- Cpv code of Laser printers is 30232110
+- Cpv code of printing paper is 30197630.
+
+Compared to GoodRelations, this property aims to connect the gr: Offering (for example of a contract notice, that is defined through the class LOTED2: ObjectOfContract) with the gr: ProductOrService or gr: TypeAndQuantityNode (for multiple items) that specifies the type of gr: SomeItems and the amount of this good (data-type property)."""@en ;
+                          rdfs:label "concerns (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#forWhichMayBeSubmitted
+ProposedContract:forWhichMayBeSubmitted rdf:type owl:ObjectProperty ;
+                                        owl:inverseOf ProposedContract:mayBeSubmittedForAward ;
+                                        rdfs:domain ProposedContract:ProposedPublicProcurementContract ;
+                                        rdfs:range TenderBid:TenderBid ;
+                                        rdfs:label "for which may be submitted (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasCauseOfContract
+ProposedContract:hasCauseOfContract rdf:type owl:ObjectProperty ;
+                                    rdfs:domain ProposedContract:ProposedContract ;
+                                    rdfs:range ProposedContract:CauseOfContract ;
+                                    rdfs:comment """This property specifies the cause of the contract. 
+
+For example: the individual LOTED2:Contract_for_supply_of_printers of type LOTED2:ProposedPublicSupplyContract is connected through LOTED2:hasCauseOfContract to the individual LOTED2:Buy of type LOTED2:CauseOfContract."""@en ;
+                                    rdfs:label "has cause of contract (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasEstimatedValueExcludingVAT
+ProposedContract:hasEstimatedValueExcludingVAT rdf:type owl:ObjectProperty ;
+                                               rdfs:domain [ rdf:type owl:Class ;
+                                                             owl:unionOf ( ProposedContract:ProposedFrameworkAgreement
+                                                                           ProposedContract:ProposedPublicProcurementContract
+                                                                         )
+                                                           ] ;
+                                               rdfs:range ProposedContract:EstimatedValueOfContract ;
+                                               rdfs:comment """This links a LOTED2:ProposedPublicProcurementContract or LOTED2:ProposedFrameworkAgreement to a LOTED2:EstimatedValueOfContract.
+
+The float value of the estimated value of contract is expressed through the data-type properties: 
+
+LOTED2: hasCurrencyEstimatedvalue;
+LOTED2: hasMinCurrencyEstimatedValue; 
+LOTED2: hasMaxCurrencyEstimatedvalue."""@en ;
+                                               rdfs:label "has estimated value excluding VAT (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasMainPlaceOfDelivery
+ProposedContract:hasMainPlaceOfDelivery rdf:type owl:ObjectProperty ;
+                                        rdfs:subPropertyOf ProposedContract:atMainPlace ;
+                                        owl:inverseOf ProposedContract:isMainPlaceOfDeliveryOf ;
+                                        rdfs:domain ProposedContract:Supply ;
+                                        rdfs:range ProcurementsTopClasses:Location ;
+                                        rdfs:label "has main place of delivery (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasMainPlaceOfPerformance
+ProposedContract:hasMainPlaceOfPerformance rdf:type owl:ObjectProperty ;
+                                           rdfs:subPropertyOf ProposedContract:atMainPlace ;
+                                           owl:inverseOf ProposedContract:isMainPlaceOfPerformanceOf ;
+                                           rdfs:domain ProposedContract:Service ;
+                                           rdfs:range ProcurementsTopClasses:Location ;
+                                           rdfs:label "has main place of performance (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasMainPlaceOfWorks
+ProposedContract:hasMainPlaceOfWorks rdf:type owl:ObjectProperty ;
+                                     rdfs:subPropertyOf ProposedContract:atMainPlace ;
+                                     owl:inverseOf ProposedContract:isMainPlaceOfWorks ;
+                                     rdfs:domain ProposedContract:Work ;
+                                     rdfs:range ProcurementsTopClasses:Location ;
+                                     rdfs:label "has main place of works (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasObject
+ProposedContract:hasObject rdf:type owl:ObjectProperty ;
+                           owl:inverseOf ProposedContract:isObjectOf ;
+                           rdfs:domain ProposedContract:ProposedContract ;
+                           rdfs:range ProposedContract:ObjectOfContract ;
+                           rdfs:comment """This property connects the public procurement contract to its subject matter (Work, Supply, or Service) - i.e. connects the LOTED2:ProposedPublicProcurementContract with LOTED2:ObjectOfTheContract.
+
+Since the object of the contract is one of the essential requirements of the contract, there are no contracts without the corresponding object of the contract (necessary condition)."""@en ;
+                           rdfs:label "has object (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasPlaceOfExecution
+ProposedContract:hasPlaceOfExecution rdf:type owl:ObjectProperty ;
+                                     owl:inverseOf ProposedContract:isPlaceOfExecutionOf ;
+                                     rdfs:domain ProposedContract:ProposedContract ;
+                                     rdfs:range ProcurementsTopClasses:Location ;
+                                     owl:propertyChainAxiom ( ProposedContract:hasObject
+                                                              ProposedContract:atMainPlace
+                                                            ) ;
+                                     rdfs:comment """The place of execution of the contract. 
+
+This property is a SuperPropertyOf the property chain: 
+hasObject o atMainPlace.
+
+This means that the place of the delivery of the supply or of the performance of the service or of the execution of works, is the place of the execution of the contract.
+
+In this way is possible to indicate, according to Good Relations ontology, the Location where the gr: Offering is available."""@en ;
+                                     rdfs:label "has place of execution (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#involvesTheEstabilishmentOf
+ProposedContract:involvesTheEstabilishmentOf rdf:type owl:ObjectProperty ;
+                                             rdfs:range ProposedContract:ProposedFrameworkAgreement ;
+                                             rdfs:comment "This property is used to express the relation between a LOTED2: ContractNotice and a LOTED2: FrameworkAgreement. In other words, through this property is inferred if a contract notice involves the estabilishment of a framework agreement that lays down terms and conditions for a series of public contracts awarded during a certain period of time and with one of several operators."@en ;
+                                             rdfs:label "involves the estabilishment of (0..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#isDividedInto
+ProposedContract:isDividedInto rdf:type owl:ObjectProperty ;
+                               owl:inverseOf ProposedContract:partOf ;
+                               rdfs:domain [ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty ProposedContract:typeOfProposal ;
+                                                                    owl:hasValue ProposedContract:ProposedContractDividedIntoLots
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                               rdfs:range [ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty ProposedContract:typeOfProposal ;
+                                                                   owl:hasValue ProposedContract:Lot
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ;
+                               rdfs:comment "The proposed contract (of type lot) in which is divided a proposed contract."@en ;
+                               rdfs:label "is divided into (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#isMainPlaceOf
+ProposedContract:isMainPlaceOf rdf:type owl:ObjectProperty ,
+                                        owl:InverseFunctionalProperty ;
+                               rdfs:label "is main place of performance of contract (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#isMainPlaceOfDeliveryOf
+ProposedContract:isMainPlaceOfDeliveryOf rdf:type owl:ObjectProperty ;
+                                         rdfs:subPropertyOf ProposedContract:isMainPlaceOf ;
+                                         rdfs:label "is main place of delivery of (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#isMainPlaceOfPerformanceOf
+ProposedContract:isMainPlaceOfPerformanceOf rdf:type owl:ObjectProperty ;
+                                            rdfs:subPropertyOf ProposedContract:isMainPlaceOf ;
+                                            rdfs:label "is main place of performance of (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#isMainPlaceOfWorks
+ProposedContract:isMainPlaceOfWorks rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf ProposedContract:isMainPlaceOf ;
+                                    rdfs:label "is main place of works (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#isObjectOf
+ProposedContract:isObjectOf rdf:type owl:ObjectProperty ;
+                            rdfs:domain ProposedContract:ObjectOfContract ;
+                            rdfs:range ProposedContract:ProposedContract ;
+                            rdfs:comment "Note: an object of contract can be the same for several contracts, consider for an example standard form contracts or contracts of adhesion."@en ;
+                            rdfs:label "is object of (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#isPlaceOfExecutionOf
+ProposedContract:isPlaceOfExecutionOf rdf:type owl:ObjectProperty ;
+                                      owl:propertyChainAxiom ( ProposedContract:isMainPlaceOf
+                                                               ProposedContract:isObjectOf
+                                                             ) ;
+                                      rdfs:label "is place of execution of (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#isTypeOfProposal
+ProposedContract:isTypeOfProposal rdf:type owl:ObjectProperty ;
+                                  owl:inverseOf ProposedContract:typeOfProposal ;
+                                  rdfs:domain ProposedContract:ProposedContractType ;
+                                  rdfs:range ProposedContract:ProposedPublicProcurementContract ;
+                                  rdfs:label "is type of proposal (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#laysDownTermsAndConditionFor
+ProposedContract:laysDownTermsAndConditionFor rdf:type owl:ObjectProperty ;
+                                              owl:inverseOf ProposedContract:subjectToTermsAndConditionsLaidDownWith ;
+                                              rdfs:domain ProposedContract:ProposedFrameworkAgreement ;
+                                              rdfs:range ProposedContract:ProposedPublicContract ;
+                                              rdfs:label "lays down terms and conditions for (*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#mayBeSubmittedForAward
+ProposedContract:mayBeSubmittedForAward rdf:type owl:ObjectProperty ;
+                                        rdfs:domain TenderBid:TenderBid ;
+                                        rdfs:range ProposedContract:ProposedPublicProcurementContract ;
+                                        rdfs:label "may be submitted for award (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#partOf
+ProposedContract:partOf rdf:type owl:ObjectProperty ;
+                        rdfs:domain [ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty ProposedContract:typeOfProposal ;
+                                                             owl:hasValue ProposedContract:Lot
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                        rdfs:range [ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty ProposedContract:typeOfProposal ;
+                                                            owl:hasValue ProposedContract:ProposedContractDividedIntoLots
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+                        rdfs:comment "The proposed contract (of type lot) that is part of another proposed contract."@en ;
+                        rdfs:label "part of (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#subjectToTermsAndConditionsLaidDownWith
+ProposedContract:subjectToTermsAndConditionsLaidDownWith rdf:type owl:ObjectProperty ;
+                                                         rdfs:domain ProposedContract:ProposedPublicContract ;
+                                                         rdfs:range ProposedContract:ProposedFrameworkAgreement ;
+                                                         rdfs:label "subject to terms and conditions laid down with (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#throughWhichIsAnnouncedTenderForAward
+ProposedContract:throughWhichIsAnnouncedTenderForAward rdf:type owl:ObjectProperty ;
+                                                       rdfs:domain TenderDocuments:TenderDocument ;
+                                                       rdfs:range ProposedContract:ProposedPublicProcurementContract ;
+                                                       owl:propertyChainAxiom ( TenderDocuments:throughWhichIsAnnounced
+                                                                                ProcurementCompetitiveProcess:forAwardOf
+                                                                              ) ;
+                                                       rdfs:comment "This property is a shortcut to express for the award of which contract is issued the notice."@en ;
+                                                       rdfs:label "through which is announced tender for award (1..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#throughWhichIsAnnouncedTenderForAwardLot
+ProposedContract:throughWhichIsAnnouncedTenderForAwardLot rdf:type owl:ObjectProperty ;
+                                                          rdfs:domain TenderDocuments:TenderDocument ;
+                                                          rdfs:range [ owl:intersectionOf ( ProposedContract:ProposedPublicContract
+                                                                                            [ rdf:type owl:Restriction ;
+                                                                                              owl:onProperty ProposedContract:typeOfProposal ;
+                                                                                              owl:hasValue ProposedContract:Lot
+                                                                                            ]
+                                                                                          ) ;
+                                                                       rdf:type owl:Class
+                                                                     ] ;
+                                                          owl:propertyChainAxiom ( ProposedContract:throughWhichIsAnnouncedTenderForAward
+                                                                                   ProposedContract:isDividedInto
+                                                                                 ) ;
+                                                          rdfs:label "through which is announced tender for award lot (0..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#typeOfProposal
+ProposedContract:typeOfProposal rdf:type owl:ObjectProperty ;
+                                rdfs:domain ProposedContract:ProposedPublicProcurementContract ;
+                                rdfs:range ProposedContract:ProposedContractType ;
+                                rdfs:comment "The property aims to link the contract with its type: contract divided into lots, contract not divided into lots or lot."@en ;
+                                rdfs:label "type of proposal (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#throughWhichIsAnnounced
+TenderDocuments:throughWhichIsAnnounced rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#topDataProperty
+owl:topDataProperty rdf:type owl:DatatypeProperty .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#CPVcode
+ProposedContract:CPVcode rdf:type owl:DatatypeProperty ,
+                                  owl:FunctionalProperty ;
+                         rdfs:domain ProposedContract:ProductOrServiceOrWork ;
+                         rdfs:range xsd:integer ;
+                         rdfs:comment """The value of CPV code of the product that is related to the object of contract.
+
+Given that in 2007 the CPV codes have been changed, the difference between the 'CPV code' and the 'original CPV code' is that the second one indicates the CPV code assigned to the products, service, works by the contracting authority/entity and chosen in the list of not updated CPV codes.
+
+The Publications Office of the European Union, modifies the 'original CPV code' with the updated one (in the LOTED2 ontology expressed through data-type property LOTED2: CPVcode).
+
+Therefore the search through CPV code on Tenders Electronic Daily website will always be based on the value assigned by the Publications Office (not according to the 'original CPV value'). 
+
+The contracting authority/entity is informed by the Publications Office of the modification of the 'original CPV code'. 
+
+'The aim of the CPV is to standardise, by means of a single classification system for public procurement, the terms used by contracting authorities and entities to describe the subject of contracts, by offering an appropriate tool to potential users (contracting entities/authorities, candidates or tenderers in contract award procedure). The use of standard codes makes it easier to implement the advertising rules and facilitates access to information, thereby: 
+- boosting transparency in public procurement; 
+- making it easier to identify business opportunities published in the supplement to the Official Journal of the European Union; 
+- making it possible to set up an information system for public procurement and reduce the risk of error in translating notices, since the CPV is translated into 22 official languages of the European Communities; 
+- simplifying the task of drafting notices, and in particular describing the subject matter of contracts, for contracting authorities and contracting entities; 
+- simplifying the drafting of statistics on public procurement, since the CPV is compatible with trade monitors used throughout the world (especially those used by the United Nations)' (Source: Guide to Common Procurement Vocabulary (CPV) available at: http://simap.europa.eu/codes-and-nomenclatures/codes-cpv/cpv_2008_guide_en.pdf)."""@en ;
+                         rdfs:label "Common Procurement Vocabulary (CPV) value (1..1)"@en ;
+                         ProposedContract:dataID "PC"@en ;
+                         ProposedContract:tedLabel "CPV code"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#NUTScode
+ProposedContract:NUTScode rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf owl:topDataProperty ;
+                          rdf:type owl:FunctionalProperty ;
+                          rdfs:range xsd:string ;
+                          rdfs:comment """The Nomenclature of Territorial Units for Statistics (NUTS) established by Eurostat in order to provide a single uniform breakdown of territorial units for the production of regional statistics for the European Union.
+
+For a list of current NUTS codes please see:
+
+http://simap.europa.eu/codes-and-nomenclatures/codes-nuts/codes-nuts-table_en.htm"""@en ;
+                          rdfs:label "NUTS code (0..1)"@en ;
+                          ProposedContract:dataID "RC"^^xsd:string ;
+                          ProposedContract:tedLabel "NUTS code"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#admitsVariants
+ProposedContract:admitsVariants rdf:type owl:DatatypeProperty ;
+                                rdfs:domain ProposedContract:ProposedContract ;
+                                rdfs:range xsd:boolean ;
+                                rdfs:label "admits variants (0..*)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#categoryNumber
+ProposedContract:categoryNumber rdf:type owl:DatatypeProperty ;
+                                rdfs:domain ProposedContract:Service ;
+                                rdfs:range xsd:integer ;
+                                rdfs:comment "Not stable (range probably wrong)"@en ,
+                                             "The category number of a LOTED2:Service that is realted to the classifications of the Services in the categories \"Priority Services\" (in LOTED2 defined as \"ServiceA\") or \"Non-priority Services\" (in LOTED2 defined as \"ServiceB\") "@en ;
+                                rdfs:label "category number (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#description
+ProposedContract:description rdf:type owl:DatatypeProperty ;
+                             rdfs:range rdfs:Literal ;
+                             rdfs:label "description (0..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#durationOfContractInDays
+ProposedContract:durationOfContractInDays rdf:type owl:DatatypeProperty ;
+                                          rdfs:domain ProposedContract:ProposedContract ;
+                                          rdfs:range xsd:integer ;
+                                          rdfs:comment "The duration of contract in days (from the date of the award)"@en ;
+                                          rdfs:label "duration of the contract in months (0..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#durationOfContractInMonths
+ProposedContract:durationOfContractInMonths rdf:type owl:DatatypeProperty ;
+                                            rdfs:domain ProposedContract:ProposedContract ;
+                                            rdfs:range xsd:integer ;
+                                            rdfs:comment "The duration of the contract in months (from the date of the award)."@en ;
+                                            rdfs:label "duration of contract in months (0..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasCurrency
+ProposedContract:hasCurrency rdf:type owl:DatatypeProperty ;
+                             rdfs:range xsd:string ;
+                             rdfs:comment "The currency for all LOTED2: EstimatedValueOfContract given using the ISO 4217 standard (3 characters)."@en ;
+                             rdfs:label "has currency (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasCurrencyEstimatedValue
+ProposedContract:hasCurrencyEstimatedValue rdf:type owl:DatatypeProperty ;
+                                           rdfs:subPropertyOf ProposedContract:hasMaxCurrencyEstimatedValue ,
+                                                              ProposedContract:hasMinCurrencyEstimatedValue ;
+                                           rdfs:domain ProposedContract:EstimatedValueOfContract ;
+                                           rdfs:range xsd:float ;
+                                           rdfs:comment """This property is modeled according to the Vocabulary of Good Relations. 
+
+If in the GoodRelations ontology the data-type property gr: hasMaxCurrencyValue 'specifies the UPPER BOUND of the amount of money for a price RANGE per unit, shipping charges, or payment charges' (source GoodRelations annotation to gr: hasMaxCurrencyValue) in the LOTED2 ontology the property LOTED2:hasCurrencyEstimatedValue specifies the UPPER BOUND of the amount of estimated money for a price RANGE per public procurement contract. 
+
+The main difference between these two properties expressed in the two ontologies, is that in the case of a public contract, the price will be determined at the end of the tender (i.e. the competition). 
+
+In fact, at the time of publication of the notice, it will only an 'estimated value'; the real price of the contract, i.e. the amount of money that will be paid by the contracting authority/entity for the service, work or supply, will be determined at the end of the tender, by the winning tender offer (the offer with the lower price or the most economically advantageous offer).
+
+Offers to be presented will be based on this estimated value, which is usually what the administration believes it would cost the work, service, supply concerned. 
+This estimated value is also a relevant reference for checking of abnormally low tenders (please see art. 55 Directive 2004/18/EC and art. 57 Directive 2004/17/EC) because if, for a given contract, tenders appear to be abnormally low in relation to the goods, works or services, the contracting authority/entity shall, before it may reject those tenders, request in writing details of the constituent elements of the tender which it considers relevant. 
+
+Like in GoodRelations:
+
+- in LOTED2 ontology it is possibile to define price information as intervals. If this is needed, use LOTED2:hasMaxCurrencyEstimatedValue for the upper bound and LOTED2:hasMinCurrencyEstimatedValue for the lower bound;
+
+- using LOTED2:hasCurrencyEstimatedValue sets the upper and lower bounds to the same given value, i.e., x LOTED2:hasCurrencyEstimatedValue y implies x LOTED2:hasMinCurrencyEstimatedValue y, x LOTED2:hasMaxCurrencyEstimatedValue y."""@en ;
+                                           rdfs:label "has currency estimated value (0..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasMaxCurrencyEstimatedValue
+ProposedContract:hasMaxCurrencyEstimatedValue rdf:type owl:DatatypeProperty ;
+                                              rdfs:domain ProposedContract:EstimatedValueOfContract ;
+                                              rdfs:range xsd:float ;
+                                              rdfs:comment """This property is modeled according to the Vocabulary of Good Relations. 
+
+If in the GoodRelations ontology the data-type property gr: hasMaxCurrencyValue 'specifies the UPPER BOUND of the amount of money for a price RANGE per unit, shipping charges, or payment charges' (source GoodRelations annotation to gr: hasMaxCurrencyValue) in the Loted2 ontology the property LOTED2: hasMaxCurrencyEstimatedValue specifies the UPPER BOUND of the amount of estimated money for a price RANGE per public procurement contract. 
+
+The main difference between these two properties expressed in the two ontologies, is that in the case of a public contract, the price will be determined at the end of the tender (i.e. the competition). 
+
+In fact, at the time of publication of the notice, it will only an 'estimated value'; the real price of the contract, i.e. the amount of money that will be paid by the contracting authority/entity for the service, work or supply, will be determined at the end of the tender, by the winning tender offer (the offer with the lower price or the most economically advantageous offer).
+
+Offers to be presented will be based on this estimated value, which is usually what the administration believes it would cost the work, service, supply concerned. 
+This estimated value is also a relevant reference for checking of abnormally low tenders (please see art. 55 Directive 2004/18/EC and art. 57 Directive 2004/17/EC) because if, for a given contract, tenders appear to be abnormally low in relation to the goods, works or services, the contracting authority/entity shall, before it may reject those tenders, request in writing details of the constituent elements of the tender which it considers relevant. 
+
+Like in GoodRelations ontology, using LOTED2:hasCurrencyEstimatedValue it is possible to define the upper and lower bounds to the same given value, i.e., x LOTED2:hasCurrencyEstimatedValue y implies x LOTED2:hasMinCurrencyEstimatedValue y, x LOTED2:hasMaxCurrencyEstimatedValue y."""@en ;
+                                              rdfs:label "has max currency estimated value (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasMinCurrencyEstimatedValue
+ProposedContract:hasMinCurrencyEstimatedValue rdf:type owl:DatatypeProperty ;
+                                              rdfs:domain ProposedContract:EstimatedValueOfContract ;
+                                              rdfs:range xsd:float ;
+                                              rdfs:comment """This property is modeled according to the Vocabulary of Good Relations. 
+
+If in the GoodRelations ontology the data-type property gr: hasMinCurrencyValue 'specifies the LOWER BOUND of the amount of money for a price RANGE per unit, shipping charges, or payment charges' (source GoodRelations annotation to gr: hasMinCurrencyValue) in the Loted2 ontology the property LOTED2: hasMinCurrencyEstimatedValue specifies the LOWER BOUND of the amount of estimated money for a price RANGE per public procurement contract. 
+
+The main difference between these two properties expressed in the two ontologies, is that in the case of a public contract, the price will be determined at the end of the tender (i.e. the competition). 
+
+In fact, at the time of publication of the notice, it will only an 'estimated value'; the real price of the contract, i.e. the amount of money that will be paid by the contracting authority/entity for the service, work or supply, will be determined at the end of the tender, by the winning tender offer (the offer with the lower price or the most economically advantageous offer).
+
+Offers to be presented will be based on this estimated value, which is usually what the administration believes it would cost the work, service, supply concerned. 
+This estimated value is also a relevant reference for checking of abnormally low tenders (please see art. 55 Directive 2004/18/EC and art. 57 Directive 2004/17/EC) because if, for a given contract, tenders appear to be abnormally low in relation to the goods, works or services, the contracting authority/entity shall, before it may reject those tenders, request in writing details of the constituent elements of the tender which it considers relevant. 
+
+Like in GoodRelations ontology, using LOTED2:hasCurrencyEstimatedValue it is possible to define the upper and lower bounds to the same given value, i.e., x LOTED2:hasCurrencyEstimatedValue y implies x LOTED2:hasMinCurrencyEstimatedValue y, x LOTED2:hasMaxCurrencyEstimatedValue y."""@en ;
+                                              rdfs:label "has min currency estimated value (1..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasStartingDate
+ProposedContract:hasStartingDate rdf:type owl:DatatypeProperty ;
+                                 rdfs:domain ProposedContract:ProposedContract ;
+                                 rdfs:range xsd:dateTime ;
+                                 rdfs:comment "The starting date of the contract."@en ;
+                                 rdfs:label "has starting date (0..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hasTimeLimitForCompletion
+ProposedContract:hasTimeLimitForCompletion rdf:type owl:DatatypeProperty ;
+                                           rdfs:domain ProposedContract:ProposedContract ;
+                                           rdfs:range xsd:dateTime ;
+                                           rdfs:comment "The time limit for completion of the contract."@en ;
+                                           rdfs:label "has completion date (0..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#isDividedIntoLots
+ProposedContract:isDividedIntoLots rdf:type owl:DatatypeProperty ;
+                                   rdfs:domain ProposedContract:ProposedPublicProcurementContract ;
+                                   rdfs:range xsd:boolean ;
+                                   rdfs:label "is divided into lots"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#option
+ProposedContract:option rdf:type owl:DatatypeProperty ;
+                        rdfs:domain ProposedContract:ProposedContract ;
+                        rdfs:range rdfs:Literal ;
+                        rdfs:label "option (0..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#originalCPVcode
+ProposedContract:originalCPVcode rdf:type owl:DatatypeProperty ,
+                                          owl:FunctionalProperty ;
+                                 rdfs:domain ProposedContract:ProductOrServiceOrWork ;
+                                 rdfs:range xsd:integer ;
+                                 rdfs:comment """Given that in 2007 the CPV codes have been changed, the value expressed through the property LOTED2: originalCPVcode indicates the CPV code assigned to the products, service, works by the contracting authority/entity and chosen in the list of not updated CPV codes.
+
+Please see annotation to LOTED2: CPVcode."""@en ;
+                                 rdfs:label "Common Procurement Vocabulary (CPV) original value."@en ;
+                                 ProposedContract:dataID "OC"@en ;
+                                 ProposedContract:tedLabel "Original CPV code"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#subjectToRenewal
+ProposedContract:subjectToRenewal rdf:type owl:DatatypeProperty ;
+                                  rdfs:domain ProposedContract:ProposedContract ;
+                                  rdfs:range xsd:boolean ;
+                                  rdfs:label "subjectToRenewal (0..1)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#valueAddedTaxIncluded
+ProposedContract:valueAddedTaxIncluded rdf:type owl:DatatypeProperty ;
+                                       rdfs:domain ProposedContract:EstimatedValueOfContract ;
+                                       rdfs:range xsd:boolean ;
+                                       rdfs:comment """This property replicates the pattern of Good Relations and specifies whether the applicable Value-Added Tax (VAT) is included in the price of the LOTED2:EstimatedValueOfContract or not.
+
+It is important to emphasize that the estimated value of the contract indicated in the notices, is always expressed excluding VAT (necessary condition of LOTED2:EstimatedValueOfContract)."""@en ;
+                                       rdfs:label "Value Added Tax (VAT) included"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdf:type owl:Class .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#Function
+ProcurementsTopClasses:Function rdf:type owl:Class .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#LegalDocument
+ProcurementsTopClasses:LegalDocument rdf:type owl:Class .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#Location
+ProcurementsTopClasses:Location rdf:type owl:Class .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#AccountingAuditingAndBookkeepingService
+ProposedContract:AccountingAuditingAndBookkeepingService rdf:type owl:Class ;
+                                                         owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                                    [ rdf:type owl:Restriction ;
+                                                                                                      owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                      owl:hasValue 9
+                                                                                                    ]
+                                                                                                  ) ;
+                                                                               rdf:type owl:Class
+                                                                             ] ;
+                                                         rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                                         rdfs:label "Accounting, auditing and bookkeeping service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#AdvertisingService
+ProposedContract:AdvertisingService rdf:type owl:Class ;
+                                    owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                               [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty ProposedContract:categoryNumber ;
+                                                                                 owl:hasValue 13
+                                                                               ]
+                                                                             ) ;
+                                                          rdf:type owl:Class
+                                                        ] ;
+                                    rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                    rdfs:label "Advertising service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#AirTransportServiceOfPassengerAndFreightExceptTransportOfMail
+ProposedContract:AirTransportServiceOfPassengerAndFreightExceptTransportOfMail rdf:type owl:Class ;
+                                                                               owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                                                          [ rdf:type owl:Restriction ;
+                                                                                                                            owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                                            owl:hasValue 3
+                                                                                                                          ]
+                                                                                                                        ) ;
+                                                                                                     rdf:type owl:Class
+                                                                                                   ] ;
+                                                                               rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                                                               rdfs:label "Air transport service of passengers and freight, except transport of mail"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#AnnexIIA-Service
+ProposedContract:AnnexIIA-Service rdf:type owl:Class ;
+                                  owl:equivalentClass ProposedContract:PriorityService ;
+                                  rdfs:subClassOf ProposedContract:Service ;
+                                  rdfs:comment "Service categories within the meaning of Article 31 and Annex XVIIA of Directive 2004/17/EC and of Article 20 and Annex IIA to Directive 2004/18/EC"@en ;
+                                  rdfs:label "Service category A"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#AnnexIIB-Service
+ProposedContract:AnnexIIB-Service rdf:type owl:Class ;
+                                  owl:equivalentClass ProposedContract:NonPriorityService ;
+                                  rdfs:subClassOf ProposedContract:Service ;
+                                  rdfs:comment "Service categories within the meaning of Article 32 and Annex XVIIB of Directive 2004/17/EC and of Article 21 and Annex IIB to Directive 2004/18/EC"@en ;
+                                  rdfs:label "Service category B"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ArchitecturalService
+ProposedContract:ArchitecturalService rdf:type owl:Class ;
+                                      owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty ProposedContract:categoryNumber ;
+                                                                                   owl:hasValue 12
+                                                                                 ]
+                                                                               ) ;
+                                                            rdf:type owl:Class
+                                                          ] ;
+                                      rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                      rdfs:label "Architectural service; engineering service and integrated engineering service; urban planning and landscape engineering service; related scientific and technical consulting service; technical testing and analysis service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#BuildingCleaningServiceAndPropertyManagementService
+ProposedContract:BuildingCleaningServiceAndPropertyManagementService rdf:type owl:Class ;
+                                                                     owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                                                [ rdf:type owl:Restriction ;
+                                                                                                                  owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                                  owl:hasValue 14
+                                                                                                                ]
+                                                                                                              ) ;
+                                                                                           rdf:type owl:Class
+                                                                                         ] ;
+                                                                     rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                                                     rdfs:label "Building-cleaning service and property management service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#CauseOfContract
+ProposedContract:CauseOfContract rdf:type owl:Class ;
+                                 rdfs:subClassOf ProcurementsTopClasses:Function ;
+                                 owl:disjointWith ProposedContract:EstimatedValueOfContract ,
+                                                  ProposedContract:ObjectOfContract ,
+                                                  ProposedContract:ProductOrServiceOrWork ,
+                                                  ProposedContract:ProposedContract ,
+                                                  ProposedContract:ProposedContractType ,
+                                                  ProposedContract:ProposedPublicProcurementContract ;
+                                 rdfs:comment """Cause of the contract means the essential legal summary of the effects of contract type, i.e. the actual function of the contract. There can not exist a contract without a cause.
+
+Note that the cause of contract is not the specific reason for which an agent decide to conclude the contract (i.e. the function of the purchase agreement is the exchange of an asset vs to the payment of an amount of money, instead is not cause of contract the fact that John wants to buy a car as a gift to his wife).
+
+This class is closely related to GoodRelation class gr: BusinessFunction, because some legal theorists define the cause of contract as the business function of the contract."""@en ;
+                                 rdfs:label "Cause of contract"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ComputerAndRelatedService
+ProposedContract:ComputerAndRelatedService rdf:type owl:Class ;
+                                           owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty ProposedContract:categoryNumber ;
+                                                                                        owl:hasValue 7
+                                                                                      ]
+                                                                                    ) ;
+                                                                 rdf:type owl:Class
+                                                               ] ;
+                                           rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                           rdfs:label "Research and development service (except research and development services other than those where benefits accrue exclusively to the contracting authority for its use in the conduct of its own affairs on condition that the service provided is wholly remunerated by the contracting authority)"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#DesignAndExecution
+ProposedContract:DesignAndExecution rdf:type owl:Class ;
+                                    rdfs:subClassOf ProposedContract:Work ;
+                                    rdfs:label "Design and execution"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#EducationAndVocationalEducationService
+ProposedContract:EducationAndVocationalEducationService rdf:type owl:Class ;
+                                                        owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                     owl:hasValue 24
+                                                                                                   ]
+                                                                                                 ) ;
+                                                                              rdf:type owl:Class
+                                                                            ] ;
+                                                        rdfs:subClassOf ProposedContract:AnnexIIB-Service ;
+                                                        rdfs:label "Educational and vocational education service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#EstimatedValueOfContract
+ProposedContract:EstimatedValueOfContract rdf:type owl:Class ;
+                                          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                            owl:onProperty ProposedContract:valueAddedTaxIncluded ;
+                                                            owl:hasValue "false"^^xsd:boolean
+                                                          ] ;
+                                          owl:disjointWith ProposedContract:ObjectOfContract ,
+                                                           ProposedContract:ProductOrServiceOrWork ,
+                                                           ProposedContract:ProposedContract ,
+                                                           ProposedContract:ProposedContractType ,
+                                                           ProposedContract:ProposedPublicProcurementContract ;
+                                          rdfs:comment """The estimated value of public contract exluding VAT.
+
+The main difference between this class and the gr: PriceSpecification, is that in the case of a public contract, the price will be determined at the end of the tender (i.e. race). 
+
+In fact, at the time of publication of the notice, it will only an 'estimated value'; the real price of the contract, i.e. the amount of money that will be paid by the contracting authority/entity for the service, work or supply, will be determined at the end of the tender, by the successsful tender offer (the offer with the lower price or the most economically advantageous one).
+
+Offers to be presented will be based on this estimated value, which is usually what the administration believes it would cost the work, service, supply concerned. This means the price basis auction. 
+
+This estimated value is also a relevant reference for checking of abnormally low tenders (please see art. 55 Directive 2004/18/EC and art. 57 Directive 2004/17/EC) because if, for a given contract, tenders appear to be abnormally low in relation to the goods, works or services, the contracting authority/entity shall, before it may reject those tenders, request in writing details of the constituent elements of the tender which it considers relevant. 
+
+It is always defined excluding VAT, so this restiction is expressed asserting as necessary condition, namely: LOTED2:valueAddedTaxIncluded (data-type property with range xsd: boolean) value false."""@en ;
+                                          rdfs:label "Estimated value of contract"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Execution
+ProposedContract:Execution rdf:type owl:Class ;
+                           rdfs:subClassOf ProposedContract:Work ;
+                           rdfs:label "Execution"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#FinancialServiceBankingAndInvestmentService
+ProposedContract:FinancialServiceBankingAndInvestmentService rdf:type owl:Class ;
+                                                             owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                                        [ rdf:type owl:Restriction ;
+                                                                                                          owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                          owl:hasValue 6
+                                                                                                        ]
+                                                                                                      ) ;
+                                                                                   rdf:type owl:Class
+                                                                                 ] ;
+                                                             rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                                             rdfs:label "Financial services banking and investment services"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#FinancialServiceInsuranceService
+ProposedContract:FinancialServiceInsuranceService rdf:type owl:Class ;
+                                                  owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                             [ rdf:type owl:Restriction ;
+                                                                                               owl:onProperty ProposedContract:categoryNumber ;
+                                                                                               owl:hasValue 6
+                                                                                             ]
+                                                                                           ) ;
+                                                                        rdf:type owl:Class
+                                                                      ] ;
+                                                  rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                                  rdfs:label "Financial services insurance services"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#HealthAndSocialService
+ProposedContract:HealthAndSocialService rdf:type owl:Class ;
+                                        owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty ProposedContract:categoryNumber ;
+                                                                                     owl:hasValue 25
+                                                                                   ]
+                                                                                 ) ;
+                                                              rdf:type owl:Class
+                                                            ] ;
+                                        rdfs:subClassOf ProposedContract:AnnexIIB-Service ;
+                                        rdfs:label "Health and social service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#HirePurchase
+ProposedContract:HirePurchase rdf:type owl:Class ;
+                              rdfs:subClassOf ProposedContract:Supply ;
+                              rdfs:label "Hire purchase"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#HotelAndRestaurantService
+ProposedContract:HotelAndRestaurantService rdf:type owl:Class ;
+                                           owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty ProposedContract:categoryNumber ;
+                                                                                        owl:hasValue 17
+                                                                                      ]
+                                                                                    ) ;
+                                                                 rdf:type owl:Class
+                                                               ] ;
+                                           rdfs:subClassOf ProposedContract:AnnexIIB-Service ;
+                                           rdfs:label "Hotel and resaturant service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#InvestigationAndSecurityServiceExceptArmouredCarService
+ProposedContract:InvestigationAndSecurityServiceExceptArmouredCarService rdf:type owl:Class ;
+                                                                         owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                                                    [ rdf:type owl:Restriction ;
+                                                                                                                      owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                                      owl:hasValue 23
+                                                                                                                    ]
+                                                                                                                  ) ;
+                                                                                               rdf:type owl:Class
+                                                                                             ] ;
+                                                                         rdfs:subClassOf ProposedContract:AnnexIIB-Service ;
+                                                                         rdfs:label "Investigation and security service, except armoured car service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#LandTransportService
+ProposedContract:LandTransportService rdf:type owl:Class ;
+                                      owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty ProposedContract:categoryNumber ;
+                                                                                   owl:hasValue 2
+                                                                                 ]
+                                                                               ) ;
+                                                            rdf:type owl:Class
+                                                          ] ;
+                                      rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                      rdfs:label "Land and transport service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Lease
+ProposedContract:Lease rdf:type owl:Class ;
+                       rdfs:subClassOf ProposedContract:Supply ;
+                       rdfs:label "Lease"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#LegalService
+ProposedContract:LegalService rdf:type owl:Class ;
+                              owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty ProposedContract:categoryNumber ;
+                                                                           owl:hasValue 21
+                                                                         ]
+                                                                       ) ;
+                                                    rdf:type owl:Class
+                                                  ] ;
+                              rdfs:subClassOf ProposedContract:AnnexIIB-Service ;
+                              rdfs:label "Legal service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#MaintenanceAndRepairService
+ProposedContract:MaintenanceAndRepairService rdf:type owl:Class ;
+                                             owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty ProposedContract:categoryNumber ;
+                                                                                          owl:hasValue 1
+                                                                                        ]
+                                                                                      ) ;
+                                                                   rdf:type owl:Class
+                                                                 ] ;
+                                             rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                             rdfs:label "Maintenance and repair service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ManagementConsultingServiceAndRelatedService
+ProposedContract:ManagementConsultingServiceAndRelatedService rdf:type owl:Class ;
+                                                              owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                           owl:hasValue 11
+                                                                                                         ]
+                                                                                                       ) ;
+                                                                                    rdf:type owl:Class
+                                                                                  ] ;
+                                                              rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                                              rdfs:label "Management consulting service and related service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#MarketResearchAndPublicOpinionPollingService
+ProposedContract:MarketResearchAndPublicOpinionPollingService rdf:type owl:Class ;
+                                                              owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                           owl:hasValue 10
+                                                                                                         ]
+                                                                                                       ) ;
+                                                                                    rdf:type owl:Class
+                                                                                  ] ;
+                                                              rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                                              rdfs:label "Market research and public opinion polling service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#NonPriorityService
+ProposedContract:NonPriorityService rdf:type owl:Class ;
+                                    rdfs:subClassOf ProposedContract:Service ;
+                                    rdfs:comment """The distinction between Non-priority services (also called AnnexIIB Services) and the Priority Services (also called AnnexIIA Services) is relevant because the type or nature of service determines the applicable rules and also the recognition of contracts above EU threshold. 
+
+In general, for non-priority services the application of the Procurement Directive is limited. In fact, only the service contracts with most potential for cross-border trade in the internal market (Priority Services) are subject to the application of the detailed award procedures.
+"""@en ;
+                                    rdfs:label "Non-priority Service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ObjectOfContract
+ProposedContract:ObjectOfContract rdf:type owl:Class ;
+                                  owl:disjointWith ProposedContract:ProductOrServiceOrWork ,
+                                                   ProposedContract:ProposedContract ,
+                                                   ProposedContract:ProposedContractType ;
+                                  rdfs:comment "The object of the contract is the description of the performance that the parties agree to execute and the consequently transfer or creation of rights and/or modification or settlement of existing bonds"@en ;
+                                  rdfs:label "Object of contract"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#OtherService
+ProposedContract:OtherService rdf:type owl:Class ;
+                              owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty ProposedContract:categoryNumber ;
+                                                                           owl:hasValue 27
+                                                                         ]
+                                                                       ) ;
+                                                    rdf:type owl:Class
+                                                  ] ;
+                              rdfs:subClassOf ProposedContract:AnnexIIB-Service ;
+                              rdfs:label "Other service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#PersonnelPlacementAndSupplyService
+ProposedContract:PersonnelPlacementAndSupplyService rdf:type owl:Class ;
+                                                    owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                 owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                 owl:hasValue 22
+                                                                                               ]
+                                                                                             ) ;
+                                                                          rdf:type owl:Class
+                                                                        ] ;
+                                                    rdfs:subClassOf ProposedContract:AnnexIIB-Service ;
+                                                    rdfs:label "Personnel placement and supply service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#PriorityService
+ProposedContract:PriorityService rdf:type owl:Class ;
+                                 rdfs:subClassOf ProposedContract:Service ;
+                                 rdfs:comment """The distinction between Non-priority services (also called AnnexIIB Services) and the Priority Services (also called AnnexIIA Services) is relevant because the type or nature of service determines the applicable rules and also the recognition of contracts above EU threshold. 
+
+In general, for non-priority services the application of the Procurement Directive is limited. In fact, only the service contracts with most potential for cross-border trade in the internal market (Priority Services) are subject to the application of the detailed award procedures.
+"""@en ;
+                                 rdfs:label "Priority Service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProductOrServiceOrWork
+ProposedContract:ProductOrServiceOrWork rdf:type owl:Class ;
+                                        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                          owl:onProperty ProposedContract:CPVcode ;
+                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                          owl:onDataRange xsd:integer
+                                                        ] ;
+                                        owl:disjointWith ProposedContract:ProposedContract ,
+                                                         ProposedContract:ProposedPublicProcurementContract ;
+                                        owl:hasKey ( ProposedContract:CPVcode
+                                                   ) ;
+                                        rdfs:comment """The superclass of all classes describing products or services or works types, involved by the subject matter of the contract. 
+
+Examples: 
+a) the public supply contract X has subject matter the supply of printers for the Ministry of Health Of the UK: the product involved in the subject matter of the contract is 'printer';
+b) the public works contract Y has subject matter the construction of a bridge: the work involved in the subject matter of the contract is 'basement excavation work' and 'terracing work';
+c) the public service contract Z has subject matter the cleaning service of the offices of the Ministry of Defence located in Paris: the service involved in the subject matter of the contract is 'cleaning service'.
+
+Each individual of this class is identified by a unique code of Common Procurement Vocabulary (CPV). 
+
+Theoretically this class should be populated with the 9455 products on the list of Common Procurement Vocabulary.
+
+Current version of Common Procurement Vocabulary is available at http://simap.europa.eu/codes-and-nomenclatures/codes-cpv/codes-cpv_en.htm"""@en ;
+                                        rdfs:label "ProductOrServiceOrWork"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProductToBeSupplied
+ProposedContract:ProductToBeSupplied rdf:type owl:Class ;
+                                     rdfs:subClassOf ProposedContract:ProductOrServiceOrWork ;
+                                     owl:disjointWith ProposedContract:ServiceToBeProvided ,
+                                                      ProposedContract:WorkToBePerformed ;
+                                     rdfs:comment "In a legal sense this class means a \"res\" , the product to be supplied"@en ;
+                                     rdfs:label "Product to be supplied"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedConcession
+ProposedContract:ProposedConcession rdf:type owl:Class ;
+                                    rdfs:subClassOf ProposedContract:ProposedPublicProcurementContract ;
+                                    owl:disjointWith ProposedContract:ProposedPublicContract ;
+                                    rdfs:comment """Concessions are contracts where the consideration for the works or services to be carried out consists either solely in the right to exploit the work or service, or in this right to exploit together with payment.  
+
+In particular: 
+
+- \"Public works concession\" is a contract of the same type as a public works contract except for the fact that the consideration for the works to be carried out consists either solely in the right to exploit the work or in this right together with payment;
+
+- \"Service concession\" is a contract of the same type as a public service contract except for the fact that the consideration for the provision of services consists either solely in the right to exploit the service or in this right together with payment.
+(Article 1.3 Directive 2004/17/EC and Article 1.3 and 1.4 Directive 2004/18/EC).
+
+In this version of LOTED2 ontology, the services concessions are not defined, because they are excluded from the coverage of the Directives, but not from the coverage of Treaties principles which are applied to the award of service concessions where there is potential cross-border interest in the contract.
+
+Note that the TED data do not distinguish between public contracts and concession, although this is a relevant distinction, because they are different \"classes\" of public procurement contract."""@en ;
+                                    rdfs:label "Proposed Concession"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedContract
+ProposedContract:ProposedContract rdf:type owl:Class ;
+                                  rdfs:subClassOf ProcurementsTopClasses:LegalDocument ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty ProposedContract:hasObject ;
+                                                    owl:someValuesFrom ProposedContract:ObjectOfContract
+                                                  ] ,
+                                                  [ rdf:type owl:Restriction ;
+                                                    owl:onProperty ProposedContract:hasObject ;
+                                                    owl:allValuesFrom ProposedContract:ObjectOfContract
+                                                  ] ;
+                                  owl:disjointWith ProposedContract:ProposedContractType ;
+                                  rdfs:comment """The contract that is proposed to another part through an invitation to offer. 
+
+Terms and conditions of the proposed contract may be more or less defined; in general a proposed contract has an estimated value, an estimated duration (in case of continuated performance), etc."""@en ;
+                                  rdfs:label "Proposed contract "@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedContractType
+ProposedContract:ProposedContractType rdf:type owl:Class ;
+                                      owl:equivalentClass [ owl:intersectionOf ( ProposedContract:ProposedContractType
+                                                                                 [ rdf:type owl:Class ;
+                                                                                   owl:oneOf ( ProposedContract:Lot
+                                                                                               ProposedContract:ProposedContractDividedIntoLots
+                                                                                               ProposedContract:ProposedContractNotDividedIntoLots
+                                                                                             )
+                                                                                 ]
+                                                                               ) ;
+                                                            rdf:type owl:Class
+                                                          ] ;
+                                      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                        owl:onProperty ProposedContract:isTypeOfProposal ;
+                                                        owl:allValuesFrom ProposedContract:ProposedPublicProcurementContract
+                                                      ] ;
+                                      rdfs:comment """This class refers to the types of proposals for contracts relevant for the commitments of LOTED2 ontology. 
+It does not refer to the \"proposed contract types\" in general, but only to three categories of very specific types of proposed public contracts, ie: 
+
+-Proposed contract divided into lots;
+-Proposed contract not divided into lots;
+-Lot.
+
+This information allows to connect the proposed contract with the type of offer that can be submitted to award it. It is necessary to declare always this value in the LOTED2 ontology, even in the case in which the proposed contract is not divided into lots.
+
+Please note that the ontology supports some inferences about these types: 
+
+- if a proposed contract is divided in other proposed contracts, then is inferred that this proposed contract is of type ProposedContractDividedIntoLots and that the contracts in which is divided are of type Lot;
+
+- if a proposed contract isDividedInLots (datatype property) has value false, then this contract has type ProposedContractNotDividedIntoLots. 
+
+This inferences are made possible through some 'general class axioms'"""@en ;
+                                      rdfs:label "Proposed Contract type"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedFrameworkAgreement
+ProposedContract:ProposedFrameworkAgreement rdf:type owl:Class ;
+                                            rdfs:subClassOf ProposedContract:ProposedContract ;
+                                            rdfs:comment """The framework agreement is a sort of 'umbrella contract', i.e. a contract that lays down the terms and the conditions for other contracts to be signed between parties. 
+
+In a strict sense, a framework agreement is not a public contract, but a public contracts might be be subject to a framework agreement signed between the entity acting as contracting authority/entity and one or more economic operators. 
+
+In these cases, the contract notice involves also the estabilishment of a framework agreement."""@en ;
+                                            rdfs:label "Proposed framework agreement"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedPublicContract
+ProposedContract:ProposedPublicContract rdf:type owl:Class ;
+                                        rdfs:subClassOf ProposedContract:ProposedPublicProcurementContract ;
+                                        owl:disjointWith ProposedContract:ProposedPublicWorksConcession ;
+                                        rdfs:comment "‘Public contracts’ are contracts for pecuniary interest concluded in writing between one or more economic operators and one or more contracting authorities and having as their object the execution of works, the supply of products or the provision of services (Article 1.2a Directive 2004/18/EC and Directive 2004/17/EC)"@en ;
+                                        rdfs:label "Appalto pubblico"@it ,
+                                                   "Proposed public contract"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedPublicProcurementContract
+ProposedContract:ProposedPublicProcurementContract rdf:type owl:Class ;
+                                                   rdfs:subClassOf ProposedContract:ProposedContract ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty ProposedContract:typeOfProposal ;
+                                                                     owl:allValuesFrom ProposedContract:ProposedContractType
+                                                                   ] ;
+                                                   rdfs:comment """A procurement contract proposed through any notice that is also a call for tenders ('invitatio ad offerendum').
+
+Given that public procurement contracts can be either public contracts and concession contracts, this is the generic class of proposed public procurement contract."""@en ;
+                                                   rdfs:label "Proposed public procurement contract"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedPublicServiceContract
+ProposedContract:ProposedPublicServiceContract rdf:type owl:Class ;
+                                               owl:equivalentClass [ owl:intersectionOf ( ProposedContract:ProposedPublicContract
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty ProposedContract:hasObject ;
+                                                                                            owl:someValuesFrom ProposedContract:Service
+                                                                                          ]
+                                                                                        ) ;
+                                                                     rdf:type owl:Class
+                                                                   ] ;
+                                               rdfs:subClassOf ProposedContract:ProposedPublicContract ;
+                                               owl:disjointWith ProposedContract:ProposedPublicSupplyContract ,
+                                                                ProposedContract:ProposedPublicWorksContract ;
+                                               rdfs:comment """‘Public service contracts’ are public contracts other than public works or supply contracts having as their object the provision of services referred to in Annex II (art. 1 (2 d) Directive 2004/18/EC). 
+
+Whereas there are also mixed contracts, the Directive 2004/18/EC states that:
+\"A public contract having as its object both products and services within the meaning of Annex II shall be considered to be a ‘public service contract’ if the value of the services in question exceeds that of the products covered by the contract.
+A public contract having as its object services within the meaning of Annex II and including activities within the meaning of Annex I [ed. note: works] that are only incidental to the principal object of the contract shall be considered to be a public service contract.\"
+The notice does not indicate explicitly whether a contract is of mixed type, because the qualification of the contract (as services public contract) is made ​​by the awarding authority, before the publication of notice. 
+For these reasons, a public service contract is expressed in the ontology as a public contract that has at least one (some) Service as ContractSubject (and not 'only')."""@en ;
+                                               rdfs:label "Proposed public service contract"@en ;
+                                               ProposedContract:tedLabel "4- Service contract"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedPublicSupplyContract
+ProposedContract:ProposedPublicSupplyContract rdf:type owl:Class ;
+                                              owl:equivalentClass [ owl:intersectionOf ( ProposedContract:ProposedPublicContract
+                                                                                         [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty ProposedContract:hasObject ;
+                                                                                           owl:someValuesFrom ProposedContract:Supply
+                                                                                         ]
+                                                                                       ) ;
+                                                                    rdf:type owl:Class
+                                                                  ] ;
+                                              rdfs:subClassOf ProposedContract:ProposedPublicContract ;
+                                              owl:disjointWith ProposedContract:ProposedPublicWorksContract ;
+                                              rdfs:comment """‘Public supply contracts’ are public contracts other than those referred to in (b) having as their object the purchase, lease, rental or hire purchase, with or without option to buy, of products (art. 1 (2 c) Directive 2004/18/EC). 
+
+Whereas there are also mixed contracts, the Directive 2004/18/EC states that:
+
+\"A public contract having as its object the supply of products and which also covers, as an incidental matter, siting and installation operations shall be considered to be a ‘public supply contract’.\"
+The notice does not indicate explicitly whether a contract is of mixed type, because the qualification of the contract (as services public contract) is made ​​by the awarding authority, before the publication of notice. 
+For these reasons, a public supply contract is expressed in the ontology as a public contract that has at least one (some) Supply as ContractSubject (and not 'only')."""@en ;
+                                              rdfs:label "Proposed public supply contract"@en ;
+                                              ProposedContract:tedLabel "2- Supply contract"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedPublicWorksConcession
+ProposedContract:ProposedPublicWorksConcession rdf:type owl:Class ;
+                                               rdfs:subClassOf ProposedContract:ProposedConcession ;
+                                               rdfs:comment """‘Public works concession’ is a contract of the same type as a public works contract except for the fact that the consideration for the works to be carried out consists either solely in the right to exploit the work or in this right together with payment. (Article 1.3 Directive 2004/18/EC and Article 1.3 Directive 2004/17/EC).
+
+Note: since that the TED data don't distinguish between contracts and concessions, there is not a specific label for public works concession, therefore the TedLabel of this kind of contracts is the same of Public works contract: 1- Work."""@en ;
+                                               rdfs:label "Proposed Public Works Concession"@en ;
+                                               ProposedContract:tedLabel "1- Works"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedPublicWorksContract
+ProposedContract:ProposedPublicWorksContract rdf:type owl:Class ;
+                                             owl:equivalentClass [ owl:intersectionOf ( ProposedContract:ProposedPublicContract
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty ProposedContract:hasObject ;
+                                                                                          owl:someValuesFrom ProposedContract:Work
+                                                                                        ]
+                                                                                      ) ;
+                                                                   rdf:type owl:Class
+                                                                 ] ;
+                                             rdfs:subClassOf ProposedContract:ProposedPublicContract ;
+                                             rdfs:comment "\"‘Public works contracts’ are public contracts having as their object either the execution, or both the design and execution, of works related to one of the activities within the meaning of Annex I or a work, or the realisation, by whatever means, of a work corresponding to the requirements specified by the contracting authority. A ‘work’ means the outcome of building or civil engineering works taken as a whole which is sufficient of itself to fulfil an economic or technical function.\" (art. 1 (2b) Directive 2004/18/EC)"@en ;
+                                             rdfs:label "Public works contract"@en ;
+                                             ProposedContract:tedLabel "1- Works"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#PublishingAndPrintingService
+ProposedContract:PublishingAndPrintingService rdf:type owl:Class ;
+                                              owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                         [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty ProposedContract:categoryNumber ;
+                                                                                           owl:hasValue 15
+                                                                                         ]
+                                                                                       ) ;
+                                                                    rdf:type owl:Class
+                                                                  ] ;
+                                              rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                              rdfs:label "Publishing and printing service on a fee or contract basis"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Purchase
+ProposedContract:Purchase rdf:type owl:Class ;
+                          rdfs:subClassOf ProposedContract:Supply ;
+                          rdfs:label "Purchase"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#RailTransportService
+ProposedContract:RailTransportService rdf:type owl:Class ;
+                                      owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                 [ rdf:type owl:Restriction ;
+                                                                                   owl:onProperty ProposedContract:categoryNumber ;
+                                                                                   owl:hasValue 18
+                                                                                 ]
+                                                                               ) ;
+                                                            rdf:type owl:Class
+                                                          ] ;
+                                      rdfs:subClassOf ProposedContract:AnnexIIB-Service ;
+                                      rdfs:label "Rail transport service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Realization
+ProposedContract:Realization rdf:type owl:Class ;
+                             rdfs:subClassOf ProposedContract:Work ;
+                             rdfs:label "Realization"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#RecreationalCulturalAndSportingService
+ProposedContract:RecreationalCulturalAndSportingService rdf:type owl:Class ;
+                                                        owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                     owl:hasValue 26
+                                                                                                   ]
+                                                                                                 ) ;
+                                                                              rdf:type owl:Class
+                                                                            ] ;
+                                                        rdfs:subClassOf ProposedContract:AnnexIIB-Service ;
+                                                        rdfs:label "Recreational, cultural and sporting service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Rental
+ProposedContract:Rental rdf:type owl:Class ;
+                        rdfs:subClassOf ProposedContract:Supply ;
+                        rdfs:label "Rental"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ResearchAndDevelopmentService
+ProposedContract:ResearchAndDevelopmentService rdf:type owl:Class ;
+                                               owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty ProposedContract:categoryNumber ;
+                                                                                            owl:hasValue 8
+                                                                                          ]
+                                                                                        ) ;
+                                                                     rdf:type owl:Class
+                                                                   ] ;
+                                               rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                               rdfs:label "Research and development service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Service
+ProposedContract:Service rdf:type owl:Class ;
+                         rdfs:subClassOf ProposedContract:ObjectOfContract ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty ProposedContract:categoryNumber ;
+                                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                           owl:onDataRange xsd:integer
+                                         ] ;
+                         owl:disjointWith ProposedContract:Supply ,
+                                          ProposedContract:Work ;
+                         rdfs:label "Service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ServiceToBeProvided
+ProposedContract:ServiceToBeProvided rdf:type owl:Class ;
+                                     rdfs:subClassOf ProposedContract:ProductOrServiceOrWork ;
+                                     owl:disjointWith ProposedContract:WorkToBePerformed ;
+                                     rdfs:comment "In a legal sense this class means \"facere\" , the actions related to the service to be provided"@en ;
+                                     rdfs:label "Service to be provided"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#SewageAndRefuseDisposalServiceSanitationAndSimilarService
+ProposedContract:SewageAndRefuseDisposalServiceSanitationAndSimilarService rdf:type owl:Class ;
+                                                                           owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                                                      [ rdf:type owl:Restriction ;
+                                                                                                                        owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                                        owl:hasValue 16
+                                                                                                                      ]
+                                                                                                                    ) ;
+                                                                                                 rdf:type owl:Class
+                                                                                               ] ;
+                                                                           rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                                                           rdfs:label "Sawage and refuse disposal service; sanitation and similar service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Supply
+ProposedContract:Supply rdf:type owl:Class ;
+                        rdfs:subClassOf ProposedContract:ObjectOfContract ;
+                        owl:disjointWith ProposedContract:Work ;
+                        rdfs:label "Supply"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#SupportingAndAuxiliaryTransportService
+ProposedContract:SupportingAndAuxiliaryTransportService rdf:type owl:Class ;
+                                                        owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                                   [ rdf:type owl:Restriction ;
+                                                                                                     owl:onProperty ProposedContract:categoryNumber ;
+                                                                                                     owl:hasValue 20
+                                                                                                   ]
+                                                                                                 ) ;
+                                                                              rdf:type owl:Class
+                                                                            ] ;
+                                                        rdfs:subClassOf ProposedContract:AnnexIIB-Service ;
+                                                        rdfs:label "Supporting and auxiliary transport service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#TelecommunicationsService
+ProposedContract:TelecommunicationsService rdf:type owl:Class ;
+                                           owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                      [ rdf:type owl:Restriction ;
+                                                                                        owl:onProperty ProposedContract:categoryNumber ;
+                                                                                        owl:hasValue 5
+                                                                                      ]
+                                                                                    ) ;
+                                                                 rdf:type owl:Class
+                                                               ] ;
+                                           rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                           rdfs:label "Telecommunication service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#TransportOfMailByLandAndByAir
+ProposedContract:TransportOfMailByLandAndByAir rdf:type owl:Class ;
+                                               owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty ProposedContract:categoryNumber ;
+                                                                                            owl:hasValue 4
+                                                                                          ]
+                                                                                        ) ;
+                                                                     rdf:type owl:Class
+                                                                   ] ;
+                                               rdfs:subClassOf ProposedContract:AnnexIIA-Service ;
+                                               rdfs:label "Transport of mail by land (except for rail transport services covered by category 18) and by air "@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#WaterTransportService
+ProposedContract:WaterTransportService rdf:type owl:Class ;
+                                       owl:equivalentClass [ owl:intersectionOf ( ProposedContract:Service
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty ProposedContract:categoryNumber ;
+                                                                                    owl:hasValue 19
+                                                                                  ]
+                                                                                ) ;
+                                                             rdf:type owl:Class
+                                                           ] ;
+                                       rdfs:subClassOf ProposedContract:AnnexIIB-Service ;
+                                       rdfs:label "Water transport service"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Work
+ProposedContract:Work rdf:type owl:Class ;
+                      rdfs:subClassOf ProposedContract:ObjectOfContract ;
+                      rdfs:label "Work"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#WorkToBePerformed
+ProposedContract:WorkToBePerformed rdf:type owl:Class ;
+                                   rdfs:subClassOf ProposedContract:ProductOrServiceOrWork ;
+                                   rdfs:comment "In a legal sense this class means \"opus\" , realization of work (artifact) or work to be performed "@en ;
+                                   rdfs:label "Work to be performed"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/TenderBid#TenderBid
+TenderBid:TenderBid rdf:type owl:Class .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#TenderDocument
+TenderDocuments:TenderDocument rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Lot
+ProposedContract:Lot rdf:type owl:NamedIndividual ,
+                              ProposedContract:ProposedContractType ;
+                     rdfs:label "Lot"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Lot1
+ProposedContract:Lot1 rdf:type owl:NamedIndividual ,
+                               ProposedContract:ProposedPublicProcurementContract ;
+                      ProposedContract:hasObject ProposedContract:ProvaOffering ;
+                      TenderBid:forWhichMayBeSubmitted TenderBid:PartialTenderBid .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Lot2
+ProposedContract:Lot2 rdf:type owl:NamedIndividual ,
+                               ProposedContract:ProposedPublicProcurementContract .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedContract1
+ProposedContract:ProposedContract1 rdf:type owl:NamedIndividual ,
+                                            ProposedContract:ProposedPublicProcurementContract ;
+                                   ProposedContract:isDividedInto ProposedContract:Lot1 ,
+                                                                  ProposedContract:Lot2 .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedContract2
+ProposedContract:ProposedContract2 rdf:type owl:NamedIndividual ,
+                                            ProposedContract:ProposedPublicProcurementContract ;
+                                   ProposedContract:hasObject ProposedContract:Service1 ;
+                                   ProposedContract:isDividedIntoLots "false"^^xsd:boolean .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedContractDividedIntoLots
+ProposedContract:ProposedContractDividedIntoLots rdf:type owl:NamedIndividual ,
+                                                          ProposedContract:ProposedContractType ;
+                                                 rdfs:label "Proposed contract divided into lots"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProposedContractNotDividedIntoLots
+ProposedContract:ProposedContractNotDividedIntoLots rdf:type owl:NamedIndividual ,
+                                                             ProposedContract:ProposedContractType ;
+                                                    rdfs:label "Proposed contract not divided into lots"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#ProvaOffering
+ProposedContract:ProvaOffering rdf:type owl:NamedIndividual .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#Service1
+ProposedContract:Service1 rdf:type owl:NamedIndividual ,
+                                   ProposedContract:Service .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#buy
+ProposedContract:buy rdf:type owl:NamedIndividual ,
+                              ProposedContract:CauseOfContract ;
+                     rdfs:label "buy"@en .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#design_and_execution
+ProposedContract:design_and_execution rdf:type owl:NamedIndividual .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#execution
+ProposedContract:execution rdf:type owl:NamedIndividual .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#hire_purchase
+ProposedContract:hire_purchase rdf:type owl:NamedIndividual .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#lease
+ProposedContract:lease rdf:type owl:NamedIndividual .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#lease_out
+ProposedContract:lease_out rdf:type owl:NamedIndividual ,
+                                    ProposedContract:CauseOfContract .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#purchase
+ProposedContract:purchase rdf:type owl:NamedIndividual .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#realization
+ProposedContract:realization rdf:type owl:NamedIndividual .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#rental
+ProposedContract:rental rdf:type owl:NamedIndividual .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#sell
+ProposedContract:sell rdf:type owl:NamedIndividual ,
+                               ProposedContract:CauseOfContract .
+
+
+###  https://loted2.googlecode.com/svn/trunk/modules/TenderBid#PartialTenderBid
+TenderBid:PartialTenderBid rdf:type owl:NamedIndividual .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty ProposedContract:isDividedInto ;
+                         owl:someValuesFrom ProposedContract:ProposedPublicProcurementContract
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  owl:equivalentClass [ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty ProposedContract:typeOfProposal ;
+                                               owl:hasValue ProposedContract:ProposedContractDividedIntoLots
+                                             ]
+                                           ) ;
+                        rdf:type owl:Class
+                      ]
+] .
+
+
+[ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty ProposedContract:partOf ;
+                         owl:someValuesFrom ProposedContract:ProposedPublicProcurementContract
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  owl:equivalentClass [ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty ProposedContract:typeOfProposal ;
+                                               owl:hasValue ProposedContract:Lot
+                                             ]
+                                           ) ;
+                        rdf:type owl:Class
+                      ]
+] .
+
+
+[ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty ProposedContract:typeOfProposal ;
+                         owl:hasValue ProposedContract:ProposedContractDividedIntoLots
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  owl:equivalentClass [ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty ProposedContract:isDividedIntoLots ;
+                                               owl:hasValue "true"^^xsd:boolean
+                                             ]
+                                           ) ;
+                        rdf:type owl:Class
+                      ]
+] .
+
+
+[ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty ProposedContract:typeOfProposal ;
+                         owl:hasValue ProposedContract:ProposedContractNotDividedIntoLots
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  owl:equivalentClass [ owl:intersectionOf ( ProposedContract:ProposedPublicProcurementContract
+                                             [ rdf:type owl:Restriction ;
+                                               owl:onProperty ProposedContract:isDividedIntoLots ;
+                                               owl:hasValue "false"^^xsd:boolean
+                                             ]
+                                           ) ;
+                        rdf:type owl:Class
+                      ]
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProposedContract:Lot
+                        ProposedContract:ProposedContractDividedIntoLots
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProposedContract:Lot
+                        ProposedContract:ProposedContractNotDividedIntoLots
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( ProposedContract:ProposedContractDividedIntoLots
+                        ProposedContract:ProposedContractNotDividedIntoLots
+                      )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

@@ -1,0 +1,2241 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#"
+     xml:base="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl"
+     xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:norpos="http://www.ontologydesignpatterns.org/ont/dul/CLO/NormativePositions.owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:iol="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#"
+     xmlns:ili="http://www.ontologydesignpatterns.org/ont/dul/CLO/LegalILI.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:conc="http://www.ontologydesignpatterns.org/ont/dul/Conceptualization.owl#">
+    <owl:Ontology rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl">
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/Conceptualization.owl"/>
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The Core Legal Ontology. It has been aligned to DOLCE-Ultralite. OWL version by Aldo Gangemi, joint work with ITTIG-CNR.
+
+7.1 improves on the cognitive aspects of legal facts.
+7.2 fixes some dead ends in obsolete imports, as well as the compatibility of clo:LegalSubject with dul:Person
+7.3 simplifies some restrictions; also required a fix on DOLCE-Ultralite
+7.4 removed some classes that are no more in imported ontologies and were wrongly included here; cleaned the code overall
+7.5 fixed ontology IRI and other namespace issues</rdfs:comment>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7.5</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#comment -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#comment"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#label -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#cardinality -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#cardinality"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#versionInfo -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionInfo"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#hasObligationTowards -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#hasObligationTowards">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLegalAttitudeTowards"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasTask"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#isObligationTargetOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:label xml:lang="en">has obligation towards</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#isObligationTargetOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#isObligationTargetOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isTaskOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">is obligation target of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasDisabilityTowards -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasDisabilityTowards">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLegalAttitudeTowards"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasTask"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isDisabilityTargetOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:label xml:lang="en">has disability towards</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasDutyTowards -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasDutyTowards">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLegalAttitudeTowards"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasTask"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isDutyTargetOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:label xml:lang="en">has duty towards</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasImmunityTowards -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasImmunityTowards">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLegalAttitudeTowards"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasTask"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isImmunityTargetOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:label xml:lang="en">has immunity towards</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLegalAttitudeTowards -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLegalAttitudeTowards">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasTask"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:label xml:lang="en">has legal attitude towards</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLiabilityTowards -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLiabilityTowards">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLegalAttitudeTowards"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasTask"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLiabilityTargetOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:label xml:lang="en">has liability towards</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasNonRightTowards -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasNonRightTowards">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLegalAttitudeTowards"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasTask"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isNonRightTargetOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:label xml:lang="en">has non right towards</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasPowerTowards -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasPowerTowards">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLegalAttitudeTowards"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasTask"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isPowerTargetOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:label xml:lang="en">has power towards</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasPrivilegeTowards -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasPrivilegeTowards">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLegalAttitudeTowards"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasTask"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isPrivilegeTargetOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:label xml:lang="en">has privilege towards</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasRightTowards -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasRightTowards">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#hasLegalAttitudeTowards"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasTask"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isRightTargetOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:label xml:lang="en">has right towards</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isDisabilityTargetOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isDisabilityTargetOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isTaskOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">is disability target of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isDutyTargetOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isDutyTargetOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isTaskOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">is duty target of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isImmunityTargetOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isImmunityTargetOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isTaskOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">is immunity target of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isTaskOf"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">is legal attitude target of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLiabilityTargetOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLiabilityTargetOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isTaskOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">is liability target of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isNonRightTargetOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isNonRightTargetOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isTaskOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">is non-right target of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isPowerTargetOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isPowerTargetOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isTaskOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">is power target of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isPrivilegeTargetOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isPrivilegeTargetOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isTaskOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">is privilege target of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isRightTargetOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isRightTargetOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLegalAttitudeTargetOf"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isTaskOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:label xml:lang="en">is right target of</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#digitallyReproduces -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#digitallyReproduces"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasAuthor -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasAuthor"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasCulturalMixingWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasCulturalMixingWith"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isCulturalGroundingFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isCulturalGroundingFor"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isDigitallyReproducedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isDigitallyReproducedBy"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#lexicalizes -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#lexicalizes"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#metaphoricallyBlendsWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#metaphoricallyBlendsWith"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#reproduces -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#reproduces"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Role"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRoleOf"/>
+                        <owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Role"/>
+        <owl:disjointWith rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAsset"/>
+        <rdfs:comment>A Role that classifies an Agent</rdfs:comment>
+        <rdfs:label xml:lang="en">Agent role</rdfs:label>
+        <rdfs:label>Ruolo di agenti</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AggravatingCircumstance -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AggravatingCircumstance">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegallyRelevantCircumstance"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasSetting"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Crime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aggravating circumstances are situations (e.g. being an institutional representative, or being linked by a parenthood relation to the victim, etc.) that are considered in the context of a crime situation.</rdfs:comment>
+        <rdfs:label xml:lang="en">Aggravating circumstance</rdfs:label>
+        <rdfs:label xml:lang="it">Circostanza aggravante</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#CognitiveEvent -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#CognitiveEvent">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Concept"/>
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Description"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#involvesAgent"/>
+                <owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>For the sake of a legal ontology, a cognitive event is any Event assumed to be entirely participated in by a NaturalPerson, and producing some mental content (Description, Concept, etc.) expressed by an InformationObject; a cognitive event should then be &apos;reportable&apos; to the others.</rdfs:comment>
+        <rdfs:label xml:lang="en">Cognitive event</rdfs:label>
+        <rdfs:label xml:lang="it">Evento cognitivo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ConsciousnessEvidence -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ConsciousnessEvidence">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalCognitiveFact"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesAgent"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#RationalAgent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evidenced consciousness (of sth) is a legal cognitive fact, which can be either assumed, expressed, or hinted by some cognitively-related event.</rdfs:comment>
+        <rdfs:label xml:lang="en">Consciousness evidence</rdfs:label>
+        <rdfs:label xml:lang="it">Prova di consapevolezza</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ConstitutiveNorm -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ConstitutiveNorm">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalNorm"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalConcept"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#describes"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFigure"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#introduces"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalSubject"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalNorm"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Description"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Constitutive Norms introduce new entities in the ground ontology, while Regulative Norms provide constraints on existing ground entities. In particular, Constitutive Norms define (in the D&amp;S sense) e.g. Legally-constructed Institutions, Legal Functions and Legal Powers. Definition and power-conferring rules are sub-classes of constitutive norms.</rdfs:comment>
+        <rdfs:label xml:lang="en">Constitutive norm</rdfs:label>
+        <rdfs:label xml:lang="it">Norma costitutiva</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Crime -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Crime">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalCase"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#satisfies"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#IncriminatingNorm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Crimes are situations that satisfy incriminating norms. Incriminating norms define or use at least one course (the commitment to a sanctioning action) related to some action that is forbidden or illegal to some legal role or agent. Aggravating or extenuating circumstances are situations (e.g. being an institutional representative, or being linked by a parenthood relation to the victim, etc.) that are proper parts of a crime situation.</rdfs:comment>
+        <rdfs:label xml:lang="en">Crime</rdfs:label>
+        <rdfs:label xml:lang="it">Reato</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ExtenuatingCircumstance -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ExtenuatingCircumstance">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegallyRelevantCircumstance"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Extenuating circumstances are situations (e.g. being mentally handicapped, etc.) that are considered in the context of a crime situation.</rdfs:comment>
+        <rdfs:label xml:lang="it">Circostanza attenuante</rdfs:label>
+        <rdfs:label xml:lang="en">Extenuating circumstance</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#FreeWill -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#FreeWill">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalCognitiveFact"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AKA &apos;suitas&apos; in Roman Law. It grounds the distinction between fault and intentional fraud e.g. in Italian Crime Law.
+Free will can be either assumed or hinted by some cognitively-related events.
+It is not a kind of (evidenced) will, since being in a free will position does not imply having a will to do something (but only being in a position that permits to have a will).</rdfs:comment>
+        <rdfs:label xml:lang="en">Free will</rdfs:label>
+        <rdfs:label xml:lang="it">Libera volontà</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#HumanLegalFact -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#HumanLegalFact">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFact"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human Facts depend on conscious intentional human actions. Human facts include: i) Institutional Facts, which are the legal counterpart of natural phenomena, being directly created by the application of constitutive norms, ii) Legal Acts, which depend on the will of some legal agent, iii) Legal Transactions, which depend on the intentionality of some legal agent.</rdfs:comment>
+        <rdfs:label xml:lang="it">Fatto legale umano</rdfs:label>
+        <rdfs:label xml:lang="en">Human legal fact</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#IncriminatingNorm -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#IncriminatingNorm">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#RegulativeNorm"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Incriminating norms define or use at least one task (the commitment to a sanctioning action) related to some action that is forbidden or illegal to some legal role or agent.</rdfs:comment>
+        <rdfs:label xml:lang="en">Incriminating norm</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#InstitutionalFact -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#InstitutionalFact">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#HumanLegalFact"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Institutional Facts are the legal counterpart of natural phenomena, being directly created by the application or enforcement of constitutive norms.</rdfs:comment>
+        <rdfs:label xml:lang="it">Fatto istituzionale</rdfs:label>
+        <rdfs:label xml:lang="en">Institutional fact</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#IntentionalityEvidence -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#IntentionalityEvidence">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalCognitiveFact"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesObject"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#WillEvidence"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evidence of intentionality (to do something) is a legal cognitive fact, which is dependent on the expression of a Will (to do sth). It can be assumed or hinted by some cognitely-related event.</rdfs:comment>
+        <rdfs:label xml:lang="en">Intentionality evidence</rdfs:label>
+        <rdfs:label xml:lang="it">Prova di intenzionalità</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#JudgmentProcedure -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#JudgmentProcedure">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#describes"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Description"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isSatisfiedBy"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalCase"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A legal description stating the actions to be carried out to react to some behaviour that is in the scope of the judgment.</rdfs:comment>
+        <rdfs:label xml:lang="en">Judgment procedure</rdfs:label>
+        <rdfs:label xml:lang="it">Procedura di giudizio</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#JudicialDecision -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#JudicialDecision">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+        <rdfs:label xml:lang="it">Decisione giudiziale</rdfs:label>
+        <rdfs:label xml:lang="en">Judicial decision</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Law -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Law">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalNorm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>A collection of norms aimed at providing the context for regulating a sector of the social behavior</rdfs:comment>
+        <rdfs:label xml:lang="en">Law</rdfs:label>
+        <rdfs:label xml:lang="it">Legge</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAct -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAct">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#HumanLegalFact"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#WillEvidence"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Legal acts are legal facts that depend on the will of some rational agent that acts for a legal subject. Therefore, a legal act has a will-evidence as proper part.</rdfs:comment>
+        <rdfs:label xml:lang="it">Atto legale</rdfs:label>
+        <rdfs:label xml:lang="en">Legal act</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAsset -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAsset">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalRole"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Legal function is an agent-driven role, while legal asset is not played by agents.</rdfs:comment>
+        <rdfs:label xml:lang="en">Legal asset</rdfs:label>
+        <rdfs:label xml:lang="it">Proprietà legale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalBehaviour -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalBehaviour">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDefinedIn"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#RegulativeNorm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A legal task defined by a regulative norm.</rdfs:comment>
+        <rdfs:label xml:lang="it">Comportamento legale</rdfs:label>
+        <rdfs:label xml:lang="en">Legal behaviour</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalCase -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalCase">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#satisfies"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Description"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDescribedBy"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#JudgmentProcedure"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFact"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A legal fact in the scope of a judgment procedure.</rdfs:comment>
+        <rdfs:label xml:lang="it">Caso legale</rdfs:label>
+        <rdfs:label xml:lang="en">Legal case</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalCognitiveFact -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalCognitiveFact">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFact"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesAgent"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesEvent"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#CognitiveEvent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesObject"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesObject"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#actsFor"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalSubject"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesObject"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Concept"/>
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Description"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Legal Cognitive Facts (e.g. Will, Agreements, Mistakes) are legal facts, which are settings for a NaturalPerson, some Description or Concept, at least one InformationObject, and some CognitiveEvent of that NaturalPerson.
+In other words, cognitive facts are assumed to be contexts for some mental content (Description, Concept, etc.), which is expressed by some InformationObject, and conceptualized by an Agent during a CognitiveEvent. 
+Moreover, a cognitive fact is legally relevant when it falls under the scope of some Norm.
+Cognitive facts either satisfy (parts of) existing social and legal norms, or are cases of non-conformity.
+Among legal cognitive facts, (assumed or expressed) Intentionality (to do something) is dependent on (assumed or expressed) Will (to do sth), which is dependent on (assumed or expressed) Consciousness (of sth). Suitas (Free Will) grounds the distinction between fault and intentional fraud in Crime Law.</rdfs:comment>
+        <rdfs:label xml:lang="it">Fatto legale cognitivo</rdfs:label>
+        <rdfs:label xml:lang="en">Legal cognitive fact</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalConcept -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalConcept">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Concept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isConceptUsedIn"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalNorm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDefinedIn"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ConstitutiveNorm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A concept defined in a legal constitutive norm.</rdfs:comment>
+        <rdfs:label xml:lang="it">Concetto legale</rdfs:label>
+        <rdfs:label xml:lang="en">Legal concept</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalContract -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalContract">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Contract"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDescribedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalNorm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A contract designed according to, and compliant with law. Contracts are legal descriptions that regulate human transactions.
+Validity criteria can be multivaried, but the basic one is having some part of the contract satisfied by a legal transaction.</rdfs:comment>
+        <rdfs:label xml:lang="it">Contratto legale</rdfs:label>
+        <rdfs:label xml:lang="en">Legal contract</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDefinition -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDefinition">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ConstitutiveNorm"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#introduces"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialAgent"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ConstitutiveNorm"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A constitutive norm that introduces one or more legal entities (subjects, functions, persons, etc.).</rdfs:comment>
+        <rdfs:label xml:lang="it">Definizione legale</rdfs:label>
+        <rdfs:label xml:lang="en">Legal definition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Description"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A social description having legal validity and possibly effects. They can be either legal norms, principles, rationales, contracts, regulations to enforce norms, etc.</rdfs:comment>
+        <rdfs:label xml:lang="it">Descrizione legale</rdfs:label>
+        <rdfs:label xml:lang="en">Legal description</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDocument -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDocument">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasQuality"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalQuality"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#realizes"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalText"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A document that realizes a normative text. It must match certain physical qualities stated by a legal norm.</rdfs:comment>
+        <rdfs:label xml:lang="it">Documento legale</rdfs:label>
+        <rdfs:label xml:lang="en">Legal document</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFact -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFact">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Situation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#satisfies"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Legal Facts (including cases) are situations depending on norms (only facts relevant for legal systems are legal facts). Legal facts may include Natural Facts (e.g. a death), which are dependent on phenomena, but not on (inherently intentional) human actions. On the other hand, Human Facts depend on conscious intentional human ac-tions. Human facts include: i) Institutional Facts, which are the legal counterpart of natural phenomena, being directly created by the application of constitutive norms, ii) Legal Acts, which depend on the will of some legal agent, iii) Legal Transactions, which depend on the intentionality of some legal agent.</rdfs:comment>
+        <rdfs:label xml:lang="it">Fatto legale</rdfs:label>
+        <rdfs:label xml:lang="en">Legal fact</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFigure -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFigure">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDescribedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDefinition"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A social object (not necessarily agentive) described by a legal definition.</rdfs:comment>
+        <rdfs:label xml:lang="it">Figura giuridica</rdfs:label>
+        <rdfs:label xml:lang="en">Legal figure</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#AgentRole"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRoleOf"/>
+                <owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalSubject"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Legal functions are legal roles, only played by legal subjects.
+Among legal functions, so-called Primary Functions (e.g. Son, Heir, Citizen) are defined by constitutive norms.</rdfs:comment>
+        <rdfs:label xml:lang="it">Funzione giuridica</rdfs:label>
+        <rdfs:label xml:lang="en">Legal function</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalMaxim -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalMaxim">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A synthetic explanation of the fundamental reasons for a legal provision or decision. It can be dependent on (or having as parts) principles and norms.</rdfs:comment>
+        <rdfs:label xml:lang="en">Legal maxim</rdfs:label>
+        <rdfs:label xml:lang="it">Massima legale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalNorm -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalNorm">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Norm"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/Conceptualization.owl#isAdoptedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#CollectiveAgent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDescribedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#PrincipleOfLaw"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isExpressedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalText"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A regulation having an agent obligation as part. More specifically, an explicitly stated guide (according to conventional rules for publicity and enforcement) for conduct or action, being enforceable, and supposed to be followed by the members of a community.
+According to the legal system in which it is contained, a norm can be more or less based on principles, self-consistency of the system, or previously decided cases.</rdfs:comment>
+        <rdfs:label xml:lang="en">Legal norm</rdfs:label>
+        <rdfs:label xml:lang="it">Norma legale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalParameter -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalParameter">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalConcept"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Parameter"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDefinedIn"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A parameter defined by a legal description.</rdfs:comment>
+        <rdfs:label xml:lang="en">Legal parameter</rdfs:label>
+        <rdfs:label xml:lang="it">Parametro legale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalQuality -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalQuality">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Quality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDescribedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A quality that something has to have in order to comply to some legal description. 
+
+Here this is modelled as a quality q-located at some region &apos;admitted by&apos; a legal description.</rdfs:comment>
+        <rdfs:label xml:lang="en">Legal quality</rdfs:label>
+        <rdfs:label xml:lang="it">Qualità legale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalRole -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalRole">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalConcept"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Role"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDefinedIn"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDefinition"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A role defined by a legal definition (not even by any legal description?).
+Legal Roles are roles played by either physical or social objects. 
+Among legal roles, some of them constitute the basic entities of the legal world, such as Legal Subject and Legal Asset. Legal Function is an agentive legal role, while Legal Asset is non-agentive. Legal functions can be played either by physical agents or by legally constructed individuals.</rdfs:comment>
+        <rdfs:label xml:lang="en">Legal role</rdfs:label>
+        <rdfs:label xml:lang="it">Ruolo legale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalSubject -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalSubject">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isIntroducedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDefinition"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Person"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialPerson"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A dul:Person defined by a LegalDefinition .
+Legal Subjects (or Agents or Persons) are legally-constructed social agents, i.e. introduced by constitutive norms. 
+A Natural Person creates a Legal Subject it acts for on the only basis of its physical existence (but the property is extended temporally before and after death, as far as legal effects of her actions are still ongoing). 
+A Legal Subject needs to fit strict requirements, such as age, mental non-illness, or artificial existence.</rdfs:comment>
+        <rdfs:label xml:lang="en">Legal subject</rdfs:label>
+        <rdfs:label xml:lang="it">Soggetto giuridico</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalConcept"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDefinedIn"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A task defined by a legal description (not necessarily by a dedicated legal definition?).</rdfs:comment>
+        <rdfs:label xml:lang="en">Legal task</rdfs:label>
+        <rdfs:label xml:lang="it">Task legale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalText -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalText">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Text"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#expresses"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasRegion"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isParametrizedBy"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalParameter"/>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasRole"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Status"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRealizedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDocument"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A text that expresses legal content (norms), according to specified parameters for its validity.</rdfs:comment>
+        <rdfs:label xml:lang="en">Legal text</rdfs:label>
+        <rdfs:label xml:lang="it">Testo legale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTransaction -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTransaction">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#HumanLegalFact"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#IntentionalityEvidence"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Legal transactions are legal facts that depend on the intentionality of some rational agent that acts for a legal subject. Therefore, a legal act has an intentionality-evidence as proper part.</rdfs:comment>
+        <rdfs:label xml:lang="en">Legal transaction</rdfs:label>
+        <rdfs:label xml:lang="it">Transazione legale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegallyConstructedInstitution -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegallyConstructedInstitution">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Organization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDescribedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#PowerConferringRule"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isIntroducedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ConstitutiveNorm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Legally-constructed Institutions (e.g. Ministries, Bodies, Societies, Agencies) are legal agents that perform legal acts, on behalf of powers conferred by means of power-conferring norms. They are created by constitutive norms that justify their existence and validity. An important subclass of them includes Institutional Powers.</rdfs:comment>
+        <rdfs:label xml:lang="it">Istituzione costitutita legalmente</rdfs:label>
+        <rdfs:label xml:lang="en">Legally-constructed institution</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegallyRelevantCircumstance -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegallyRelevantCircumstance">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Situation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasSetting"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Situation"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#satisfies"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Situations that are relevant for the assessing of a legal fact. Every situation that is in the scope of a legal description.</rdfs:comment>
+        <rdfs:label xml:lang="it">Circostanza di rilevanza legale</rdfs:label>
+        <rdfs:label xml:lang="en">Legally-relevant circumstance</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Legislation -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Legislation">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Collection"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasMember"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasMember"/>
+                <owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>The collection of norms governing a certain domain or sector</rdfs:comment>
+        <rdfs:label xml:lang="en">Legislation</rdfs:label>
+        <rdfs:label xml:lang="it">Legislazione</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#NaturalLegalFact -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#NaturalLegalFact">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFact"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Natural Legal Facts are facts (e.g. a death), which are dependent on phenomena, but not on (inherently intentional) human actions.</rdfs:comment>
+        <rdfs:label xml:lang="it">Fatto legale naturale</rdfs:label>
+        <rdfs:label xml:lang="en">Natural legal fact</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#PowerConferringRule -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#PowerConferringRule">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ConstitutiveNorm"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isPowerTargetOf"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalRole"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A constitutive norm that confers a power to some legal role or figure.</rdfs:comment>
+        <rdfs:label xml:lang="en">Power-conferring rule</rdfs:label>
+        <rdfs:label xml:lang="it">Regola di conferimento di potere</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#PrincipleOfLaw -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#PrincipleOfLaw">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A basic assumption in Law. Cf. the class &apos;principle&apos;.</rdfs:comment>
+        <rdfs:label xml:lang="it">Principio di legge</rdfs:label>
+        <rdfs:label xml:lang="en">Principle of law</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#RationalAgent -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#RationalAgent">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent"/>
+        <rdfs:label xml:lang="it">Agente razionale</rdfs:label>
+        <rdfs:label xml:lang="en">Rational agent</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Regulation -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Regulation">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+        <rdfs:label xml:lang="it">Regolamento</rdfs:label>
+        <rdfs:label xml:lang="en">Regulation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#RegulativeNorm -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#RegulativeNorm">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalNorm"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Constitutive Norms introduce new entities in the ground ontology, while Regulative Norms provide constraints on existing ground entities, i.e. they have situations in their scope which eventually satisfy the regulative norm (in either positive or negative sense).
+Regulative Norms define Behaviour Courses, and have at least one Modal Description as a proper part.</rdfs:comment>
+        <rdfs:label xml:lang="it">Norma regolativa</rdfs:label>
+        <rdfs:label xml:lang="en">Regulative norm</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Status -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Status">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Role"/>
+        <rdfs:label xml:lang="en">Status</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#WillEvidence -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#WillEvidence">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalCognitiveFact"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesObject"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#ConsciousnessEvidence"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Evidenced will (to do sth) is a legal cognitive fact, which is depending on an assumed or expressed consciousness (of sth). It can be assumed or hinted by some cognitely-related event.</rdfs:comment>
+        <rdfs:label xml:lang="it">Prova di volontà</rdfs:label>
+        <rdfs:label xml:lang="en">Will evidence</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Condition -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Condition">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a clause which makes the validity of a legal instrument or act depend on a contingency</rdfs:comment>
+        <rdfs:label xml:lang="en">Condition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Decree -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Decree">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Provision"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a provision issued by a judge concerning the times, conditions and instruments of proceedings</rdfs:comment>
+        <rdfs:label xml:lang="en">Decree</rdfs:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">order</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#EmploymentConditions -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#EmploymentConditions">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#RegulativeNorm"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the set of conditions applied in an employment relationship</rdfs:comment>
+        <rdfs:label xml:lang="en">Employment conditions</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#InstitutionalPower -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#InstitutionalPower">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A power conferred by a power-conferring rule.
+Each of the spheres of legal/institutional functions conferred to a person/body for their holding an office</rdfs:comment>
+        <rdfs:label xml:lang="en">Institutional power</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Law -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Law">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Collection"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasMember"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasMember"/>
+                <owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the body of legislative or customary rules regulating social relations</rdfs:comment>
+        <rdfs:label xml:lang="it">La legge</rdfs:label>
+        <rdfs:label xml:lang="en">Law</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Measure -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Measure">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAct"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">any legal act by which public authorities exercise their legislative, administrative or judicial powers and functions</rdfs:comment>
+        <rdfs:label xml:lang="en">Measure</rdfs:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">action</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Order -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Order">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#RegulativeNorm"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">measure taken by an administrative authority which binds a person or body to a certain behaviour</rdfs:comment>
+        <rdfs:label xml:lang="en">Order</rdfs:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">decree</rdfs:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">judgment</rdfs:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ordinance</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Provision -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Provision">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#RegulativeNorm"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">any regulation governing human conduct</rdfs:comment>
+        <rdfs:label xml:lang="en">Provision</rdfs:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">prescript</rdfs:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">provision</rdfs:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rule</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Title -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Title">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#Status"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">title given to a person on the basis of his/her education, function or social condition (e.g. doctor, general, etc.)</rdfs:comment>
+        <rdfs:label xml:lang="en">Title</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Disability -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Disability">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isDisabilityTargetOf"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Disability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Duty -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Duty">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isDutyTargetOf"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the obligation to do a given thing</rdfs:comment>
+        <rdfs:label xml:lang="en">Duty</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Immunity -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Immunity">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isImmunityTargetOf"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Immunity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalDescription"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isComponentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Norm"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The set of normative positions from Hohfeld&apos;s works (and his continuators).</rdfs:comment>
+        <rdfs:label xml:lang="en">Legal modal description</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Liability -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Liability">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isLiabilityTargetOf"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Liability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#NonRight -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#NonRight">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isNonRightTargetOf"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Non-right</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Obligation -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Obligation">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sartor (2004): &apos;the proposition expressing the obligation to perform a 
+    certain action is true whenever optimal practical cognition would lead one 
+    to have the intention of accomplishing that action&apos;. Where practical 
+    cognition is defined as such: &apos;while theoretical reasoning consists in 
+    moving from one&apos;s current beliefs and perceptual states into new beliefs, 
+    practical reasoning consists in moving from one&apos;s belief and conative 
+    states into new conatives states. It can be as rational as theoretical can 
+    be ... the question -What plan is such that I should adopt it?- can be 
+    viewed as an abbreviation of -What plan is such that I should have the 
+    intention of executing it?- that means to recast one&apos;s conative states in 
+    the form of normative beliefs. Then a normative belief is a belief that 
+    doxifies a conative state. A normative proposition is the content of a 
+    normative belief. Practical cognition creates normative states of affairs 
+    that we tend to consider as having independent reality: normative states 
+    of affairs exist as a reflex of (optimal) practical cognition: the task of 
+    establishing what normative states of affairs exist coincides with the 
+    task of discovering what conative states one could rationally adopt&apos;.
+In DnS terms, an obligation is different from a plan in the sense that while 
+    plans can be executed without being necessarily adopted by the agent(s) 
+    (conceiver or not) having a role in it, an obligation can be only be 
+    executed if the agent(s) having a role in it, also adopt(s) it.
+It is also different from an elementary duty, since obligations usually have 
+    other descriptions (at least one duty, one plan, one goal, and -legally- 
+    one sanction) as proper parts.</rdfs:comment>
+        <rdfs:label xml:lang="en">Obligation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Power -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Power">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isPowerTargetOf"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">the fact of being capable of having rights and duties</rdfs:comment>
+        <rdfs:label xml:lang="en">Power</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Privilege -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Privilege">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isPrivilegeTargetOf"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">Privilege</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Right -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#Right">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#LegalModalDescription"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#defines"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalTask"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/NormativePositions.owl#isRightTargetOf"/>
+                                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">an abstract idea of that which is due to a person or governmental body by law, agreements, tradition or nature</rdfs:comment>
+        <rdfs:label xml:lang="en">Right</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#BodilyMotion -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#BodilyMotion"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Depiction -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Depiction"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Drawing -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Drawing"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Gesture -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Gesture"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Grapheme -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Grapheme"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#GraphicArt -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#GraphicArt"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#IconicObject -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#IconicObject"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Language -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Language"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Morpheme -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Morpheme"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#PlasticArt -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#PlasticArt"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Sculpture -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Sculpture"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Speech -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Speech"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Statue -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Statue"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Voicing -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Voicing"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Word -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Word"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Writing -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Writing"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Accountant -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Accountant">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Agent -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Agent">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Attorney -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Attorney">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Bailee -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Bailee">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Bailor -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Bailor">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Child -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Child">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Conservator -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Conservator">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Debtor -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Debtor">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Defendant -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Defendant">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Finances -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Finances">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAsset"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Fund -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Fund">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAsset"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Goods -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Goods">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAsset"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Guarantor -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Guarantor">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Guardian -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Guardian">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Heir -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Heir">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Interest -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Interest">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAsset"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Liable-person -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Liable-person">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Liquidator -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Liquidator">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Minor -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Minor">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Official -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Official">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Principal -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Principal">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Property -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Property">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAsset"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Public-officer -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Public-officer">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Representative -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Representative">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Resident -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Resident">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Share -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Share">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalAsset"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Trustee -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Trustee">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Witness -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Witness">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Worker -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Worker">
+        <rdf:type rdf:resource="http://www.ontologydesignpatterns.org/ont/clo/CoreLegal.owl#LegalFunction"/>
+    </owl:NamedIndividual>
+    <rdf:Description>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Accountant"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Agent"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Attorney"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Bailee"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Bailor"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Child"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Conservator"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Debtor"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Defendant"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Guarantor"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Guardian"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Heir"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Liable-person"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Liquidator"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Minor"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Official"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Principal"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Public-officer"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Representative"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Resident"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Trustee"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Witness"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Worker"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Finances"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Fund"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Goods"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Interest"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Property"/>
+            <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/clo/LegalILI.owl#Share"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi -->
+

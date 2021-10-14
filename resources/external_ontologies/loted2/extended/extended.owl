@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY schema "http://schema.org/" >
+    <!ENTITY vCard "http://nwalsh.com/rdf/vCard#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY v1 "http://purl.org/goodrelations/v1#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY ontologies "https://loted2.googlecode.com/svn/trunk/modules/" >
+    <!ENTITY core "https://loted2.googlecode.com/svn/trunk/core/core#" >
+    <!ENTITY BusinessEntity "https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#" >
+    <!ENTITY TenderDocuments "https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#" >
+    <!ENTITY ProcurementSubjectiveScope "https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#" >
+    <!ENTITY ProcurementsTopClasses "https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#" >
+    <!ENTITY ProposedContract "https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#" >
+
+
+]>
+
+
+<rdf:RDF xmlns="https://loted2.googlecode.com/svn/trunk/modules/extended/extended#"
+     xml:base="https://loted2.googlecode.com/svn/trunk/modules/extended/extended"
+     xmlns:v1="http://purl.org/goodrelations/v1#"
+     xmlns:ProcurementsTopClasses="https://loted2.googlecode.com/svn/trunk/modules/ProcurementsTopClasses#"
+     xmlns:ProcurementSubjectiveScope="https://loted2.googlecode.com/svn/trunk/modules/ProcurementSubjectiveScope#"
+     xmlns:BusinessEntity="https://loted2.googlecode.com/svn/trunk/modules/BusinessEntity#"
+     xmlns:ProposedContract="https://loted2.googlecode.com/svn/trunk/modules/ProposedContract#"
+     xmlns:TenderDocuments="https://loted2.googlecode.com/svn/trunk/modules/TenderDocuments#"
+     xmlns:vCard="http://nwalsh.com/rdf/vCard#"
+     xmlns:schema="http://schema.org/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:core="http://loted.eu/ontology2/core#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dc="http://purl.org/dc/terms/">
+    <owl:Ontology rdf:about="https://loted2.googlecode.com/svn/trunk/extended/extended">
+        <owl:imports rdf:resource="http://nwalsh.com/rdf/vCard"/>
+        <owl:imports rdf:resource="https://loted2.googlecode.com/svn/trunk/extended/GoodRelations4Tenders.owl"/>
+        <owl:imports rdf:resource="https://loted2.googlecode.com/svn/trunk/core/core.owl"/>
+        <owl:versionIRI rdf:resource="https://loted2.googlecode.com/svn/trunk/extended/extended"/>
+        		<!-- dc: metadata for documentation LODE -->
+		<dc:creator>Isabella Distinto</dc:creator>
+        <rdfs:label xml:lang="en">LOTED2 Extended</rdfs:label>
+        <owl:versionInfo xml:lang="en">2.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The LOTED2 Core ontology integrated with GoodRelations4Tenders and VCard</rdfs:comment>
+        <dc:title rdf:datatype="&xsd;string">LOTED2: Extended Core Module</dc:title>
+        <dc:contributor rdf:datatype="&xsd;string">Enrico Motta</dc:contributor>
+        <dc:contributor rdf:datatype="&xsd;string">Mathieu d'Aquin</dc:contributor>
+		<dc:description rdf:datatype="&xsd;string">The ontology was created by Isabella Distinto, with input from Mathieu d'Aquin and Enrico Motta.</dc:description>
+        <dc:language rdf:datatype="&xsd;language">en</dc:language>
+        <dc:date>2013-07-24</dc:date>
+       <!-- dc: metadata end -->    
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/goodrelations/v1#includes -->
+
+    <rdf:Description rdf:about="&v1;includes">
+        <owl:equivalentProperty rdf:resource="&core;concerns"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/goodrelations/v1#seeks -->
+
+    <rdf:Description rdf:about="&v1;seeks">
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&ProcurementSubjectiveScope;issues"/>
+            <rdf:Description rdf:about="&ProposedContract;throughWhichIsAnnouncedTenderForAward"/>
+            <rdf:Description rdf:about="&ProposedContract;hasObject"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&ProcurementSubjectiveScope;issues"/>
+            <rdf:Description rdf:about="&ProposedContract;throughWhichIsAnnouncedTenderForAwardLot"/>
+            <rdf:Description rdf:about="&ProposedContract;hasObject"/>
+        </owl:propertyChainAxiom>
+    </rdf:Description>
+    
+
+
+    <!-- http://loted.eu/ontology2/ted#concerns -->
+
+    <rdf:Description rdf:about="&ProposedContract;concerns"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://nwalsh.com/rdf/vCard#Geo -->
+
+    <rdf:Description rdf:about="&vCard;Geo">
+        <owl:equivalentClass rdf:resource="&ProcurementsTopClasses;Location"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://nwalsh.com/rdf/vCard#VCard -->
+
+    <rdf:Description rdf:about="&vCard;VCard">
+        <owl:equivalentClass rdf:resource="&ProcurementsTopClasses;VCard"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://loted.eu/ontology2/ted#ObjectOfContract -->
+
+    <rdf:Description rdf:about="&ProposedContract;ObjectOfContract">
+        <rdfs:subClassOf rdf:resource="&v1;Offering"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://loted.eu/ontology2/ted#ProductToBeSupplied -->
+
+    <rdf:Description rdf:about="&ProposedContract;ProductToBeSupplied">
+        <rdfs:subClassOf rdf:resource="&v1;ProductOrService"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://loted.eu/ontology2/ted#ServiceToBeProvided -->
+
+    <rdf:Description rdf:about="&ProposedContract;ServiceToBeProvided">
+        <rdfs:subClassOf rdf:resource="&v1;ProductOrService"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://loted.eu/ontology2/top#VCard -->
+
+    <rdf:Description rdf:about="&ProcurementsTopClasses;VCard"/>
+    
+
+
+    <!-- http://loted.eu/ontology2/ted-top#Location -->
+
+    <rdf:Description rdf:about="&ProcurementsTopClasses;Location"/>
+    
+
+
+    <!-- http://loted.eu/ontology2/ContractingLegalEntity#BodiesGovernedByPublicLawAssociation -->
+
+    <rdf:Description rdf:about="&ProcurementSubjectiveScope;BodiesGovernedByPublicLawAssociation">
+        <rdfs:subClassOf rdf:resource="&schema;Organization"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://loted.eu/ontology2/ProcurementSubjectiveScope#BodyGovernedByPublicLaw -->
+
+    <rdf:Description rdf:about="&ProcurementSubjectiveScope;BodyGovernedByPublicLaw">
+        <rdfs:subClassOf rdf:resource="&schema;Organization"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://loted.eu/ontology2/ProcurementSubjectiveScope#PublicUndertaking -->
+
+    <rdf:Description rdf:about="&ProcurementSubjectiveScope;PublicUndertaking">
+        <rdfs:subClassOf rdf:resource="&schema;Organization"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://loted.eu/ontology2/BusinessEntity#Association -->
+
+    <rdf:Description rdf:about="&BusinessEntity;Association">
+        <rdfs:subClassOf rdf:resource="&schema;Organization"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://loted.eu/ontology2/BusinessEntity#Company -->
+
+    <rdf:Description rdf:about="&BusinessEntity;Company">
+        <rdfs:subClassOf rdf:resource="&schema;Organization"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://loted.eu/ontology2/BusinessEntity#Corporation -->
+
+    <rdf:Description rdf:about="&BusinessEntity;Corporation">
+        <rdfs:subClassOf rdf:resource="&schema;Organization"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://loted.eu/ontology2/BusinessEntity#Society -->
+
+    <rdf:Description rdf:about="&BusinessEntity;Society">
+        <rdfs:subClassOf rdf:resource="&schema;Organization"/>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+
