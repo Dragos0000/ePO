@@ -26,5 +26,5 @@ jobs:
       - name: get model2owl
         uses: actions/checkout@v2
         with:
-          repository: "https://github.com/OP-TED/model2owl.git"
+          repository: OP-TED/model2owl.git
 
