@@ -20,8 +20,11 @@ jobs:
       - name: list files
         run: ls -l
 
-#      - name: unzip saxon
-#        run: sudo unzip saxon
+      - name: unzip saxon
+        run: sudo unzip saxon/saxon.zip
 
-
+      - name: get model2owl
+        uses: actions/checkout@v2
+        with:
+          repository: "https://github.com/OP-TED/model2owl.git"
 
