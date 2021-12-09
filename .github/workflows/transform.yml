@@ -15,6 +15,9 @@ jobs:
 #          ls
 #          pwd
       - name: list files
-        run: ls
+        run: ls -l
+
+      - name: unzip saxon
+        run: 7z x saxon.zip
 
 
