@@ -11,5 +11,6 @@ jobs:
         run: |
           pwd
           curl -XGET "https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip" > saxon.zip
-          unzip saxon.zip
+          pwd
+          unzip saxon.zip .
           ls
