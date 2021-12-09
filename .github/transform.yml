@@ -1,0 +1,14 @@
+name: transform XMI
+on:
+  push:
+    paths:
+      - "analysis_and_design/transformation_output/xmi_conceptual_model/ePO_CM.xml"
+jobs:
+  transform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get Saxon
+        run: |
+          pwd
+          curl -XGET "https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip" > saxon.zip
+          ls -a
