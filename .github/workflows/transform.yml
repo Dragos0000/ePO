@@ -10,5 +10,7 @@ jobs:
       - name: get Saxon
         run: |
           pwd
-          curl -o saxon.zip "https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip" && unzip saxon.zip
+          curl -o saxon.zip "https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip" 
+          7z x saxon.zip
+          ls
           pwd
