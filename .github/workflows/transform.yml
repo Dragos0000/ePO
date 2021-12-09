@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: get Saxon
+#      - name: get Saxon
 #        uses: wei/curl@v1.1.1
 #        with:
 #          args: -o saxon https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip
