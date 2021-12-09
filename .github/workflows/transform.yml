@@ -30,9 +30,9 @@ jobs:
       - name: get model2owl
         run: |
           git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/OP-TED/model2owl.git model2owl
-        uses: actions/checkout@v2
-        with:
-          repository: OP-TED/model2owl.git
+#        uses: actions/checkout@v2
+#        with:
+#          repository: OP-TED/model2owl.git
 
       - name: list files in model2owl
         run: |
