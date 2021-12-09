@@ -23,8 +23,15 @@ jobs:
       - name: unzip saxon
         run: sudo unzip saxon/saxon.zip
 
+      - name: make model2owl dir
+        run: |
+          mkdir model2owl
+          cd model2owl
+
       - name: get model2owl
         uses: actions/checkout@v2
         with:
           repository: OP-TED/model2owl.git
 
+      - name: list files in model2owl
+        run: ls -l
