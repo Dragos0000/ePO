@@ -8,9 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get Saxon
-        run: |
-          pwd
-          sudo curl -o saxon.zip "https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip"
+        uses: wei/curl@v1.1.1
+        with:
+          args: -o saxon.zip https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip
+
+      #        run: |
+#          pwd
+#          sudo curl -o saxon.zip "https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip"
 #          7z x saxon.zip
 #          ls
 #          pwd
