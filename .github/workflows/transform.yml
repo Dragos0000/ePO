@@ -42,14 +42,14 @@ jobs:
         run: |
           ls -l
 
-      - name: go to saxon dir
-        run: |
-          cd saxon
-          ls -l
+#      - name: go to saxon dir
+#        run: |
+#          cd saxon
+#          ls -l
 
       - name: transform owl-core
         run: |
-          cd saxon
+#          sudo unzip saxon.zip
           java -jar saxon-he-10.6.jar -s:analysis_and_design/transformation_output/xmi_conceptual_model/ePO_CM.xml -xsl:model2owl/src/owl-core.xsl -o:analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
 
       - name: see result
