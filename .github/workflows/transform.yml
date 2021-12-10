@@ -48,13 +48,13 @@ jobs:
         run: |
           ls -l
 
-#      - name: transform owl-core
-#        run: |
-#          java -jar saxon-he-10.6.jar -s:$ePO_CM_FILE_PATH -xsl:model2owl/src/owl-core.xsl -o:analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
-#
-#      - name: see result
-#        run: |
-#          ls -l analysis_and_design/transformation_output/owl_ontology
+      - name: transform owl-core
+        run: |
+          java -jar transform/saxon-he-10.6.jar -s:$ePO_CM_FILE_PATH -xsl:transform/model2owl/src/owl-core.xsl -o:analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
+
+      - name: see result
+        run: |
+          ls -l analysis_and_design/transformation_output/owl_ontology
 #
 #      - name: remove unnecessary files
 #        run: |
