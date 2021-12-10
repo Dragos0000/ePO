@@ -30,9 +30,9 @@ jobs:
 
       - name: transform xml to rdf
         run: |
-          java -jar transform/saxon-he-10.6.jar -s:$ePO_CM_FILE_PATH -xsl:$TRANSFORM-CORE-FILE -o:$OUTPUT_PATH$OUTPUT_CORE_FILE_NAME
-          java -jar transform/saxon-he-10.6.jar -s:$ePO_CM_FILE_PATH -xsl:$TRANSFORM-RESTRICTIONS-FILE -o:$OUTPUT_PATH$OUTPUT_RESTRICTIONS_FILE_NAME
-          java -jar transform/saxon-he-10.6.jar -s:$ePO_CM_FILE_PATH -xsl:$TRANSFORM-SHACL-SHAPES-FILE -o:$OUTPUT_PATH$OUTPUT_SHACL-SHAPES_FILE_NAME
+          java -jar transform/saxon-he-10.6.jar -s:$ePO_CM_FILE_PATH -xsl:transform/model2owl/src/owl-core.xsl -o:$OUTPUT_PATH$OUTPUT_CORE_FILE_NAME
+#          java -jar transform/saxon-he-10.6.jar -s:$ePO_CM_FILE_PATH -xsl:$TRANSFORM-RESTRICTIONS-FILE -o:$OUTPUT_PATH$OUTPUT_RESTRICTIONS_FILE_NAME
+#          java -jar transform/saxon-he-10.6.jar -s:$ePO_CM_FILE_PATH -xsl:$TRANSFORM-SHACL-SHAPES-FILE -o:$OUTPUT_PATH$OUTPUT_SHACL-SHAPES_FILE_NAME
 
       - name: see result
         run: |
