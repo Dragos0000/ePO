@@ -50,10 +50,10 @@ jobs:
         run: |
           ls -l analysis_and_design/transformation_output/owl_ontology
 
-      - name: remove unnecessary files
-        run : |
-          rm -rf doc
-        shell: bash
+      - name: Remove File
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: doc
 
       - name: commit results
         run: |
