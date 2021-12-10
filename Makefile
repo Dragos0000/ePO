@@ -1,6 +1,6 @@
 get-saxon:
 	@ mkdir -p transform
-	@ curl -o saxon.zip "https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip"
+	@ curl -L -o saxon.zip "https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip"
 #	@ sudo unzip saxon.zip -d transform
 	@ ls -l
 	@ jar xvf saxon.zip -d transform
