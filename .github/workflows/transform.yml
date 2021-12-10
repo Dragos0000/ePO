@@ -54,7 +54,7 @@ jobs:
         run : |
           rm -rf doc
         shell: bash
-      -
+
       - name: commit results
         run: |
           git config --local user.email "action@github.com"
