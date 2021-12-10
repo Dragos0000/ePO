@@ -38,6 +38,15 @@ jobs:
         run: |
           pwd
 
+      - name: list dir
+        run: |
+          ls -l
+
+      - name: go to saxon dir
+        run: |
+          cd saxon
+          ls -l
+
       - name: transform owl-core
         run: |
           cd saxon
