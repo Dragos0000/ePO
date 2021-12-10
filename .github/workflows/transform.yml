@@ -1,11 +1,16 @@
 name: transform XMI
 on:
   push:
-    paths:
-      - "analysis_and_design/transformation_output/xmi_conceptual_model/ePO_CM.xml"
+    branches:  [ '**' ]
+#    paths:
+#      - "analysis_and_design/transformation_output/xmi_conceptual_model/ePO_CM.xml"
 jobs:
   transform:
     runs-on: ubuntu-latest
+    env:
+      ePO_CM_FILE_PATH: analysis_and_design/transformation_output/xmi_conceptual_model/ePO_CM.xml
+      middle_name: The
+      Last_Name: Octocat
     steps:
       - uses: actions/checkout@master
       #      - name: get Saxon
@@ -20,16 +25,17 @@ jobs:
       - name: list files
         run: ls -l
 
-      - name: unzip saxon
-        run: sudo unzip saxon/saxon.zip
+      - name: get-saxon
+        run: make get-saxon
 
-      - name: make model2owl dir
-        run: |
-          mkdir model2owl
+#      - name: make model2owl dir
+#        run: |
+#          mkdir model2owl
 
       - name: get model2owl
         run: |
-          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/OP-TED/model2owl.git model2owl
+          make get-model2owl-repo
+#          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/OP-TED/model2owl.git model2owl
       #        uses: actions/checkout@v2
       #        with:
       #          repository: OP-TED/model2owl.git
@@ -42,36 +48,36 @@ jobs:
         run: |
           ls -l
 
-      - name: transform owl-core
-        run: |
-          java -jar saxon-he-10.6.jar -s:analysis_and_design/transformation_output/xmi_conceptual_model/ePO_CM.xml -xsl:model2owl/src/owl-core.xsl -o:analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
-
-      - name: see result
-        run: |
-          ls -l analysis_and_design/transformation_output/owl_ontology
-
-      - name: remove unnecessary files
-        run: |
-          sudo rm -rf doc model2owl notices jline-2.14.6.jar saxon-he-10.6.jar saxon-he-test-10.6.jar
-        shell: bash
-
-      - name: commit results
-        run: |
-               git config --local user.email "action@github.com"
-               git config --local user.name "github-actions"
-               git status
-               git add --all
-               if git diff-index --quiet HEAD --; then
-               echo "::set-output name=push::false"
-               else
-               git commit -m "Add changes" -a
-               echo "::set-output name=push::true"
-               fi
-        shell: bash
-
-
-      - name: Push changes
-        if: steps.commit.outputs.push == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+#      - name: transform owl-core
+#        run: |
+#          java -jar saxon-he-10.6.jar -s:$ePO_CM_FILE_PATH -xsl:model2owl/src/owl-core.xsl -o:analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
+#
+#      - name: see result
+#        run: |
+#          ls -l analysis_and_design/transformation_output/owl_ontology
+#
+#      - name: remove unnecessary files
+#        run: |
+#          sudo rm -rf doc model2owl notices jline-2.14.6.jar saxon-he-10.6.jar saxon-he-test-10.6.jar
+#        shell: bash
+#
+#      - name: commit results
+#        run: |
+#               git config --local user.email "action@github.com"
+#               git config --local user.name "github-actions"
+#               git status
+#               git add --all
+#               if git diff-index --quiet HEAD --; then
+#               echo "::set-output name=push::false"
+#               else
+#               git commit -m "Add changes" -a
+#               echo "::set-output name=push::true"
+#               fi
+#        shell: bash
+#
+#
+#      - name: Push changes
+#        if: steps.commit.outputs.push == 'true'
+#        uses: ad-m/github-push-action@master
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
