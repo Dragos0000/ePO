@@ -54,7 +54,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
           git status
-          git add ePO_owl_core.rdf
+          git add analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
           git commit -m "transformed owl core"
 
 
