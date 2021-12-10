@@ -33,30 +33,6 @@
       <cc:attributionURL rdf:resource="http://publications.europa.eu/resource/authority/corporate-body/PUBL"/>
       <dct:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2021-03-17+01:00</dct:date>
    </owl:Ontology>
-   <owl:Class rdf:about="http://data.europa.eu/a4g/ontology#AccessTerm">
-      <rdfs:subClassOf>
-         <owl:Restriction>
-            <owl:onProperty rdf:resource="http://data.europa.eu/a4g/ontology#hasSomeProcurementDocumentRestricted"/>
-            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:maxCardinality>
-         </owl:Restriction>
-      </rdfs:subClassOf>
-   </owl:Class>
-   <owl:Class rdf:about="http://data.europa.eu/a4g/ontology#AccessTerm">
-      <rdfs:subClassOf>
-         <owl:Restriction>
-            <owl:onProperty rdf:resource="http://data.europa.eu/a4g/ontology#hasAdditionalInformationDeadline"/>
-            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:maxCardinality>
-         </owl:Restriction>
-      </rdfs:subClassOf>
-   </owl:Class>
-   <owl:Class rdf:about="http://data.europa.eu/a4g/ontology#AccessTerm">
-      <rdfs:subClassOf>
-         <owl:Restriction>
-            <owl:onProperty rdf:resource="http://data.europa.eu/a4g/ontology#hasProcurementDocumentLandingPage"/>
-            <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:maxCardinality>
-         </owl:Restriction>
-      </rdfs:subClassOf>
-   </owl:Class>
    <owl:Class rdf:about="http://data.europa.eu/a4g/ontology#Address">
       <rdfs:subClassOf>
          <owl:Restriction>
