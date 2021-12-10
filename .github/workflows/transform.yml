@@ -13,7 +13,7 @@ jobs:
       OUTPUT_CORE_FILE_NAME: ePO_owl_core.rdf
       OUTPUT_RESTRICTIONS_FILE_NAME: ePO_restrictions.rdf
       OUTPUT_SHACL-SHAPES_FILE_NAME: ePO_shacl_shapes.rdf
-      TRANSFORM-CORE-FILE: transform/model2owl/src/owl-core.xsl
+      TRANSFORM-CORE-FILE: "transform/model2owl/src/owl-core.xsl"
       TRANSFORM-RESTRICTIONS-FILE: transform/model2owl/src/owl-restrictions.xsl
       TRANSFORM-SHACL-SHAPES-FILE: transform/model2owl/src/shacl-shapes.xsl
     steps:
