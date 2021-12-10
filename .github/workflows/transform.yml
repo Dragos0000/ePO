@@ -34,9 +34,14 @@ jobs:
 #        with:
 #          repository: OP-TED/model2owl.git
 
+      - name: what dir
+        run: |
+          pwd
+
       - name: transform owl-core
         run: |
-          java -jar saxon/saxon-he-10.6.jar -s:analysis_and_design/transformation_output/xmi_conceptual_model/ePO_CM.xml -xsl:model2owl/src/owl-core.xsl -o:analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
+          cd saxon
+          java -jar saxon-he-10.6.jar -s:analysis_and_design/transformation_output/xmi_conceptual_model/ePO_CM.xml -xsl:model2owl/src/owl-core.xsl -o:analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
 
       - name: see result
         run: |
