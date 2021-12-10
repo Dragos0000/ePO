@@ -51,15 +51,15 @@ jobs:
           ls -l analysis_and_design/transformation_output/owl_ontology
 
       - name: commit results
-        |
-        git config --local user.email "action@github.com"
-        git config --local user.name "github-actions"
-        git status
-        git add ePO_owl_core.rdf
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+          git status
+          git add ePO_owl_core.rdf
 #        if [-z "$(git status --porcelain)"]; then
 #        echo "::set-output name=push::false"
 #        else
-        git commit -m "transformed owl core"
+          git commit -m "transformed owl core"
 #        echo "::set-output name=push::true"
 #        fi
 #        shell: bash
