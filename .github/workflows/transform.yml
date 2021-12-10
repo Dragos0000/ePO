@@ -53,7 +53,6 @@ jobs:
       - name: remove unnecessary files
         run : |
           rm -rf doc
-#          rm -rf doc model2owl notices jline-2.14.6.jar saxon-he-10.6.jar saxon-he-test-10.6.jar
 
       - name: commit results
         run: |
