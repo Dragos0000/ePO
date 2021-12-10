@@ -49,17 +49,28 @@ jobs:
       - name: see result
         run: |
           ls -l analysis_and_design/transformation_output/owl_ontology
+
+      - name: remove unnecessary files
+        run : rm -rf doc/ model2owl/ notices/ jline-2.14.6.jar saxon-he-10.6.jar saxon-he-test-10.6.jar
       - name: commit results
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
           git status
-          git add analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
-          git commit -m "transformed owl core"
+#          git add analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
+#          git commit -m "transformed owl core"
+          git add --all
+          if [-z "$(git status --porcelain)"]; then
+             echo "::set-output name=push::false"
+          else
+             git commit -m "Add changes" -a
+             echo "::set-output name=push::true"
+          fi
+        shell: bash
 
 
       - name: Push changes
-        #        if: steps.commit.outputs.push == 'true'
+        if: steps.commit.outputs.push == 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
