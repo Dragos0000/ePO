@@ -8,14 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-#      - name: get Saxon
-#        uses: wei/curl@v1.1.1
-#        with:
-#          args: -o saxon https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip
+      #      - name: get Saxon
+      #        uses: wei/curl@v1.1.1
+      #        with:
+      #          args: -o saxon https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip
 
-#        run: |
-#          pwd
-#          sudo curl -o saxon.zip "https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip"
+      #        run: |
+      #          pwd
+      #          sudo curl -o saxon.zip "https://kumisystems.dl.sourceforge.net/project/saxon/Saxon-HE/10/Java/SaxonHE10-6J.zip"
 
       - name: list files
         run: ls -l
@@ -30,9 +30,9 @@ jobs:
       - name: get model2owl
         run: |
           git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/OP-TED/model2owl.git model2owl
-#        uses: actions/checkout@v2
-#        with:
-#          repository: OP-TED/model2owl.git
+      #        uses: actions/checkout@v2
+      #        with:
+      #          repository: OP-TED/model2owl.git
 
       - name: what dir
         run: |
@@ -42,14 +42,8 @@ jobs:
         run: |
           ls -l
 
-#      - name: go to saxon dir
-#        run: |
-#          cd saxon
-#          ls -l
-
       - name: transform owl-core
         run: |
-#          sudo unzip saxon.zip
           java -jar saxon-he-10.6.jar -s:analysis_and_design/transformation_output/xmi_conceptual_model/ePO_CM.xml -xsl:model2owl/src/owl-core.xsl -o:analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
 
       - name: see result
