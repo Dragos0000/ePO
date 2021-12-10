@@ -49,23 +49,17 @@ jobs:
       - name: see result
         run: |
           ls -l analysis_and_design/transformation_output/owl_ontology
-
       - name: commit results
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
           git status
           git add ePO_owl_core.rdf
-#        if [-z "$(git status --porcelain)"]; then
-#        echo "::set-output name=push::false"
-#        else
           git commit -m "transformed owl core"
-#        echo "::set-output name=push::true"
-#        fi
-#        shell: bash
+
 
       - name: Push changes
-#        if: steps.commit.outputs.push == 'true'
+        #        if: steps.commit.outputs.push == 'true'
         uses: ad-m/github-push-action@master
         with:
-           github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
