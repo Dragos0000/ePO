@@ -50,25 +50,23 @@ jobs:
         run: |
           ls -l analysis_and_design/transformation_output/owl_ontology
 
-      - name: Remove File
-        uses: JesseTG/rm@v1.0.2
-        with:
-          path: doc
+      - name: remove unnecessary files
+        run: |
+          rm -rf doc
+        shell: bash
 
       - name: commit results
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "github-actions"
-          git status
-#          git add analysis_and_design/transformation_output/owl_ontology/ePO_owl_core.rdf
-#          git commit -m "transformed owl core"
-          git add --all
-          if [-z "$(git status --porcelain)"]; then
-             echo "::set-output name=push::false"
-          else
-             git commit -m "Add changes" -a
-             echo "::set-output name=push::true"
-          fi
+               git config --local user.email "action@github.com"
+               git config --local user.name "github-actions"
+               git status
+               git add --all
+               if [-z "$(git status --porcelain)"]; then
+               echo "::set-output name=push::false"
+               else
+               git commit -m "Add changes" -a
+               echo "::set-output name=push::true"
+               fi
         shell: bash
 
 
