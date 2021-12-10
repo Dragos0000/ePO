@@ -49,7 +49,7 @@ jobs:
                git config --local user.name "github-actions"
                git status
                git add --all
-               if git diff-index --quiet HEAD --; then
+               if [git status --porcelain]; then
                echo "::set-output name=push::false"
                else
                git commit -m "Add changes" -a
