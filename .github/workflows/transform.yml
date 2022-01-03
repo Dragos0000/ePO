@@ -2,7 +2,7 @@ name: transform XMI
 on:
   push:
     branches:
-      - *
+      - "*"
     paths:
       - "analysis_and_design/transformation_output/xmi_conceptual_model/ePO_CM.xml"
 jobs:
