@@ -30,7 +30,7 @@ jobs:
       - name: clean previous transformation
         run: |
           mkdir -p $OUTPUT_REPORT_PATH
-          rm $OUTPUT_REPORT_PATH*.html
+          rm -f $OUTPUT_REPORT_PATH*.html || true
           rm $OUTPUT_PATH*.rdf
 
       - name: transform xml to rdf
